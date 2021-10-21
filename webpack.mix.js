@@ -15,3 +15,8 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);
+
+// Badaso
+mix.js("packages/badaso/core/src/resources/js/app.js", "public/js/badaso.js")
+    .sass("packages/badaso/core/src/resources/js/assets/scss/style.scss", "public/css/badaso.css")
+    .vue()
