@@ -1322,7 +1322,7 @@ Artisan::command("run", function () {
          */
         public function up()
         {
-            Schema::create('{table_name_snake}', function (Blueprint \$table) {
+            Schema::create(config('badaso.database.prefix').'{table_name_snake}', function (Blueprint \$table) {
                 \$table->id();
     {table_field}
     {table_relation}
@@ -1336,7 +1336,7 @@ Artisan::command("run", function () {
          */
         public function down()
         {
-            Schema::dropIfExists('{table_name_snake}');
+            Schema::dropIfExists(config('badaso.database.prefix').'{table_name_snake}');
         }
     }
     TXT;
@@ -1426,7 +1426,7 @@ Artisan::command("run", function () {
         if (isset($relation[$table_name])) {
             foreach ($relation[$table_name] as $key => $value) {
                 [$table_ref, $field_ref, $table_to, $field_to] = $value;
-                $table_relation .= "            \$table->foreign('{$field_ref}')->references('{$field_to}')->on('{$table_to}')->onDelete('cascade');\n";
+                $table_relation .= "            \$table->foreign('{$field_ref}')->references('{$field_to}')->on(config('badaso.database.prefix').'{$table_to}')->onDelete('cascade');\n";
             }
         }
 
@@ -1451,6 +1451,31 @@ Artisan::command("run", function () {
 
         $new_fillable = substr($new_fillable, 1);
 
+        $tableToModelName = function ($table_name) use ($toCamelCase) {
+            $model_name = str_replace(['ies'], ["ys"], $table_name);
+            $model_name = $toCamelCase($model_name);
+            $model_name = substr($model_name, 0, strlen($model_name) - 1);
+
+            return $model_name;
+        };
+        $model_relation = "";
+        if (isset($relation[$table_name])) {
+            foreach ($relation[$table_name] as $key => $value) {
+                [$table_ref, $field_ref, $table_to, $field_to] = $value;
+
+                $model_to = $tableToModelName($table_to);
+                $fuc_name = str_replace('_id', "", $field_ref);
+                $fuc_name = $toCamelCase($fuc_name);
+
+                $first = strtolower(substr($fuc_name, 0, 1));
+                $fuc_name = $first . substr($fuc_name, 1);
+
+                $model_relation .= <<<TXT
+                    public function $fuc_name(){ return \$this->belongsTo(Uasoft\Badaso\Models\\$model_to::class); }\n
+                TXT;
+            }
+        }
+
         $model_format = <<<TXT
         <?php
 
@@ -1463,8 +1488,20 @@ Artisan::command("run", function () {
         {
             use HasFactory;
 
-            protected \$table = "{table_name}" ;
+            protected \$table = null ;
             protected \$fillable = [{table_fillable}] ;
+
+            /**
+             * Constructor for setting the table name dynamically.
+             */
+            public function __construct(array \$attributes = [])
+            {
+                \$prefix = config('badaso.database.prefix');
+                \$this->table = \$prefix.'data_types';
+                parent::__construct(\$attributes);
+            }
+
+        $model_relation
         }
         TXT;
 

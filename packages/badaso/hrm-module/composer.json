@@ -1,0 +1,34 @@
+{
+    "version": "1.0",
+    "name": "badaso/hrm-module",
+    "description": "",
+    "keywords": [],
+    "license": "proprietary",
+    "homepage": "https://badaso.uatech.co.id/",
+    "support": {
+        "issues": "https://github.com/uasoft-indonesia/badaso-hrm-module/issues",
+        "discussion": "https://github.com/uasoft-indonesia/badaso-hrm-module/discussions",
+        "source": "https://github.com/uasoft-indonesia/badaso-hrm-module"
+    },
+    "type": "library",
+    "require": {},
+    "authors": [
+        {
+            "name": "UASOFT",
+            "email": "hello@uatech.co.id"
+        }
+    ],
+    "minimum-stability": "alpha",
+    "autoload": {
+        "psr-4": {
+            "Uasoft\\Badaso\\Module\\HRM\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Uasoft\\Badaso\\Module\\HRM\\Providers\\BadasoHRMModuleServiceProvider"
+            ]
+        }
+    }
+}
