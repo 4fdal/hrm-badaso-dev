@@ -28,10 +28,10 @@ class FleetService extends Model
         parent::__construct($attributes);
     }
 
-    public function fleetServiceType(){ return $this->belongsTo(FleetServiceType::class); }
-    public function vendorParent(){ return $this->belongsTo(FleetServiceType::class); }
-    public function fleetVehicle(){ return $this->belongsTo(FleetVehicle::class); }
-    public function driverPartner(){ return $this->belongsTo(Partner::class); }
+    public function fleetServiceType(){ return $this->belongsTo(FleetServiceType::class, "fleet_service_type_id"); }
+    public function vendorParent(){ return $this->belongsTo(FleetServiceType::class, "vendor_parent_id"); }
+    public function fleetVehicle(){ return $this->belongsTo(FleetVehicle::class, "fleet_vehicle_id"); }
+    public function driverPartner(){ return $this->belongsTo(Partner::class, "driver_partner_id"); }
 
 
 

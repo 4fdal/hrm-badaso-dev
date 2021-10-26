@@ -30,6 +30,6 @@ class MetsosSource extends Model
 
 
 
-    public function metsosSourceApplicants(){ return $this->hasMany(Applicant::class,"metsos_source_id"); }
+    public function metsosSourceApplicants(){ return $this->hasMany(Applicant::class, "metsos_source_id"); }
 
 }

@@ -28,13 +28,13 @@ class LunchOrder extends Model
         parent::__construct($attributes);
     }
 
-    public function lunchProduct(){ return $this->belongsTo(LunchProduct::class); }
-    public function lunchProductCategory(){ return $this->belongsTo(LunchProductCategory::class); }
-    public function lunchVendor(){ return $this->belongsTo(LunchProduct::class); }
-    public function company(){ return $this->belongsTo(Company::class); }
-    public function currency(){ return $this->belongsTo(Currency::class); }
+    public function lunchProduct(){ return $this->belongsTo(LunchProduct::class, "lunch_product_id"); }
+    public function lunchProductCategory(){ return $this->belongsTo(LunchProductCategory::class, "lunch_product_category_id"); }
+    public function lunchVendor(){ return $this->belongsTo(LunchProduct::class, "lunch_vendor_id"); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
+    public function currency(){ return $this->belongsTo(Currency::class, "currency_id"); }
 
 
-    public function lunchOrderLunchOrderToppings(){ return $this->hasMany(LunchOrderTopping::class,"lunch_order_id"); }
+    public function lunchOrderLunchOrderToppings(){ return $this->hasMany(LunchOrderTopping::class, "lunch_order_id"); }
 
 }

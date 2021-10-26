@@ -28,12 +28,12 @@ class Job extends Model
         parent::__construct($attributes);
     }
 
-    public function departement(){ return $this->belongsTo(Departement::class); }
-    public function company(){ return $this->belongsTo(Company::class); }
-    public function manager(){ return $this->belongsTo(Employee::class); }
+    public function departement(){ return $this->belongsTo(Departement::class, "departement_id"); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
+    public function manager(){ return $this->belongsTo(Employee::class, "manager_id"); }
 
 
-    public function jobRecruitments(){ return $this->hasMany(Recruitment::class,"job_id"); }
-    public function jobApplicants(){ return $this->hasMany(Applicant::class,"job_id"); }
+    public function jobRecruitments(){ return $this->hasMany(Recruitment::class, "job_id"); }
+    public function jobApplicants(){ return $this->hasMany(Applicant::class, "job_id"); }
 
 }

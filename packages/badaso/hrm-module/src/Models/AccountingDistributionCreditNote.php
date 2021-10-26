@@ -28,7 +28,7 @@ class AccountingDistributionCreditNote extends Model
         parent::__construct($attributes);
     }
 
-    public function accountingTax(){ return $this->belongsTo(AccountingTaxe::class); }
+    public function accountingTax(){ return $this->belongsTo(AccountingTaxe::class, "accounting_tax_id"); }
 
 
 

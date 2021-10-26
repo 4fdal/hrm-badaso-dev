@@ -28,12 +28,12 @@ class LunchProduct extends Model
         parent::__construct($attributes);
     }
 
-    public function lunchProductCategory(){ return $this->belongsTo(LunchProductCategory::class); }
-    public function lunchVendor(){ return $this->belongsTo(LunchVendor::class); }
+    public function lunchProductCategory(){ return $this->belongsTo(LunchProductCategory::class, "lunch_product_category_id"); }
+    public function lunchVendor(){ return $this->belongsTo(LunchVendor::class, "lunch_vendor_id"); }
 
 
-    public function lunchProductLunchProductFavorites(){ return $this->hasMany(LunchProductFavorite::class,"lunch_product_id"); }
-    public function lunchProductLunchOrders(){ return $this->hasMany(LunchOrder::class,"lunch_product_id"); }
-    public function lunchVendorLunchOrders(){ return $this->hasMany(LunchOrder::class,"lunch_vendor_id"); }
+    public function lunchProductLunchProductFavorites(){ return $this->hasMany(LunchProductFavorite::class, "lunch_product_id"); }
+    public function lunchProductLunchOrders(){ return $this->hasMany(LunchOrder::class, "lunch_product_id"); }
+    public function lunchVendorLunchOrders(){ return $this->hasMany(LunchOrder::class, "lunch_vendor_id"); }
 
 }

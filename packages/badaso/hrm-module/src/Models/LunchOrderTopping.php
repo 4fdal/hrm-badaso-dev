@@ -28,8 +28,8 @@ class LunchOrderTopping extends Model
         parent::__construct($attributes);
     }
 
-    public function lunchOrder(){ return $this->belongsTo(LunchOrder::class); }
-    public function lunchTopping(){ return $this->belongsTo(LunchTopping::class); }
+    public function lunchOrder(){ return $this->belongsTo(LunchOrder::class, "lunch_order_id"); }
+    public function lunchTopping(){ return $this->belongsTo(LunchTopping::class, "lunch_topping_id"); }
 
 
 

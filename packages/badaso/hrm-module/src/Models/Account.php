@@ -28,17 +28,17 @@ class Account extends Model
         parent::__construct($attributes);
     }
 
-    public function currency(){ return $this->belongsTo(Currency::class); }
-    public function accountType(){ return $this->belongsTo(AccountType::class); }
-    public function company(){ return $this->belongsTo(Company::class); }
-    public function accountGroup(){ return $this->belongsTo(AccountGroup::class); }
+    public function currency(){ return $this->belongsTo(Currency::class, "currency_id"); }
+    public function accountType(){ return $this->belongsTo(AccountType::class, "account_type_id"); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
+    public function accountGroup(){ return $this->belongsTo(AccountGroup::class, "account_group_id"); }
 
 
-    public function defaultAccountAccountJournals(){ return $this->hasMany(AccountJournal::class,"default_account_id"); }
-    public function paymentDebitAccountAccountJournals(){ return $this->hasMany(AccountJournal::class,"payment_debit_account_id"); }
-    public function paymentCreditAccountAccountJournals(){ return $this->hasMany(AccountJournal::class,"payment_credit_account_id"); }
-    public function suspensiAccountAccountJournals(){ return $this->hasMany(AccountJournal::class,"suspensi_account_id"); }
-    public function profitAccountAccountJournals(){ return $this->hasMany(AccountJournal::class,"profit_account_id"); }
-    public function lostAccountAccountJournals(){ return $this->hasMany(AccountJournal::class,"lost_account_id"); }
+    public function defaultAccountAccountJournals(){ return $this->hasMany(AccountJournal::class, "default_account_id"); }
+    public function paymentDebitAccountAccountJournals(){ return $this->hasMany(AccountJournal::class, "payment_debit_account_id"); }
+    public function paymentCreditAccountAccountJournals(){ return $this->hasMany(AccountJournal::class, "payment_credit_account_id"); }
+    public function suspensiAccountAccountJournals(){ return $this->hasMany(AccountJournal::class, "suspensi_account_id"); }
+    public function profitAccountAccountJournals(){ return $this->hasMany(AccountJournal::class, "profit_account_id"); }
+    public function lostAccountAccountJournals(){ return $this->hasMany(AccountJournal::class, "lost_account_id"); }
 
 }

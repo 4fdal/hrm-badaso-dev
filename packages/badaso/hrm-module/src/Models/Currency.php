@@ -30,12 +30,12 @@ class Currency extends Model
 
 
 
-    public function currencyCountries(){ return $this->hasMany(Country::class,"currency_id"); }
-    public function currencyCompanies(){ return $this->hasMany(Company::class,"currency_id"); }
-    public function currencyLunchCashmoves(){ return $this->hasMany(LunchCashmove::class,"currency_id"); }
-    public function currencyLunchOrders(){ return $this->hasMany(LunchOrder::class,"currency_id"); }
-    public function currencyAccounts(){ return $this->hasMany(Account::class,"currency_id"); }
-    public function currencyPartnerBanks(){ return $this->hasMany(PartnerBank::class,"currency_id"); }
-    public function currencyAccountJournals(){ return $this->hasMany(AccountJournal::class,"currency_id"); }
+    public function currencyCountries(){ return $this->hasMany(Country::class, "currency_id"); }
+    public function currencyCompanies(){ return $this->hasMany(Company::class, "currency_id"); }
+    public function currencyLunchCashmoves(){ return $this->hasMany(LunchCashmove::class, "currency_id"); }
+    public function currencyLunchOrders(){ return $this->hasMany(LunchOrder::class, "currency_id"); }
+    public function currencyAccounts(){ return $this->hasMany(Account::class, "currency_id"); }
+    public function currencyPartnerBanks(){ return $this->hasMany(PartnerBank::class, "currency_id"); }
+    public function currencyAccountJournals(){ return $this->hasMany(AccountJournal::class, "currency_id"); }
 
 }

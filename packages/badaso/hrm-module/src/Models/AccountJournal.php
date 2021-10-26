@@ -28,17 +28,17 @@ class AccountJournal extends Model
         parent::__construct($attributes);
     }
 
-    public function defaultAccount(){ return $this->belongsTo(Account::class); }
-    public function paymentDebitAccount(){ return $this->belongsTo(Account::class); }
-    public function paymentCreditAccount(){ return $this->belongsTo(Account::class); }
-    public function suspensiAccount(){ return $this->belongsTo(Account::class); }
-    public function currency(){ return $this->belongsTo(Currency::class); }
-    public function company(){ return $this->belongsTo(Company::class); }
-    public function profitAccount(){ return $this->belongsTo(Account::class); }
-    public function lostAccount(){ return $this->belongsTo(Account::class); }
-    public function partnerBank(){ return $this->belongsTo(PartnerBank::class); }
+    public function defaultAccount(){ return $this->belongsTo(Account::class, "default_account_id"); }
+    public function paymentDebitAccount(){ return $this->belongsTo(Account::class, "payment_debit_account_id"); }
+    public function paymentCreditAccount(){ return $this->belongsTo(Account::class, "payment_credit_account_id"); }
+    public function suspensiAccount(){ return $this->belongsTo(Account::class, "suspensi_account_id"); }
+    public function currency(){ return $this->belongsTo(Currency::class, "currency_id"); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
+    public function profitAccount(){ return $this->belongsTo(Account::class, "profit_account_id"); }
+    public function lostAccount(){ return $this->belongsTo(Account::class, "lost_account_id"); }
+    public function partnerBank(){ return $this->belongsTo(PartnerBank::class, "partner_bank_id"); }
 
 
-    public function accountJournalTaxCurrentAccountJournals(){ return $this->hasMany(TaxCurrentAccountJournal::class,"account_journal_id"); }
+    public function accountJournalTaxCurrentAccountJournals(){ return $this->hasMany(TaxCurrentAccountJournal::class, "account_journal_id"); }
 
 }

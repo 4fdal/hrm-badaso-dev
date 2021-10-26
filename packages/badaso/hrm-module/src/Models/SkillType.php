@@ -30,8 +30,8 @@ class SkillType extends Model
 
 
 
-    public function skillTypeSkillLevels(){ return $this->hasMany(SkillLevel::class,"skill_type_id"); }
-    public function skillTypeSkills(){ return $this->hasMany(Skill::class,"skill_type_id"); }
-    public function skillTypeEmployeeSkills(){ return $this->hasMany(EmployeeSkill::class,"skill_type_id"); }
+    public function skillTypeSkillLevels(){ return $this->hasMany(SkillLevel::class, "skill_type_id"); }
+    public function skillTypeSkills(){ return $this->hasMany(Skill::class, "skill_type_id"); }
+    public function skillTypeEmployeeSkills(){ return $this->hasMany(EmployeeSkill::class, "skill_type_id"); }
 
 }

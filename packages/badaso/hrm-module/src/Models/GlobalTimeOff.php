@@ -28,7 +28,7 @@ class GlobalTimeOff extends Model
         parent::__construct($attributes);
     }
 
-    public function worke(){ return $this->belongsTo(Worke::class); }
+    public function worke(){ return $this->belongsTo(Worke::class, "worke_id"); }
 
 
 

@@ -28,7 +28,7 @@ class FleetOdometer extends Model
         parent::__construct($attributes);
     }
 
-    public function fleetVehicle(){ return $this->belongsTo(FleetVehicle::class); }
+    public function fleetVehicle(){ return $this->belongsTo(FleetVehicle::class, "fleet_vehicle_id"); }
 
 
 

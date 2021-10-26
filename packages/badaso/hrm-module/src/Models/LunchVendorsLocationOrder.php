@@ -28,8 +28,8 @@ class LunchVendorsLocationOrder extends Model
         parent::__construct($attributes);
     }
 
-    public function lunchLocations(){ return $this->belongsTo(LunchLocation::class); }
-    public function lunchVendor(){ return $this->belongsTo(LunchVendor::class); }
+    public function lunchLocations(){ return $this->belongsTo(LunchLocation::class, "lunch_locations_id"); }
+    public function lunchVendor(){ return $this->belongsTo(LunchVendor::class, "lunch_vendor_id"); }
 
 
 

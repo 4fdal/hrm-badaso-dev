@@ -28,15 +28,15 @@ class Departement extends Model
         parent::__construct($attributes);
     }
 
-    public function company(){ return $this->belongsTo(Company::class); }
-    public function parent(){ return $this->belongsTo(Departement::class); }
-    public function manager(){ return $this->belongsTo(Employee::class); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
+    public function parent(){ return $this->belongsTo(Departement::class, "parent_id"); }
+    public function manager(){ return $this->belongsTo(Employee::class, "manager_id"); }
 
 
-    public function parentDepartements(){ return $this->hasMany(Departement::class,"parent_id"); }
-    public function departementJobs(){ return $this->hasMany(Job::class,"departement_id"); }
-    public function departementApplicants(){ return $this->hasMany(Applicant::class,"departement_id"); }
-    public function forDepartementTimeOffAllocations(){ return $this->hasMany(TimeOffAllocation::class,"for_departement_id"); }
-    public function departementTimeOffs(){ return $this->hasMany(TimeOff::class,"departement_id"); }
+    public function parentDepartements(){ return $this->hasMany(Departement::class, "parent_id"); }
+    public function departementJobs(){ return $this->hasMany(Job::class, "departement_id"); }
+    public function departementApplicants(){ return $this->hasMany(Applicant::class, "departement_id"); }
+    public function forDepartementTimeOffAllocations(){ return $this->hasMany(TimeOffAllocation::class, "for_departement_id"); }
+    public function departementTimeOffs(){ return $this->hasMany(TimeOff::class, "departement_id"); }
 
 }

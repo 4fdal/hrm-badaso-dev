@@ -28,8 +28,8 @@ class EmployeeResume extends Model
         parent::__construct($attributes);
     }
 
-    public function employee(){ return $this->belongsTo(Employee::class); }
-    public function resumeLineType(){ return $this->belongsTo(ResumeLineType::class); }
+    public function employee(){ return $this->belongsTo(Employee::class, "employee_id"); }
+    public function resumeLineType(){ return $this->belongsTo(ResumeLineType::class, "resume_line_type_id"); }
 
 
 

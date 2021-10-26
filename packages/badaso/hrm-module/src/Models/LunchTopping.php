@@ -30,6 +30,6 @@ class LunchTopping extends Model
 
 
 
-    public function lunchToppingLunchOrderToppings(){ return $this->hasMany(LunchOrderTopping::class,"lunch_topping_id"); }
+    public function lunchToppingLunchOrderToppings(){ return $this->hasMany(LunchOrderTopping::class, "lunch_topping_id"); }
 
 }

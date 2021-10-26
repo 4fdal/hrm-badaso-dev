@@ -28,8 +28,8 @@ class LunchProductFavorite extends Model
         parent::__construct($attributes);
     }
 
-    public function lunchProduct(){ return $this->belongsTo(LunchProduct::class); }
-    public function user(){ return $this->belongsTo(BadasoUser::class); }
+    public function lunchProduct(){ return $this->belongsTo(LunchProduct::class, "lunch_product_id"); }
+    public function user(){ return $this->belongsTo(BadasoUser::class, "user_id"); }
 
 
 

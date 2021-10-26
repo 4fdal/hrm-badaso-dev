@@ -28,12 +28,12 @@ class TimeOff extends Model
         parent::__construct($attributes);
     }
 
-    public function user(){ return $this->belongsTo(BadasoUser::class); }
-    public function managerEmployee(){ return $this->belongsTo(Employee::class); }
-    public function timeOffType(){ return $this->belongsTo(TimeOffType::class); }
-    public function employee(){ return $this->belongsTo(Employee::class); }
-    public function departement(){ return $this->belongsTo(Departement::class); }
-    public function mettingCalendarEvent(){ return $this->belongsTo(CalendarEvent::class); }
+    public function user(){ return $this->belongsTo(BadasoUser::class, "user_id"); }
+    public function managerEmployee(){ return $this->belongsTo(Employee::class, "manager_employee_id"); }
+    public function timeOffType(){ return $this->belongsTo(TimeOffType::class, "time_off_type_id"); }
+    public function employee(){ return $this->belongsTo(Employee::class, "employee_id"); }
+    public function departement(){ return $this->belongsTo(Departement::class, "departement_id"); }
+    public function mettingCalendarEvent(){ return $this->belongsTo(CalendarEvent::class, "metting_calendar_event_id"); }
 
 
 

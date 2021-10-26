@@ -28,9 +28,9 @@ class CompanyContact extends Model
         parent::__construct($attributes);
     }
 
-    public function partnerTitle(){ return $this->belongsTo(PartnerTitle::class); }
-    public function state(){ return $this->belongsTo(State::class); }
-    public function country(){ return $this->belongsTo(Country::class); }
+    public function partnerTitle(){ return $this->belongsTo(PartnerTitle::class, "partner_title_id"); }
+    public function state(){ return $this->belongsTo(State::class, "state_id"); }
+    public function country(){ return $this->belongsTo(Country::class, "country_id"); }
 
 
 

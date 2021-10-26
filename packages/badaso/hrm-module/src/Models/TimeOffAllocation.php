@@ -28,13 +28,13 @@ class TimeOffAllocation extends Model
         parent::__construct($attributes);
     }
 
-    public function timeOffType(){ return $this->belongsTo(TimeOffType::class); }
-    public function forEmployee(){ return $this->belongsTo(Employee::class); }
-    public function forCompany(){ return $this->belongsTo(Company::class); }
-    public function forDepartement(){ return $this->belongsTo(Departement::class); }
-    public function forEmployeeCategorie(){ return $this->belongsTo(EmployeeCategory::class); }
-    public function firstApproveEmployee(){ return $this->belongsTo(Employee::class); }
-    public function secondApproveEmployee(){ return $this->belongsTo(Employee::class); }
+    public function timeOffType(){ return $this->belongsTo(TimeOffType::class, "time_off_type_id"); }
+    public function forEmployee(){ return $this->belongsTo(Employee::class, "for_employee_id"); }
+    public function forCompany(){ return $this->belongsTo(Company::class, "for_company_id"); }
+    public function forDepartement(){ return $this->belongsTo(Departement::class, "for_departement_id"); }
+    public function forEmployeeCategorie(){ return $this->belongsTo(EmployeeCategory::class, "for_employee_categorie_id"); }
+    public function firstApproveEmployee(){ return $this->belongsTo(Employee::class, "first_approve_employee_id"); }
+    public function secondApproveEmployee(){ return $this->belongsTo(Employee::class, "second_approve_employee_id"); }
 
 
 

@@ -28,9 +28,9 @@ class Recruitment extends Model
         parent::__construct($attributes);
     }
 
-    public function job(){ return $this->belongsTo(Job::class); }
+    public function job(){ return $this->belongsTo(Job::class, "job_id"); }
 
 
-    public function recruitmentRecruitmentSources(){ return $this->hasMany(RecruitmentSource::class,"recruitment_id"); }
+    public function recruitmentRecruitmentSources(){ return $this->hasMany(RecruitmentSource::class, "recruitment_id"); }
 
 }

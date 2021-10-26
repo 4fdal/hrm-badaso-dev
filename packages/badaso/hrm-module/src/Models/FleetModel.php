@@ -28,11 +28,11 @@ class FleetModel extends Model
         parent::__construct($attributes);
     }
 
-    public function fleetModelBrand(){ return $this->belongsTo(FleetModelBrand::class); }
-    public function managerUser(){ return $this->belongsTo(BadasoUser::class); }
+    public function fleetModelBrand(){ return $this->belongsTo(FleetModelBrand::class, "fleet_model_brand_id"); }
+    public function managerUser(){ return $this->belongsTo(BadasoUser::class, "manager_user_id"); }
 
 
-    public function fleetModelFleetVendors(){ return $this->hasMany(FleetVendor::class,"fleet_model_id"); }
-    public function fleetModelFleetVehicles(){ return $this->hasMany(FleetVehicle::class,"fleet_model_id"); }
+    public function fleetModelFleetVendors(){ return $this->hasMany(FleetVendor::class, "fleet_model_id"); }
+    public function fleetModelFleetVehicles(){ return $this->hasMany(FleetVehicle::class, "fleet_model_id"); }
 
 }

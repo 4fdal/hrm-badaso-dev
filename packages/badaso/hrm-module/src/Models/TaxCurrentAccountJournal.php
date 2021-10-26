@@ -28,8 +28,8 @@ class TaxCurrentAccountJournal extends Model
         parent::__construct($attributes);
     }
 
-    public function taxAccountPayables(){ return $this->belongsTo(TaxAccountPayable::class); }
-    public function accountJournal(){ return $this->belongsTo(AccountJournal::class); }
+    public function taxAccountPayables(){ return $this->belongsTo(TaxAccountPayable::class, "tax_account_payables"); }
+    public function accountJournal(){ return $this->belongsTo(AccountJournal::class, "account_journal_id"); }
 
 
 

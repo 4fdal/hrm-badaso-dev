@@ -28,21 +28,21 @@ class Partner extends Model
         parent::__construct($attributes);
     }
 
-    public function parent(){ return $this->belongsTo(Partner::class); }
-    public function industry(){ return $this->belongsTo(Industry::class); }
-    public function commercialPartner(){ return $this->belongsTo(Partner::class); }
-    public function company(){ return $this->belongsTo(Company::class); }
+    public function parent(){ return $this->belongsTo(Partner::class, "parent_id"); }
+    public function industry(){ return $this->belongsTo(Industry::class, "industry_id"); }
+    public function commercialPartner(){ return $this->belongsTo(Partner::class, "commercial_partner_id"); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
 
 
-    public function parentPartners(){ return $this->hasMany(Partner::class,"parent_id"); }
-    public function commercialPartnerPartners(){ return $this->hasMany(Partner::class,"commercial_partner_id"); }
-    public function partnerCompanies(){ return $this->hasMany(Company::class,"partner_id"); }
-    public function partnerCalendarAttendees(){ return $this->hasMany(CalendarAttendee::class,"partner_id"); }
-    public function partnerLunchVendors(){ return $this->hasMany(LunchVendor::class,"partner_id"); }
-    public function partnerFleetVendors(){ return $this->hasMany(FleetVendor::class,"partner_id"); }
-    public function driverPartnerFleetVehicles(){ return $this->hasMany(FleetVehicle::class,"driver_partner_id"); }
-    public function futureDriverPartnerFleetVehicles(){ return $this->hasMany(FleetVehicle::class,"future_driver_partner_id"); }
-    public function driverPartnerFleetServices(){ return $this->hasMany(FleetService::class,"driver_partner_id"); }
-    public function partnerPartnerBanks(){ return $this->hasMany(PartnerBank::class,"partner_id"); }
+    public function parentPartners(){ return $this->hasMany(Partner::class, "parent_id"); }
+    public function commercialPartnerPartners(){ return $this->hasMany(Partner::class, "commercial_partner_id"); }
+    public function partnerCompanies(){ return $this->hasMany(Company::class, "partner_id"); }
+    public function partnerCalendarAttendees(){ return $this->hasMany(CalendarAttendee::class, "partner_id"); }
+    public function partnerLunchVendors(){ return $this->hasMany(LunchVendor::class, "partner_id"); }
+    public function partnerFleetVendors(){ return $this->hasMany(FleetVendor::class, "partner_id"); }
+    public function driverPartnerFleetVehicles(){ return $this->hasMany(FleetVehicle::class, "driver_partner_id"); }
+    public function futureDriverPartnerFleetVehicles(){ return $this->hasMany(FleetVehicle::class, "future_driver_partner_id"); }
+    public function driverPartnerFleetServices(){ return $this->hasMany(FleetService::class, "driver_partner_id"); }
+    public function partnerPartnerBanks(){ return $this->hasMany(PartnerBank::class, "partner_id"); }
 
 }

@@ -30,6 +30,6 @@ class CalendarAlaram extends Model
 
 
 
-    public function calendarAlaramCalendarReminders(){ return $this->hasMany(CalendarReminder::class,"calendar_alaram_id"); }
+    public function calendarAlaramCalendarReminders(){ return $this->hasMany(CalendarReminder::class, "calendar_alaram_id"); }
 
 }

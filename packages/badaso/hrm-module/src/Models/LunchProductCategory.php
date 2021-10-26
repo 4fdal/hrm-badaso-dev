@@ -28,10 +28,10 @@ class LunchProductCategory extends Model
         parent::__construct($attributes);
     }
 
-    public function company(){ return $this->belongsTo(Company::class); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
 
 
-    public function lunchProductCategoryLunchProducts(){ return $this->hasMany(LunchProduct::class,"lunch_product_category_id"); }
-    public function lunchProductCategoryLunchOrders(){ return $this->hasMany(LunchOrder::class,"lunch_product_category_id"); }
+    public function lunchProductCategoryLunchProducts(){ return $this->hasMany(LunchProduct::class, "lunch_product_category_id"); }
+    public function lunchProductCategoryLunchOrders(){ return $this->hasMany(LunchOrder::class, "lunch_product_category_id"); }
 
 }

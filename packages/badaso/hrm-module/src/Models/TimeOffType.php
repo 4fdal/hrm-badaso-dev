@@ -28,11 +28,11 @@ class TimeOffType extends Model
         parent::__construct($attributes);
     }
 
-    public function company(){ return $this->belongsTo(Company::class); }
-    public function responsibleUser(){ return $this->belongsTo(BadasoUser::class); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
+    public function responsibleUser(){ return $this->belongsTo(BadasoUser::class, "responsible_user_id"); }
 
 
-    public function timeOffTypeTimeOffAllocations(){ return $this->hasMany(TimeOffAllocation::class,"time_off_type_id"); }
-    public function timeOffTypeTimeOffs(){ return $this->hasMany(TimeOff::class,"time_off_type_id"); }
+    public function timeOffTypeTimeOffAllocations(){ return $this->hasMany(TimeOffAllocation::class, "time_off_type_id"); }
+    public function timeOffTypeTimeOffs(){ return $this->hasMany(TimeOff::class, "time_off_type_id"); }
 
 }

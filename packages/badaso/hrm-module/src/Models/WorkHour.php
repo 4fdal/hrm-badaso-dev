@@ -28,7 +28,7 @@ class WorkHour extends Model
         parent::__construct($attributes);
     }
 
-    public function work(){ return $this->belongsTo(Worke::class); }
+    public function work(){ return $this->belongsTo(Worke::class, "work_id"); }
 
 
 

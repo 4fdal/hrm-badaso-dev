@@ -28,8 +28,8 @@ class ExpenseReportItem extends Model
         parent::__construct($attributes);
     }
 
-    public function expenseReportsCompany(){ return $this->belongsTo(ExpenseReportsCompanye::class); }
-    public function expenseReport(){ return $this->belongsTo(ExpenseReport::class); }
+    public function expenseReportsCompany(){ return $this->belongsTo(ExpenseReportsCompanye::class, "expense_reports_company_id"); }
+    public function expenseReport(){ return $this->belongsTo(ExpenseReport::class, "expense_report_id"); }
 
 
 

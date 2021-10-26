@@ -28,10 +28,10 @@ class LunchProductCategoryTopping extends Model
         parent::__construct($attributes);
     }
 
-    public function lunchProductCategory(){ return $this->belongsTo(LunchProductCategoryTopping::class); }
+    public function lunchProductCategory(){ return $this->belongsTo(LunchProductCategoryTopping::class, "lunch_product_category_id"); }
 
 
-    public function lunchProductCategoryLunchProductCategoryToppings(){ return $this->hasMany(LunchProductCategoryTopping::class,"lunch_product_category_id"); }
-    public function lunchProductCategoryToppingLunchProductCategoryToppingItems(){ return $this->hasMany(LunchProductCategoryToppingItem::class,"lunch_product_category_topping_id"); }
+    public function lunchProductCategoryLunchProductCategoryToppings(){ return $this->hasMany(LunchProductCategoryTopping::class, "lunch_product_category_id"); }
+    public function lunchProductCategoryToppingLunchProductCategoryToppingItems(){ return $this->hasMany(LunchProductCategoryToppingItem::class, "lunch_product_category_topping_id"); }
 
 }

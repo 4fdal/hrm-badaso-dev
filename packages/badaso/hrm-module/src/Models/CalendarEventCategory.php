@@ -30,6 +30,6 @@ class CalendarEventCategory extends Model
 
 
 
-    public function calendarEventCategoryCalendarEventTags(){ return $this->hasMany(CalendarEventTag::class,"calendar_event_category_id"); }
+    public function calendarEventCategoryCalendarEventTags(){ return $this->hasMany(CalendarEventTag::class, "calendar_event_category_id"); }
 
 }

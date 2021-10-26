@@ -28,12 +28,12 @@ class LunchVendor extends Model
         parent::__construct($attributes);
     }
 
-    public function partner(){ return $this->belongsTo(Partner::class); }
-    public function company(){ return $this->belongsTo(Company::class); }
-    public function responsibleUser(){ return $this->belongsTo(BadasoUser::class); }
+    public function partner(){ return $this->belongsTo(Partner::class, "partner_id"); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
+    public function responsibleUser(){ return $this->belongsTo(BadasoUser::class, "responsible_user_id"); }
 
 
-    public function lunchVendorLunchVendorsLocationOrders(){ return $this->hasMany(LunchVendorsLocationOrder::class,"lunch_vendor_id"); }
-    public function lunchVendorLunchProducts(){ return $this->hasMany(LunchProduct::class,"lunch_vendor_id"); }
+    public function lunchVendorLunchVendorsLocationOrders(){ return $this->hasMany(LunchVendorsLocationOrder::class, "lunch_vendor_id"); }
+    public function lunchVendorLunchProducts(){ return $this->hasMany(LunchProduct::class, "lunch_vendor_id"); }
 
 }

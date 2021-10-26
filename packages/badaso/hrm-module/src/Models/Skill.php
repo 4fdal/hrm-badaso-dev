@@ -28,9 +28,9 @@ class Skill extends Model
         parent::__construct($attributes);
     }
 
-    public function skillType(){ return $this->belongsTo(SkillType::class); }
+    public function skillType(){ return $this->belongsTo(SkillType::class, "skill_type_id"); }
 
 
-    public function skillEmployeeSkills(){ return $this->hasMany(EmployeeSkill::class,"skill_id"); }
+    public function skillEmployeeSkills(){ return $this->hasMany(EmployeeSkill::class, "skill_id"); }
 
 }

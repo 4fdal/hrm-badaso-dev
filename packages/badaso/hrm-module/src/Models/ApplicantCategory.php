@@ -30,6 +30,6 @@ class ApplicantCategory extends Model
 
 
 
-    public function applicantCategoryApplicantTags(){ return $this->hasMany(ApplicantTag::class,"applicant_category_id"); }
+    public function applicantCategoryApplicantTags(){ return $this->hasMany(ApplicantTag::class, "applicant_category_id"); }
 
 }

@@ -28,17 +28,17 @@ class FleetVehicle extends Model
         parent::__construct($attributes);
     }
 
-    public function fleetModel(){ return $this->belongsTo(FleetModel::class); }
-    public function fleetModelBrand(){ return $this->belongsTo(FleetModelBrand::class); }
-    public function fleetState(){ return $this->belongsTo(FleetState::class); }
-    public function driverPartner(){ return $this->belongsTo(Partner::class); }
-    public function futureDriverPartner(){ return $this->belongsTo(Partner::class); }
-    public function managerUser(){ return $this->belongsTo(BadasoUser::class); }
-    public function company(){ return $this->belongsTo(Company::class); }
+    public function fleetModel(){ return $this->belongsTo(FleetModel::class, "fleet_model_id"); }
+    public function fleetModelBrand(){ return $this->belongsTo(FleetModelBrand::class, "fleet_model_brand_id"); }
+    public function fleetState(){ return $this->belongsTo(FleetState::class, "fleet_state_id"); }
+    public function driverPartner(){ return $this->belongsTo(Partner::class, "driver_partner_id"); }
+    public function futureDriverPartner(){ return $this->belongsTo(Partner::class, "future_driver_partner_id"); }
+    public function managerUser(){ return $this->belongsTo(BadasoUser::class, "manager_user_id"); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
 
 
-    public function fleetVehicleFleetVehicleTags(){ return $this->hasMany(FleetVehicleTag::class,"fleet_vehicle_id"); }
-    public function fleetVehicleFleetServices(){ return $this->hasMany(FleetService::class,"fleet_vehicle_id"); }
-    public function fleetVehicleFleetOdometers(){ return $this->hasMany(FleetOdometer::class,"fleet_vehicle_id"); }
+    public function fleetVehicleFleetVehicleTags(){ return $this->hasMany(FleetVehicleTag::class, "fleet_vehicle_id"); }
+    public function fleetVehicleFleetServices(){ return $this->hasMany(FleetService::class, "fleet_vehicle_id"); }
+    public function fleetVehicleFleetOdometers(){ return $this->hasMany(FleetOdometer::class, "fleet_vehicle_id"); }
 
 }

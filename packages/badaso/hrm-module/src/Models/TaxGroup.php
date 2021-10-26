@@ -28,9 +28,9 @@ class TaxGroup extends Model
         parent::__construct($attributes);
     }
 
-    public function currentTaxAccountPayable(){ return $this->belongsTo(TaxAccountPayable::class); }
-    public function advancedTaxAccountPayable(){ return $this->belongsTo(TaxAccountPayable::class); }
-    public function receiverCurrentTaxAccountPayable(){ return $this->belongsTo(TaxAccountPayable::class); }
+    public function currentTaxAccountPayable(){ return $this->belongsTo(TaxAccountPayable::class, "current_tax_account_payable_id"); }
+    public function advancedTaxAccountPayable(){ return $this->belongsTo(TaxAccountPayable::class, "advanced_tax_account_payable_id"); }
+    public function receiverCurrentTaxAccountPayable(){ return $this->belongsTo(TaxAccountPayable::class, "receiver_current_tax_account_payable_id"); }
 
 
 

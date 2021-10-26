@@ -28,13 +28,13 @@ class Country extends Model
         parent::__construct($attributes);
     }
 
-    public function currency(){ return $this->belongsTo(Currency::class); }
+    public function currency(){ return $this->belongsTo(Currency::class, "currency_id"); }
 
 
-    public function countryStates(){ return $this->hasMany(State::class,"country_id"); }
-    public function countryEmployees(){ return $this->hasMany(Employee::class,"country_id"); }
-    public function countryOfBirthEmployees(){ return $this->hasMany(Employee::class,"country_of_birth_id"); }
-    public function countryCompanyContacts(){ return $this->hasMany(CompanyContact::class,"country_id"); }
-    public function countryAccountTags(){ return $this->hasMany(AccountTag::class,"country_id"); }
+    public function countryStates(){ return $this->hasMany(State::class, "country_id"); }
+    public function countryEmployees(){ return $this->hasMany(Employee::class, "country_id"); }
+    public function countryOfBirthEmployees(){ return $this->hasMany(Employee::class, "country_of_birth_id"); }
+    public function countryCompanyContacts(){ return $this->hasMany(CompanyContact::class, "country_id"); }
+    public function countryAccountTags(){ return $this->hasMany(AccountTag::class, "country_id"); }
 
 }

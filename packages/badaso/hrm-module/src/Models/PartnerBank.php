@@ -28,12 +28,12 @@ class PartnerBank extends Model
         parent::__construct($attributes);
     }
 
-    public function partner(){ return $this->belongsTo(Partner::class); }
-    public function bank(){ return $this->belongsTo(Bank::class); }
-    public function currency(){ return $this->belongsTo(Currency::class); }
-    public function company(){ return $this->belongsTo(Company::class); }
+    public function partner(){ return $this->belongsTo(Partner::class, "partner_id"); }
+    public function bank(){ return $this->belongsTo(Bank::class, "bank_id"); }
+    public function currency(){ return $this->belongsTo(Currency::class, "currency_id"); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
 
 
-    public function partnerBankAccountJournals(){ return $this->hasMany(AccountJournal::class,"partner_bank_id"); }
+    public function partnerBankAccountJournals(){ return $this->hasMany(AccountJournal::class, "partner_bank_id"); }
 
 }

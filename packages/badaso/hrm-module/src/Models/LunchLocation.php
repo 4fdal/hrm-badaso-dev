@@ -28,10 +28,10 @@ class LunchLocation extends Model
         parent::__construct($attributes);
     }
 
-    public function company(){ return $this->belongsTo(Company::class); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
 
 
-    public function lunchLocationsLunchVendorsLocationOrders(){ return $this->hasMany(LunchVendorsLocationOrder::class,"lunch_locations_id"); }
-    public function lunchLocationLunchAlertLocations(){ return $this->hasMany(LunchAlertLocation::class,"lunch_location_id"); }
+    public function lunchLocationsLunchVendorsLocationOrders(){ return $this->hasMany(LunchVendorsLocationOrder::class, "lunch_locations_id"); }
+    public function lunchLocationLunchAlertLocations(){ return $this->hasMany(LunchAlertLocation::class, "lunch_location_id"); }
 
 }

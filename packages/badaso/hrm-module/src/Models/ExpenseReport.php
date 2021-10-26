@@ -28,11 +28,11 @@ class ExpenseReport extends Model
         parent::__construct($attributes);
     }
 
-    public function expenseProduct(){ return $this->belongsTo(ExpenseProduct::class); }
-    public function employee(){ return $this->belongsTo(Employee::class); }
-    public function company(){ return $this->belongsTo(Company::class); }
+    public function expenseProduct(){ return $this->belongsTo(ExpenseProduct::class, "expense_product_id"); }
+    public function employee(){ return $this->belongsTo(Employee::class, "employee_id"); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
 
 
-    public function expenseReportExpenseReportItems(){ return $this->hasMany(ExpenseReportItem::class,"expense_report_id"); }
+    public function expenseReportExpenseReportItems(){ return $this->hasMany(ExpenseReportItem::class, "expense_report_id"); }
 
 }

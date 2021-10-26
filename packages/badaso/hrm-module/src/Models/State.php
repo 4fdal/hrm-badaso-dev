@@ -28,10 +28,10 @@ class State extends Model
         parent::__construct($attributes);
     }
 
-    public function country(){ return $this->belongsTo(Country::class); }
+    public function country(){ return $this->belongsTo(Country::class, "country_id"); }
 
 
-    public function stateCompanyContacts(){ return $this->hasMany(CompanyContact::class,"state_id"); }
-    public function stateBanks(){ return $this->hasMany(Bank::class,"state_id"); }
+    public function stateCompanyContacts(){ return $this->hasMany(CompanyContact::class, "state_id"); }
+    public function stateBanks(){ return $this->hasMany(Bank::class, "state_id"); }
 
 }

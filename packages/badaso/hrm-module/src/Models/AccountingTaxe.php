@@ -30,9 +30,9 @@ class AccountingTaxe extends Model
 
 
 
-    public function accountingTaxAccountingDistributionInvoices(){ return $this->hasMany(AccountingDistributionInvoice::class,"accounting_tax_id"); }
-    public function accountingTaxAccountingDistributionCreditNotes(){ return $this->hasMany(AccountingDistributionCreditNote::class,"accounting_tax_id"); }
-    public function accountingTaxExpenseVendorAccountingTax(){ return $this->hasMany(ExpenseVendorAccountingTa::class,"accounting_tax_id"); }
-    public function accountingTaxExpenseCustomerAccountingTax(){ return $this->hasMany(ExpenseCustomerAccountingTa::class,"accounting_tax_id"); }
+    public function accountingTaxAccountingDistributionInvoices(){ return $this->hasMany(AccountingDistributionInvoice::class, "accounting_tax_id"); }
+    public function accountingTaxAccountingDistributionCreditNotes(){ return $this->hasMany(AccountingDistributionCreditNote::class, "accounting_tax_id"); }
+    public function accountingTaxExpenseVendorAccountingTax(){ return $this->hasMany(ExpenseVendorAccountingTa::class, "accounting_tax_id"); }
+    public function accountingTaxExpenseCustomerAccountingTax(){ return $this->hasMany(ExpenseCustomerAccountingTa::class, "accounting_tax_id"); }
 
 }

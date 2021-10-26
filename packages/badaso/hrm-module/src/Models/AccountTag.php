@@ -28,9 +28,9 @@ class AccountTag extends Model
         parent::__construct($attributes);
     }
 
-    public function country(){ return $this->belongsTo(Country::class); }
+    public function country(){ return $this->belongsTo(Country::class, "country_id"); }
 
 
-    public function accountTagTaxCurrentAccountTags(){ return $this->hasMany(TaxCurrentAccountTag::class,"account_tag_id"); }
+    public function accountTagTaxCurrentAccountTags(){ return $this->hasMany(TaxCurrentAccountTag::class, "account_tag_id"); }
 
 }

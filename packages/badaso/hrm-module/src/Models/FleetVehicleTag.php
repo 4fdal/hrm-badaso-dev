@@ -28,8 +28,8 @@ class FleetVehicleTag extends Model
         parent::__construct($attributes);
     }
 
-    public function fleetVehicle(){ return $this->belongsTo(FleetVehicle::class); }
-    public function fleetVehicleCategorie(){ return $this->belongsTo(FleetVehicleCategory::class); }
+    public function fleetVehicle(){ return $this->belongsTo(FleetVehicle::class, "fleet_vehicle_id"); }
+    public function fleetVehicleCategorie(){ return $this->belongsTo(FleetVehicleCategory::class, "fleet_vehicle_categorie_id"); }
 
 
 

@@ -28,8 +28,8 @@ class FleetContractService extends Model
         parent::__construct($attributes);
     }
 
-    public function fleetContract(){ return $this->belongsTo(FleetContract::class); }
-    public function fleetServiceType(){ return $this->belongsTo(FleetServiceType::class); }
+    public function fleetContract(){ return $this->belongsTo(FleetContract::class, "fleet_contract_id"); }
+    public function fleetServiceType(){ return $this->belongsTo(FleetServiceType::class, "fleet_service_type_id"); }
 
 
 

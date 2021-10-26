@@ -28,8 +28,8 @@ class CalendarEventTag extends Model
         parent::__construct($attributes);
     }
 
-    public function calendarEvent(){ return $this->belongsTo(CalendarEvent::class); }
-    public function calendarEventCategory(){ return $this->belongsTo(CalendarEventCategory::class); }
+    public function calendarEvent(){ return $this->belongsTo(CalendarEvent::class, "calendar_event_id"); }
+    public function calendarEventCategory(){ return $this->belongsTo(CalendarEventCategory::class, "calendar_event_category_id"); }
 
 
 

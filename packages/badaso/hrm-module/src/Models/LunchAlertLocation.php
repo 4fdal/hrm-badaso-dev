@@ -28,8 +28,8 @@ class LunchAlertLocation extends Model
         parent::__construct($attributes);
     }
 
-    public function lunchAlert(){ return $this->belongsTo(LunchAlert::class); }
-    public function lunchLocation(){ return $this->belongsTo(LunchLocation::class); }
+    public function lunchAlert(){ return $this->belongsTo(LunchAlert::class, "lunch_alert_id"); }
+    public function lunchLocation(){ return $this->belongsTo(LunchLocation::class, "lunch_location_id"); }
 
 
 

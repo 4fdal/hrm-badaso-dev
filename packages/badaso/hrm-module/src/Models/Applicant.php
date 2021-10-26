@@ -28,16 +28,16 @@ class Applicant extends Model
         parent::__construct($attributes);
     }
 
-    public function degree(){ return $this->belongsTo(Degree::class); }
-    public function job(){ return $this->belongsTo(Job::class); }
-    public function departement(){ return $this->belongsTo(Departement::class); }
-    public function company(){ return $this->belongsTo(Company::class); }
-    public function metsosSource(){ return $this->belongsTo(MetsosSource::class); }
-    public function user(){ return $this->belongsTo(BadasoUser::class); }
+    public function degree(){ return $this->belongsTo(Degree::class, "degree_id"); }
+    public function job(){ return $this->belongsTo(Job::class, "job_id"); }
+    public function departement(){ return $this->belongsTo(Departement::class, "departement_id"); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
+    public function metsosSource(){ return $this->belongsTo(MetsosSource::class, "metsos_source_id"); }
+    public function user(){ return $this->belongsTo(BadasoUser::class, "user_id"); }
 
 
-    public function applicantApplicantTags(){ return $this->hasMany(ApplicantTag::class,"applicant_id"); }
-    public function applicantApplicantFollowers(){ return $this->hasMany(ApplicantFollower::class,"applicant_id"); }
-    public function applicantApplicantComments(){ return $this->hasMany(ApplicantComment::class,"applicant_id"); }
+    public function applicantApplicantTags(){ return $this->hasMany(ApplicantTag::class, "applicant_id"); }
+    public function applicantApplicantFollowers(){ return $this->hasMany(ApplicantFollower::class, "applicant_id"); }
+    public function applicantApplicantComments(){ return $this->hasMany(ApplicantComment::class, "applicant_id"); }
 
 }

@@ -28,8 +28,8 @@ class ApplicantFollower extends Model
         parent::__construct($attributes);
     }
 
-    public function applicant(){ return $this->belongsTo(Applicant::class); }
-    public function user(){ return $this->belongsTo(BadasoUser::class); }
+    public function applicant(){ return $this->belongsTo(Applicant::class, "applicant_id"); }
+    public function user(){ return $this->belongsTo(BadasoUser::class, "user_id"); }
 
 
 

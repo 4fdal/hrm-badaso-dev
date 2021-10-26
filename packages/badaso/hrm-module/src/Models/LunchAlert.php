@@ -30,6 +30,6 @@ class LunchAlert extends Model
 
 
 
-    public function lunchAlertLunchAlertLocations(){ return $this->hasMany(LunchAlertLocation::class,"lunch_alert_id"); }
+    public function lunchAlertLunchAlertLocations(){ return $this->hasMany(LunchAlertLocation::class, "lunch_alert_id"); }
 
 }

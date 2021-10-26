@@ -28,9 +28,9 @@ class FleetVehicleCategory extends Model
         parent::__construct($attributes);
     }
 
-    public function user(){ return $this->belongsTo(BadasoUser::class); }
+    public function user(){ return $this->belongsTo(BadasoUser::class, "user_id"); }
 
 
-    public function fleetVehicleCategorieFleetVehicleTags(){ return $this->hasMany(FleetVehicleTag::class,"fleet_vehicle_categorie_id"); }
+    public function fleetVehicleCategorieFleetVehicleTags(){ return $this->hasMany(FleetVehicleTag::class, "fleet_vehicle_categorie_id"); }
 
 }

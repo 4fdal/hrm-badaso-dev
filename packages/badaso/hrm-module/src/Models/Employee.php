@@ -28,25 +28,25 @@ class Employee extends Model
         parent::__construct($attributes);
     }
 
-    public function user(){ return $this->belongsTo(BadasoUser::class); }
-    public function approveTimeOffUser(){ return $this->belongsTo(BadasoUser::class); }
-    public function approveExpensesUser(){ return $this->belongsTo(BadasoUser::class); }
-    public function work(){ return $this->belongsTo(Worke::class); }
-    public function certificateLevel(){ return $this->belongsTo(Degree::class); }
-    public function country(){ return $this->belongsTo(Country::class); }
-    public function countryOfBirth(){ return $this->belongsTo(Country::class); }
+    public function user(){ return $this->belongsTo(BadasoUser::class, "user_id"); }
+    public function approveTimeOffUser(){ return $this->belongsTo(BadasoUser::class, "approve_time_off_user_id"); }
+    public function approveExpensesUser(){ return $this->belongsTo(BadasoUser::class, "approve_expenses_user_id"); }
+    public function work(){ return $this->belongsTo(Worke::class, "work_id"); }
+    public function certificateLevel(){ return $this->belongsTo(Degree::class, "certificate_level_id"); }
+    public function country(){ return $this->belongsTo(Country::class, "country_id"); }
+    public function countryOfBirth(){ return $this->belongsTo(Country::class, "country_of_birth_id"); }
 
 
-    public function employeeEmployeeTags(){ return $this->hasMany(EmployeeTag::class,"employee_id"); }
-    public function employeeEmployeeResumes(){ return $this->hasMany(EmployeeResume::class,"employee_id"); }
-    public function employeeEmployeeAttendances(){ return $this->hasMany(EmployeeAttendance::class,"employee_id"); }
-    public function managerDepartements(){ return $this->hasMany(Departement::class,"manager_id"); }
-    public function managerJobs(){ return $this->hasMany(Job::class,"manager_id"); }
-    public function forEmployeeTimeOffAllocations(){ return $this->hasMany(TimeOffAllocation::class,"for_employee_id"); }
-    public function firstApproveEmployeeTimeOffAllocations(){ return $this->hasMany(TimeOffAllocation::class,"first_approve_employee_id"); }
-    public function secondApproveEmployeeTimeOffAllocations(){ return $this->hasMany(TimeOffAllocation::class,"second_approve_employee_id"); }
-    public function managerEmployeeTimeOffs(){ return $this->hasMany(TimeOff::class,"manager_employee_id"); }
-    public function employeeTimeOffs(){ return $this->hasMany(TimeOff::class,"employee_id"); }
-    public function employeeExpenseReports(){ return $this->hasMany(ExpenseReport::class,"employee_id"); }
+    public function employeeEmployeeTags(){ return $this->hasMany(EmployeeTag::class, "employee_id"); }
+    public function employeeEmployeeResumes(){ return $this->hasMany(EmployeeResume::class, "employee_id"); }
+    public function employeeEmployeeAttendances(){ return $this->hasMany(EmployeeAttendance::class, "employee_id"); }
+    public function managerDepartements(){ return $this->hasMany(Departement::class, "manager_id"); }
+    public function managerJobs(){ return $this->hasMany(Job::class, "manager_id"); }
+    public function forEmployeeTimeOffAllocations(){ return $this->hasMany(TimeOffAllocation::class, "for_employee_id"); }
+    public function firstApproveEmployeeTimeOffAllocations(){ return $this->hasMany(TimeOffAllocation::class, "first_approve_employee_id"); }
+    public function secondApproveEmployeeTimeOffAllocations(){ return $this->hasMany(TimeOffAllocation::class, "second_approve_employee_id"); }
+    public function managerEmployeeTimeOffs(){ return $this->hasMany(TimeOff::class, "manager_employee_id"); }
+    public function employeeTimeOffs(){ return $this->hasMany(TimeOff::class, "employee_id"); }
+    public function employeeExpenseReports(){ return $this->hasMany(ExpenseReport::class, "employee_id"); }
 
 }

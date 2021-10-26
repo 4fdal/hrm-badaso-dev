@@ -28,8 +28,8 @@ class ExpenseVendorAccountingTa extends Model
         parent::__construct($attributes);
     }
 
-    public function expenseProduct(){ return $this->belongsTo(ExpenseProduct::class); }
-    public function accountingTax(){ return $this->belongsTo(AccountingTaxe::class); }
+    public function expenseProduct(){ return $this->belongsTo(ExpenseProduct::class, "expense_product_id"); }
+    public function accountingTax(){ return $this->belongsTo(AccountingTaxe::class, "accounting_tax_id"); }
 
 
 

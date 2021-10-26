@@ -30,6 +30,6 @@ class FleetContract extends Model
 
 
 
-    public function fleetContractFleetContractServices(){ return $this->hasMany(FleetContractService::class,"fleet_contract_id"); }
+    public function fleetContractFleetContractServices(){ return $this->hasMany(FleetContractService::class, "fleet_contract_id"); }
 
 }

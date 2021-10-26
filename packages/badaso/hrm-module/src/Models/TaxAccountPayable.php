@@ -28,14 +28,14 @@ class TaxAccountPayable extends Model
         parent::__construct($attributes);
     }
 
-    public function groupAccountType(){ return $this->belongsTo(AccountType::class); }
-    public function defaultAccountTax(){ return $this->belongsTo(AccountTaxe::class); }
+    public function groupAccountType(){ return $this->belongsTo(AccountType::class, "group_account_type_id"); }
+    public function defaultAccountTax(){ return $this->belongsTo(AccountTaxe::class, "default_account_tax_id"); }
 
 
-    public function taxAccountPayablesTaxCurrentAccountTags(){ return $this->hasMany(TaxCurrentAccountTag::class,"tax_account_payables"); }
-    public function taxAccountPayablesTaxCurrentAccountJournals(){ return $this->hasMany(TaxCurrentAccountJournal::class,"tax_account_payables"); }
-    public function currentTaxAccountPayableTaxGroups(){ return $this->hasMany(TaxGroup::class,"current_tax_account_payable_id"); }
-    public function advancedTaxAccountPayableTaxGroups(){ return $this->hasMany(TaxGroup::class,"advanced_tax_account_payable_id"); }
-    public function receiverCurrentTaxAccountPayableTaxGroups(){ return $this->hasMany(TaxGroup::class,"receiver_current_tax_account_payable_id"); }
+    public function taxAccountPayablesTaxCurrentAccountTags(){ return $this->hasMany(TaxCurrentAccountTag::class, "tax_account_payables"); }
+    public function taxAccountPayablesTaxCurrentAccountJournals(){ return $this->hasMany(TaxCurrentAccountJournal::class, "tax_account_payables"); }
+    public function currentTaxAccountPayableTaxGroups(){ return $this->hasMany(TaxGroup::class, "current_tax_account_payable_id"); }
+    public function advancedTaxAccountPayableTaxGroups(){ return $this->hasMany(TaxGroup::class, "advanced_tax_account_payable_id"); }
+    public function receiverCurrentTaxAccountPayableTaxGroups(){ return $this->hasMany(TaxGroup::class, "receiver_current_tax_account_payable_id"); }
 
 }

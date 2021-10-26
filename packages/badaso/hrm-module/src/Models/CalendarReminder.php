@@ -28,8 +28,8 @@ class CalendarReminder extends Model
         parent::__construct($attributes);
     }
 
-    public function calendarEvent(){ return $this->belongsTo(CalendarEvent::class); }
-    public function calendarAlaram(){ return $this->belongsTo(CalendarAlaram::class); }
+    public function calendarEvent(){ return $this->belongsTo(CalendarEvent::class, "calendar_event_id"); }
+    public function calendarAlaram(){ return $this->belongsTo(CalendarAlaram::class, "calendar_alaram_id"); }
 
 
 

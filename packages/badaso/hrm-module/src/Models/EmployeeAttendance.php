@@ -28,7 +28,7 @@ class EmployeeAttendance extends Model
         parent::__construct($attributes);
     }
 
-    public function employee(){ return $this->belongsTo(Employee::class); }
+    public function employee(){ return $this->belongsTo(Employee::class, "employee_id"); }
 
 
 

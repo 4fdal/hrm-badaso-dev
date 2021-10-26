@@ -30,7 +30,7 @@ class FleetModelBrand extends Model
 
 
 
-    public function fleetModelBrandFleetModels(){ return $this->hasMany(FleetModel::class,"fleet_model_brand_id"); }
-    public function fleetModelBrandFleetVehicles(){ return $this->hasMany(FleetVehicle::class,"fleet_model_brand_id"); }
+    public function fleetModelBrandFleetModels(){ return $this->hasMany(FleetModel::class, "fleet_model_brand_id"); }
+    public function fleetModelBrandFleetVehicles(){ return $this->hasMany(FleetVehicle::class, "fleet_model_brand_id"); }
 
 }

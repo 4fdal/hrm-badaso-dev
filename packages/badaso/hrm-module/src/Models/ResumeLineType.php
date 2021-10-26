@@ -30,6 +30,6 @@ class ResumeLineType extends Model
 
 
 
-    public function resumeLineTypeEmployeeResumes(){ return $this->hasMany(EmployeeResume::class,"resume_line_type_id"); }
+    public function resumeLineTypeEmployeeResumes(){ return $this->hasMany(EmployeeResume::class, "resume_line_type_id"); }
 
 }

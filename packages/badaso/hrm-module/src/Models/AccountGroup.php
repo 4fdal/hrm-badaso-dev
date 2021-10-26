@@ -28,9 +28,9 @@ class AccountGroup extends Model
         parent::__construct($attributes);
     }
 
-    public function company(){ return $this->belongsTo(Company::class); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
 
 
-    public function accountGroupAccounts(){ return $this->hasMany(Account::class,"account_group_id"); }
+    public function accountGroupAccounts(){ return $this->hasMany(Account::class, "account_group_id"); }
 
 }

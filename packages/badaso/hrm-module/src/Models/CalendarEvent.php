@@ -28,14 +28,14 @@ class CalendarEvent extends Model
         parent::__construct($attributes);
     }
 
-    public function user(){ return $this->belongsTo(BadasoUser::class); }
+    public function user(){ return $this->belongsTo(BadasoUser::class, "user_id"); }
 
 
-    public function calendarEventCalendarEventTags(){ return $this->hasMany(CalendarEventTag::class,"calendar_event_id"); }
-    public function calendarEventCalendarRecurrents(){ return $this->hasMany(CalendarRecurrent::class,"calendar_event_id"); }
-    public function calendarEventCalendarAttendees(){ return $this->hasMany(CalendarAttendee::class,"calendar_event_id"); }
-    public function calendarEventCalendarReminders(){ return $this->hasMany(CalendarReminder::class,"calendar_event_id"); }
-    public function calendarEventCalendarRecruitmentEvents(){ return $this->hasMany(CalendarRecruitmentEvent::class,"calendar_event_id"); }
-    public function mettingCalendarEventTimeOffs(){ return $this->hasMany(TimeOff::class,"metting_calendar_event_id"); }
+    public function calendarEventCalendarEventTags(){ return $this->hasMany(CalendarEventTag::class, "calendar_event_id"); }
+    public function calendarEventCalendarRecurrents(){ return $this->hasMany(CalendarRecurrent::class, "calendar_event_id"); }
+    public function calendarEventCalendarAttendees(){ return $this->hasMany(CalendarAttendee::class, "calendar_event_id"); }
+    public function calendarEventCalendarReminders(){ return $this->hasMany(CalendarReminder::class, "calendar_event_id"); }
+    public function calendarEventCalendarRecruitmentEvents(){ return $this->hasMany(CalendarRecruitmentEvent::class, "calendar_event_id"); }
+    public function mettingCalendarEventTimeOffs(){ return $this->hasMany(TimeOff::class, "metting_calendar_event_id"); }
 
 }

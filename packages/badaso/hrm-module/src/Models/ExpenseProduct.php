@@ -30,8 +30,8 @@ class ExpenseProduct extends Model
 
 
 
-    public function expenseProductExpenseVendorAccountingTax(){ return $this->hasMany(ExpenseVendorAccountingTa::class,"expense_product_id"); }
-    public function expenseProductExpenseCustomerAccountingTax(){ return $this->hasMany(ExpenseCustomerAccountingTa::class,"expense_product_id"); }
-    public function expenseProductExpenseReports(){ return $this->hasMany(ExpenseReport::class,"expense_product_id"); }
+    public function expenseProductExpenseVendorAccountingTax(){ return $this->hasMany(ExpenseVendorAccountingTa::class, "expense_product_id"); }
+    public function expenseProductExpenseCustomerAccountingTax(){ return $this->hasMany(ExpenseCustomerAccountingTa::class, "expense_product_id"); }
+    public function expenseProductExpenseReports(){ return $this->hasMany(ExpenseReport::class, "expense_product_id"); }
 
 }

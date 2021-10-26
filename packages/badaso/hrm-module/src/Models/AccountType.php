@@ -28,10 +28,10 @@ class AccountType extends Model
         parent::__construct($attributes);
     }
 
-    public function company(){ return $this->belongsTo(Company::class); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
 
 
-    public function accountTypeAccounts(){ return $this->hasMany(Account::class,"account_type_id"); }
-    public function groupAccountTypeTaxAccountPayables(){ return $this->hasMany(TaxAccountPayable::class,"group_account_type_id"); }
+    public function accountTypeAccounts(){ return $this->hasMany(Account::class, "account_type_id"); }
+    public function groupAccountTypeTaxAccountPayables(){ return $this->hasMany(TaxAccountPayable::class, "group_account_type_id"); }
 
 }

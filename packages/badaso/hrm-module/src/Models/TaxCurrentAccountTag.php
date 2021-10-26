@@ -28,8 +28,8 @@ class TaxCurrentAccountTag extends Model
         parent::__construct($attributes);
     }
 
-    public function taxAccountPayables(){ return $this->belongsTo(TaxAccountPayable::class); }
-    public function accountTag(){ return $this->belongsTo(AccountTag::class); }
+    public function taxAccountPayables(){ return $this->belongsTo(TaxAccountPayable::class, "tax_account_payables"); }
+    public function accountTag(){ return $this->belongsTo(AccountTag::class, "account_tag_id"); }
 
 
 

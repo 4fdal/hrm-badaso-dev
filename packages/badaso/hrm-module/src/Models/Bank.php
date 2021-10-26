@@ -28,10 +28,10 @@ class Bank extends Model
         parent::__construct($attributes);
     }
 
-    public function state(){ return $this->belongsTo(State::class); }
-    public function company(){ return $this->belongsTo(Company::class); }
+    public function state(){ return $this->belongsTo(State::class, "state_id"); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
 
 
-    public function bankPartnerBanks(){ return $this->hasMany(PartnerBank::class,"bank_id"); }
+    public function bankPartnerBanks(){ return $this->hasMany(PartnerBank::class, "bank_id"); }
 
 }

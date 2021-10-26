@@ -28,7 +28,7 @@ class RecruitmentSource extends Model
         parent::__construct($attributes);
     }
 
-    public function recruitment(){ return $this->belongsTo(Recruitment::class); }
+    public function recruitment(){ return $this->belongsTo(Recruitment::class, "recruitment_id"); }
 
 
 

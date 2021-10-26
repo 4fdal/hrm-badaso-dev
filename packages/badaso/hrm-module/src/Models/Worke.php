@@ -28,11 +28,11 @@ class Worke extends Model
         parent::__construct($attributes);
     }
 
-    public function company(){ return $this->belongsTo(Company::class); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
 
 
-    public function workWorkHours(){ return $this->hasMany(WorkHour::class,"work_id"); }
-    public function workeGlobalTimeOffs(){ return $this->hasMany(GlobalTimeOff::class,"worke_id"); }
-    public function workEmployees(){ return $this->hasMany(Employee::class,"work_id"); }
+    public function workWorkHours(){ return $this->hasMany(WorkHour::class, "work_id"); }
+    public function workeGlobalTimeOffs(){ return $this->hasMany(GlobalTimeOff::class, "worke_id"); }
+    public function workEmployees(){ return $this->hasMany(Employee::class, "work_id"); }
 
 }

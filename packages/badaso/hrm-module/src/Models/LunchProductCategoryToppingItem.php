@@ -28,7 +28,7 @@ class LunchProductCategoryToppingItem extends Model
         parent::__construct($attributes);
     }
 
-    public function lunchProductCategoryTopping(){ return $this->belongsTo(LunchProductCategoryTopping::class); }
+    public function lunchProductCategoryTopping(){ return $this->belongsTo(LunchProductCategoryTopping::class, "lunch_product_category_topping_id"); }
 
 
 

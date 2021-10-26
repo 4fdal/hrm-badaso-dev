@@ -28,9 +28,9 @@ class AccountTaxe extends Model
         parent::__construct($attributes);
     }
 
-    public function company(){ return $this->belongsTo(Company::class); }
+    public function company(){ return $this->belongsTo(Company::class, "company_id"); }
 
 
-    public function defaultAccountTaxTaxAccountPayables(){ return $this->hasMany(TaxAccountPayable::class,"default_account_tax_id"); }
+    public function defaultAccountTaxTaxAccountPayables(){ return $this->hasMany(TaxAccountPayable::class, "default_account_tax_id"); }
 
 }

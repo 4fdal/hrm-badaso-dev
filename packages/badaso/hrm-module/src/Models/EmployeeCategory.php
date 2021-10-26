@@ -30,7 +30,7 @@ class EmployeeCategory extends Model
 
 
 
-    public function employeeCategorieEmployeeTags(){ return $this->hasMany(EmployeeTag::class,"employee_categorie_id"); }
-    public function forEmployeeCategorieTimeOffAllocations(){ return $this->hasMany(TimeOffAllocation::class,"for_employee_categorie_id"); }
+    public function employeeCategorieEmployeeTags(){ return $this->hasMany(EmployeeTag::class, "employee_categorie_id"); }
+    public function forEmployeeCategorieTimeOffAllocations(){ return $this->hasMany(TimeOffAllocation::class, "for_employee_categorie_id"); }
 
 }

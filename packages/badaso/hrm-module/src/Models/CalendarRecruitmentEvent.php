@@ -28,7 +28,7 @@ class CalendarRecruitmentEvent extends Model
         parent::__construct($attributes);
     }
 
-    public function calendarEvent(){ return $this->belongsTo(CalendarEvent::class); }
+    public function calendarEvent(){ return $this->belongsTo(CalendarEvent::class, "calendar_event_id"); }
 
 
 

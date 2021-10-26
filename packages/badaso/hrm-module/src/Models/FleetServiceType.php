@@ -30,8 +30,8 @@ class FleetServiceType extends Model
 
 
 
-    public function fleetServiceTypeFleetContractServices(){ return $this->hasMany(FleetContractService::class,"fleet_service_type_id"); }
-    public function fleetServiceTypeFleetServices(){ return $this->hasMany(FleetService::class,"fleet_service_type_id"); }
-    public function vendorParentFleetServices(){ return $this->hasMany(FleetService::class,"vendor_parent_id"); }
+    public function fleetServiceTypeFleetContractServices(){ return $this->hasMany(FleetContractService::class, "fleet_service_type_id"); }
+    public function fleetServiceTypeFleetServices(){ return $this->hasMany(FleetService::class, "fleet_service_type_id"); }
+    public function vendorParentFleetServices(){ return $this->hasMany(FleetService::class, "vendor_parent_id"); }
 
 }

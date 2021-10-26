@@ -30,6 +30,6 @@ class PartnerTitle extends Model
 
 
 
-    public function partnerTitleCompanyContacts(){ return $this->hasMany(CompanyContact::class,"partner_title_id"); }
+    public function partnerTitleCompanyContacts(){ return $this->hasMany(CompanyContact::class, "partner_title_id"); }
 
 }

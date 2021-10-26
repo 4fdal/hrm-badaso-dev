@@ -30,6 +30,6 @@ class Industry extends Model
 
 
 
-    public function industryPartners(){ return $this->hasMany(Partner::class,"industry_id"); }
+    public function industryPartners(){ return $this->hasMany(Partner::class, "industry_id"); }
 
 }

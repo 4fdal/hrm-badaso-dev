@@ -30,6 +30,6 @@ class ExpenseReportsCompanye extends Model
 
 
 
-    public function expenseReportsCompanyExpenseReportItems(){ return $this->hasMany(ExpenseReportItem::class,"expense_reports_company_id"); }
+    public function expenseReportsCompanyExpenseReportItems(){ return $this->hasMany(ExpenseReportItem::class, "expense_reports_company_id"); }
 
 }

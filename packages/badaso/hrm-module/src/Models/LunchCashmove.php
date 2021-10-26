@@ -28,8 +28,8 @@ class LunchCashmove extends Model
         parent::__construct($attributes);
     }
 
-    public function currency(){ return $this->belongsTo(Currency::class); }
-    public function user(){ return $this->belongsTo(BadasoUser::class); }
+    public function currency(){ return $this->belongsTo(Currency::class, "currency_id"); }
+    public function user(){ return $this->belongsTo(BadasoUser::class, "user_id"); }
 
 
 

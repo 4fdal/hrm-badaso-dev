@@ -1478,7 +1478,7 @@ Artisan::command("run", function () {
                 $fuc_name = $first . substr($fuc_name, 1);
 
                 $model_relation .= <<<TXT
-                    public function $fuc_name(){ return \$this->belongsTo($model_to::class); }\n
+                    public function $fuc_name(){ return \$this->belongsTo($model_to::class, "$field_ref"); }\n
                 TXT;
 
                 $public_belongs_relation .= <<<TXT
@@ -1508,7 +1508,7 @@ Artisan::command("run", function () {
                     $fuc_name = $first . substr($fuc_name, 1);
 
                     $model_many_relation .= <<<TXT
-                        public function $fuc_name(){ return \$this->hasMany($model_to::class,"$field_ref"); }\n
+                        public function $fuc_name(){ return \$this->hasMany($model_to::class, "$field_ref"); }\n
                     TXT;
 
                     $public_many_relation .= <<<TXT

@@ -28,8 +28,8 @@ class CalendarAttendee extends Model
         parent::__construct($attributes);
     }
 
-    public function calendarEvent(){ return $this->belongsTo(CalendarEvent::class); }
-    public function partner(){ return $this->belongsTo(Partner::class); }
+    public function calendarEvent(){ return $this->belongsTo(CalendarEvent::class, "calendar_event_id"); }
+    public function partner(){ return $this->belongsTo(Partner::class, "partner_id"); }
 
 
 

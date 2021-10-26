@@ -28,8 +28,8 @@ class ApplicantTag extends Model
         parent::__construct($attributes);
     }
 
-    public function applicant(){ return $this->belongsTo(Applicant::class); }
-    public function applicantCategory(){ return $this->belongsTo(ApplicantCategory::class); }
+    public function applicant(){ return $this->belongsTo(Applicant::class, "applicant_id"); }
+    public function applicantCategory(){ return $this->belongsTo(ApplicantCategory::class, "applicant_category_id"); }
 
 
 

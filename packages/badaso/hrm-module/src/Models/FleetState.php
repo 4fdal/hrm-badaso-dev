@@ -30,6 +30,6 @@ class FleetState extends Model
 
 
 
-    public function fleetStateFleetVehicles(){ return $this->hasMany(FleetVehicle::class,"fleet_state_id"); }
+    public function fleetStateFleetVehicles(){ return $this->hasMany(FleetVehicle::class, "fleet_state_id"); }
 
 }

@@ -30,7 +30,7 @@ class Degree extends Model
 
 
 
-    public function certificateLevelEmployees(){ return $this->hasMany(Employee::class,"certificate_level_id"); }
-    public function degreeApplicants(){ return $this->hasMany(Applicant::class,"degree_id"); }
+    public function certificateLevelEmployees(){ return $this->hasMany(Employee::class, "certificate_level_id"); }
+    public function degreeApplicants(){ return $this->hasMany(Applicant::class, "degree_id"); }
 
 }

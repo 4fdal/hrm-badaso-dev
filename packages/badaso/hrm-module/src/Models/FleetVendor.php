@@ -28,8 +28,8 @@ class FleetVendor extends Model
         parent::__construct($attributes);
     }
 
-    public function fleetModel(){ return $this->belongsTo(FleetModel::class); }
-    public function partner(){ return $this->belongsTo(Partner::class); }
+    public function fleetModel(){ return $this->belongsTo(FleetModel::class, "fleet_model_id"); }
+    public function partner(){ return $this->belongsTo(Partner::class, "partner_id"); }
 
 
 
