@@ -1352,6 +1352,7 @@ Artisan::command("run", function () {
         $fields = explode("\n", $field_names[$index]);
         $new_fields = "";
         $new_fillable = "";
+        $public_data_rows = "";
         for ($i = 2; $i < count($fields) - 1; $i++) {
             $explode_fields = explode(" ", $fields[$i]);
 
@@ -1400,6 +1401,7 @@ Artisan::command("run", function () {
                     default:
                         $change_data_type = "string(\"$field\")";
                 }
+                $public_data_rows .= ",['$field','$type']";
                 if (isset($relation[$table_name])) {
                     $is_relation = false;
                     foreach ($relation[$table_name] as $key => $value) {
@@ -1422,6 +1424,9 @@ Artisan::command("run", function () {
             }
         }
 
+        $public_data_rows = substr($public_data_rows, 1) ;
+        $public_data_rows = "public \$public_data_rows = [$public_data_rows] ;" ;
+
         $table_relation = "";
         if (isset($relation[$table_name])) {
             foreach ($relation[$table_name] as $key => $value) {
@@ -1443,7 +1448,7 @@ Artisan::command("run", function () {
 
         $my_class_name = "{$date}_{$time}_create_{$table_name}_table.php";
 
-        File::put(database_path("migrations/{$my_class_name}"), $my_class_migration);
+        // File::put(database_path("migrations/{$my_class_name}"), $my_class_migration);
 
         $model_name = str_replace(['ies'], ["ys"], $table_name);
         $model_name = $toCamelCase($model_name);
@@ -1458,6 +1463,8 @@ Artisan::command("run", function () {
 
             return $model_name;
         };
+
+        $public_belongs_relation = "" ;
         $model_relation = "";
         if (isset($relation[$table_name])) {
             foreach ($relation[$table_name] as $key => $value) {
@@ -1471,15 +1478,57 @@ Artisan::command("run", function () {
                 $fuc_name = $first . substr($fuc_name, 1);
 
                 $model_relation .= <<<TXT
-                    public function $fuc_name(){ return \$this->belongsTo(Uasoft\Badaso\Models\\$model_to::class); }\n
+                    public function $fuc_name(){ return \$this->belongsTo($model_to::class); }\n
+                TXT;
+
+                $public_belongs_relation .= <<<TXT
+                ,["foreign" => '$field_ref', "references" => '$field_to', "on" => '$table_to']
                 TXT;
             }
+        }
+
+        if($public_belongs_relation != "" ){
+            $public_belongs_relation = substr($public_belongs_relation, 1) ;
+            $public_belongs_relation = "public \$belongs_relation = [{$public_belongs_relation}] ;";
+        } else {
+            $public_belongs_relation = "public \$belongs_relation = [] ;";
+        }
+
+        $public_many_relation = "" ;
+        $model_many_relation = "";
+        foreach ($relation as $key_table_name => $table_relations) {
+            foreach ($table_relations as $key => [$table_ref, $field_ref, $table_to, $field_to]) {
+                if ($table_to == $table_name) {
+
+                    $model_to = $tableToModelName($table_ref);
+                    $fuc_name = str_replace('_id', "", $field_ref."_".$table_ref);
+                    $fuc_name = $toCamelCase($fuc_name);
+
+                    $first = strtolower(substr($fuc_name, 0, 1));
+                    $fuc_name = $first . substr($fuc_name, 1);
+
+                    $model_many_relation .= <<<TXT
+                        public function $fuc_name(){ return \$this->hasMany($model_to::class,"$field_ref"); }\n
+                    TXT;
+
+                    $public_many_relation .= <<<TXT
+                    ,["foreign" => '$field_ref', "references" => '$field_to', "on" => '$table_ref']
+                    TXT;
+                }
+            }
+        }
+
+        if ($public_many_relation != "") {
+            $public_many_relation = substr($public_many_relation, 1);
+            $public_many_relation = "public \$many_relation = [{$public_many_relation}] ;";
+        } else {
+            $public_many_relation = "public \$many_relation = [] ;";
         }
 
         $model_format = <<<TXT
         <?php
 
-        namespace App\Models;
+        namespace Uasoft\Badaso\Module\HRM\Models;
 
         use Illuminate\Database\Eloquent\Factories\HasFactory;
         use Illuminate\Database\Eloquent\Model;
@@ -1491,17 +1540,25 @@ Artisan::command("run", function () {
             protected \$table = null ;
             protected \$fillable = [{table_fillable}] ;
 
+            $public_data_rows
+
+            $public_belongs_relation
+
+            $public_many_relation
+
             /**
              * Constructor for setting the table name dynamically.
              */
             public function __construct(array \$attributes = [])
             {
                 \$prefix = config('badaso.database.prefix');
-                \$this->table = \$prefix.'data_types';
+                \$this->table = \$prefix.'$table_name';
                 parent::__construct(\$attributes);
             }
 
         $model_relation
+
+        $model_many_relation
         }
         TXT;
 

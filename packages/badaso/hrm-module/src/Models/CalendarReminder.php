@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Uasoft\Badaso\Module\HRM\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,17 +12,25 @@ class CalendarReminder extends Model
     protected $table = null ;
     protected $fillable = [ "calendar_event_id", "calendar_alaram_id"] ;
 
+    public $public_data_rows = [['calendar_event_id','int'],['calendar_alaram_id','int']] ;
+
+    public $belongs_relation = [["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_events'],["foreign" => 'calendar_alaram_id', "references" => 'id', "on" => 'calendar_alarams']] ;
+
+    public $many_relation = [] ;
+
     /**
      * Constructor for setting the table name dynamically.
      */
     public function __construct(array $attributes = [])
     {
         $prefix = config('badaso.database.prefix');
-        $this->table = $prefix.'data_types';
+        $this->table = $prefix.'calendar_reminders';
         parent::__construct($attributes);
     }
 
-    public function calendarEvent(){ return $this->belongsTo(Uasoft\Badaso\Models\CalendarEvent::class); }
-    public function calendarAlaram(){ return $this->belongsTo(Uasoft\Badaso\Models\CalendarAlaram::class); }
+    public function calendarEvent(){ return $this->belongsTo(CalendarEvent::class); }
+    public function calendarAlaram(){ return $this->belongsTo(CalendarAlaram::class); }
+
+
 
 }

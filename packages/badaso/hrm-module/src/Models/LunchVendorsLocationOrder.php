@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Uasoft\Badaso\Module\HRM\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,17 +12,25 @@ class LunchVendorsLocationOrder extends Model
     protected $table = null ;
     protected $fillable = [ "lunch_vendor_id", "lunch_locations_id"] ;
 
+    public $public_data_rows = [['lunch_vendor_id','int'],['lunch_locations_id','int']] ;
+
+    public $belongs_relation = [["foreign" => 'lunch_locations_id', "references" => 'id', "on" => 'lunch_locations'],["foreign" => 'lunch_vendor_id', "references" => 'id', "on" => 'lunch_vendors']] ;
+
+    public $many_relation = [] ;
+
     /**
      * Constructor for setting the table name dynamically.
      */
     public function __construct(array $attributes = [])
     {
         $prefix = config('badaso.database.prefix');
-        $this->table = $prefix.'data_types';
+        $this->table = $prefix.'lunch_vendors_location_orders';
         parent::__construct($attributes);
     }
 
-    public function lunchLocations(){ return $this->belongsTo(Uasoft\Badaso\Models\LunchLocation::class); }
-    public function lunchVendor(){ return $this->belongsTo(Uasoft\Badaso\Models\LunchVendor::class); }
+    public function lunchLocations(){ return $this->belongsTo(LunchLocation::class); }
+    public function lunchVendor(){ return $this->belongsTo(LunchVendor::class); }
+
+
 
 }

@@ -167,6 +167,7 @@ return [
          */
 
         "Uasoft\\Badaso\\Providers\\BadasoServiceProvider",
+        "Uasoft\\Badaso\\Module\\HRM\\Providers\\BadasoHRMModuleServiceProvider",
 
         /*
          * Application Service Providers...

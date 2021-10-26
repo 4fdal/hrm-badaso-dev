@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Uasoft\Badaso\Module\HRM\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,15 +12,25 @@ class Degree extends Model
     protected $table = null ;
     protected $fillable = [ "name"] ;
 
+    public $public_data_rows = [['name','varchar']] ;
+
+    public $belongs_relation = [] ;
+
+    public $many_relation = [["foreign" => 'certificate_level_id', "references" => 'id', "on" => 'employees'],["foreign" => 'degree_id', "references" => 'id', "on" => 'applicants']] ;
+
     /**
      * Constructor for setting the table name dynamically.
      */
     public function __construct(array $attributes = [])
     {
         $prefix = config('badaso.database.prefix');
-        $this->table = $prefix.'data_types';
+        $this->table = $prefix.'degrees';
         parent::__construct($attributes);
     }
 
+
+
+    public function certificateLevelEmployees(){ return $this->hasMany(Employee::class,"certificate_level_id"); }
+    public function degreeApplicants(){ return $this->hasMany(Applicant::class,"degree_id"); }
 
 }

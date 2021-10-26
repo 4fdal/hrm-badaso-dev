@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Uasoft\Badaso\Module\HRM\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,18 +12,26 @@ class TaxGroup extends Model
     protected $table = null ;
     protected $fillable = [ "current_tax_account_payable_id", "advanced_tax_account_payable_id", "sequnce", "receiver_current_tax_account_payable_id"] ;
 
+    public $public_data_rows = [['current_tax_account_payable_id','int'],['advanced_tax_account_payable_id','int'],['sequnce','int'],['receiver_current_tax_account_payable_id','int']] ;
+
+    public $belongs_relation = [["foreign" => 'current_tax_account_payable_id', "references" => 'id', "on" => 'tax_account_payables'],["foreign" => 'advanced_tax_account_payable_id', "references" => 'id', "on" => 'tax_account_payables'],["foreign" => 'receiver_current_tax_account_payable_id', "references" => 'id', "on" => 'tax_account_payables']] ;
+
+    public $many_relation = [] ;
+
     /**
      * Constructor for setting the table name dynamically.
      */
     public function __construct(array $attributes = [])
     {
         $prefix = config('badaso.database.prefix');
-        $this->table = $prefix.'data_types';
+        $this->table = $prefix.'tax_groups';
         parent::__construct($attributes);
     }
 
-    public function currentTaxAccountPayable(){ return $this->belongsTo(Uasoft\Badaso\Models\TaxAccountPayable::class); }
-    public function advancedTaxAccountPayable(){ return $this->belongsTo(Uasoft\Badaso\Models\TaxAccountPayable::class); }
-    public function receiverCurrentTaxAccountPayable(){ return $this->belongsTo(Uasoft\Badaso\Models\TaxAccountPayable::class); }
+    public function currentTaxAccountPayable(){ return $this->belongsTo(TaxAccountPayable::class); }
+    public function advancedTaxAccountPayable(){ return $this->belongsTo(TaxAccountPayable::class); }
+    public function receiverCurrentTaxAccountPayable(){ return $this->belongsTo(TaxAccountPayable::class); }
+
+
 
 }
