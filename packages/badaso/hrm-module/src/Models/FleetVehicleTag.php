@@ -14,7 +14,7 @@ class FleetVehicleTag extends Model
 
     public $public_data_rows = [['fleet_vehicle_id','int'],['fleet_vehicle_categorie_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'fleet_vehicle_id', "references" => 'id', "on" => 'fleet_vehicles'],["foreign" => 'fleet_vehicle_categorie_id', "references" => 'id', "on" => 'fleet_vehicle_categories']] ;
+    public $belongs_relation = [["foreign" => 'fleet_vehicle_id', "references" => 'id', "on" => 'fleet_vehicles', "model_on" => FleetVehicle::class],["foreign" => 'fleet_vehicle_categorie_id', "references" => 'id', "on" => 'fleet_vehicle_categories', "model_on" => FleetVehicleCategory::class]] ;
 
     public $many_relation = [] ;
 

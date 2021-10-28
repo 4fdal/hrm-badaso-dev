@@ -14,9 +14,9 @@ class LunchProductCategoryTopping extends Model
 
     public $public_data_rows = [['lunch_product_category_id','int'],['name','varchar']] ;
 
-    public $belongs_relation = [["foreign" => 'lunch_product_category_id', "references" => 'id', "on" => 'lunch_product_category_toppings']] ;
+    public $belongs_relation = [["foreign" => 'lunch_product_category_id', "references" => 'id', "on" => 'lunch_product_category_toppings', "model_on" => LunchProductCategoryTopping::class]] ;
 
-    public $many_relation = [["foreign" => 'lunch_product_category_id', "references" => 'id', "on" => 'lunch_product_category_toppings'],["foreign" => 'lunch_product_category_topping_id', "references" => 'id', "on" => 'lunch_product_category_topping_items']] ;
+    public $many_relation = [["foreign" => 'lunch_product_category_id', "references" => 'id', "on" => 'lunch_product_category_toppings', "model_on" => LunchProductCategoryTopping::class],["foreign" => 'lunch_product_category_topping_id', "references" => 'id', "on" => 'lunch_product_category_topping_items', "model_on" => LunchProductCategoryToppingItem::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

@@ -23,7 +23,8 @@ class CreateTaxGroupsTable extends Migration
             $table->foreign('current_tax_account_payable_id', 'tg_ref_current_tax_account_payable_id')->references('id')->on(config('badaso.database.prefix') . 'tax_account_payables')->onDelete('cascade');
             $table->foreign('advanced_tax_account_payable_id', 'tg_ref_advanced_tax_account_payable_id')->references('id')->on(config('badaso.database.prefix') . 'tax_account_payables')->onDelete('cascade');
             $table->foreign('receiver_current_tax_account_payable_id', 'tg_ref_receiver_current_tax_account_payable_id')->references('id')->on(config('badaso.database.prefix') . 'tax_account_payables')->onDelete('cascade');
-        });
+        $table->timestamps();
+});
     }
 
     /**

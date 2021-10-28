@@ -46,6 +46,7 @@ class CreatePartnersTable extends Migration
             $table->foreign('parent_id')->references('id')->on(config('badaso.database.prefix') . 'partners')->onDelete('cascade');
             $table->foreign('industry_id')->references('id')->on(config('badaso.database.prefix') . 'industries')->onDelete('cascade');
             $table->foreign('commercial_partner_id')->references('id')->on(config('badaso.database.prefix') . 'partners')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

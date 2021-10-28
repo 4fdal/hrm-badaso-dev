@@ -15,11 +15,12 @@ class CreateFleetStatesTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'fleet_states', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-            $table->integer("sequnce")->nullable(); 
+            $table->string("name")->nullable();
+            $table->integer("sequnce")->nullable();
 
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

@@ -14,9 +14,9 @@ class ExpenseReport extends Model
 
     public $public_data_rows = [['description','text'],['expense_product_id','int'],['unit_price','double'],['quantity','double'],['total','double'],['amount_due','double'],['paid_by','enum'],['bill_reference','varchar'],['expense_date','date'],['employee_id','int'],['company_id','int'],['note','text'],['state_report','enum'],['register_payment_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'expense_product_id', "references" => 'id', "on" => 'expense_products'],["foreign" => 'employee_id', "references" => 'id', "on" => 'employees'],["foreign" => 'company_id', "references" => 'id', "on" => 'companies']] ;
+    public $belongs_relation = [["foreign" => 'expense_product_id', "references" => 'id', "on" => 'expense_products', "model_on" => ExpenseProduct::class],["foreign" => 'employee_id', "references" => 'id', "on" => 'employees', "model_on" => Employee::class],["foreign" => 'company_id', "references" => 'id', "on" => 'companies', "model_on" => Company::class]] ;
 
-    public $many_relation = [["foreign" => 'expense_report_id', "references" => 'id', "on" => 'expense_report_items']] ;
+    public $many_relation = [["foreign" => 'expense_report_id', "references" => 'id', "on" => 'expense_report_items', "model_on" => ExpenseReportItem::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

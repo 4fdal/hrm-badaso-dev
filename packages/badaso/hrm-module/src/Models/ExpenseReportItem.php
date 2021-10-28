@@ -14,7 +14,7 @@ class ExpenseReportItem extends Model
 
     public $public_data_rows = [['expense_reports_company_id','int'],['expense_report_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'expense_reports_company_id', "references" => 'id', "on" => 'expense_reports_companyes'],["foreign" => 'expense_report_id', "references" => 'id', "on" => 'expense_reports']] ;
+    public $belongs_relation = [["foreign" => 'expense_reports_company_id', "references" => 'id', "on" => 'expense_reports_companyes', "model_on" => ExpenseReportsCompanye::class],["foreign" => 'expense_report_id', "references" => 'id', "on" => 'expense_reports', "model_on" => ExpenseReport::class]] ;
 
     public $many_relation = [] ;
 

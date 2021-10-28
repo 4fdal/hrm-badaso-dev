@@ -15,11 +15,12 @@ class CreateApplicantCategoriesTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'applicant_categories', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-            $table->string("color")->nullable(); 
+            $table->string("name")->nullable();
+            $table->string("color")->nullable();
 
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

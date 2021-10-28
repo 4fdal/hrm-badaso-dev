@@ -14,9 +14,9 @@ class LunchVendor extends Model
 
     public $public_data_rows = [['partner_id','int'],['company_id','int'],['responsible_user_id','int'],['send_by','enum'],['automatic_email_time','double'],['is_recurrent_monday','boolean'],['is_recurrent_tuesday','boolean'],['is_recurrent_wednesday','boolean'],['is_recurrent_thursday','boolean'],['is_recurrent_friday','boolean'],['is_recurrent_saturday','boolean'],['is_recurrent_sunday','boolean'],['timezone','varchar'],['is_active','boolean'],['moment','enum'],['delivery','enum']] ;
 
-    public $belongs_relation = [["foreign" => 'partner_id', "references" => 'id', "on" => 'partners'],["foreign" => 'company_id', "references" => 'id', "on" => 'companies'],["foreign" => 'responsible_user_id', "references" => 'id', "on" => 'badaso_users']] ;
+    public $belongs_relation = [["foreign" => 'partner_id', "references" => 'id', "on" => 'partners', "model_on" => Partner::class],["foreign" => 'company_id', "references" => 'id', "on" => 'companies', "model_on" => Company::class],["foreign" => 'responsible_user_id', "references" => 'id', "on" => 'badaso_users', "model_on" => BadasoUser::class]] ;
 
-    public $many_relation = [["foreign" => 'lunch_vendor_id', "references" => 'id', "on" => 'lunch_vendors_location_orders'],["foreign" => 'lunch_vendor_id', "references" => 'id', "on" => 'lunch_products']] ;
+    public $many_relation = [["foreign" => 'lunch_vendor_id', "references" => 'id', "on" => 'lunch_vendors_location_orders', "model_on" => LunchVendorsLocationOrder::class],["foreign" => 'lunch_vendor_id', "references" => 'id', "on" => 'lunch_products', "model_on" => LunchProduct::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

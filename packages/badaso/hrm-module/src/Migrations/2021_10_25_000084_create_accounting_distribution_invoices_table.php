@@ -23,7 +23,8 @@ class CreateAccountingDistributionInvoicesTable extends Migration
             $table->boolean("is_close_entry")->nullable();
 
             $table->foreign('accounting_tax_id', 'adi_ref_accounting_tax_id')->references('id')->on(config('badaso.database.prefix') . 'accounting_taxes')->onDelete('cascade');
-        });
+        $table->timestamps();
+});
     }
 
     /**

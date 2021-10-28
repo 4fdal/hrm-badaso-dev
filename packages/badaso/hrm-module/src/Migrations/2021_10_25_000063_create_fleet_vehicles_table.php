@@ -57,7 +57,8 @@ class CreateFleetVehiclesTable extends Migration
             $table->foreign('manager_user_id')->references('id')->on(config('badaso.database.prefix').'users')->onDelete('cascade');
             $table->foreign('company_id')->references('id')->on(config('badaso.database.prefix').'companies')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

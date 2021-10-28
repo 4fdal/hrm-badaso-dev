@@ -20,7 +20,8 @@ class CreateExpenseCustomerAccountingTaxTable extends Migration
 
             $table->foreign('expense_product_id', 'ecat_ref_expense_product_id')->references('id')->on(config('badaso.database.prefix') . 'expense_products')->onDelete('cascade');
             $table->foreign('accounting_tax_id', 'ecat_ref_accounting_tax_id')->references('id')->on(config('badaso.database.prefix') . 'accounting_taxes')->onDelete('cascade');
-        });
+        $table->timestamps();
+});
     }
 
     /**

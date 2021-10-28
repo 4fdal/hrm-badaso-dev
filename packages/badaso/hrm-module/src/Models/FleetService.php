@@ -14,7 +14,7 @@ class FleetService extends Model
 
     public $public_data_rows = [['description','text'],['fleet_service_type_id','int'],['date','date'],['cost','double'],['vendor_parent_id','int'],['fleet_vehicle_id','int'],['driver_partner_id','int'],['odometer_value','double'],['notes','text']] ;
 
-    public $belongs_relation = [["foreign" => 'fleet_service_type_id', "references" => 'id', "on" => 'fleet_service_types'],["foreign" => 'vendor_parent_id', "references" => 'id', "on" => 'fleet_service_types'],["foreign" => 'fleet_vehicle_id', "references" => 'id', "on" => 'fleet_vehicles'],["foreign" => 'driver_partner_id', "references" => 'id', "on" => 'partners']] ;
+    public $belongs_relation = [["foreign" => 'fleet_service_type_id', "references" => 'id', "on" => 'fleet_service_types', "model_on" => FleetServiceType::class],["foreign" => 'vendor_parent_id', "references" => 'id', "on" => 'fleet_service_types', "model_on" => FleetServiceType::class],["foreign" => 'fleet_vehicle_id', "references" => 'id', "on" => 'fleet_vehicles', "model_on" => FleetVehicle::class],["foreign" => 'driver_partner_id', "references" => 'id', "on" => 'partners', "model_on" => Partner::class]] ;
 
     public $many_relation = [] ;
 

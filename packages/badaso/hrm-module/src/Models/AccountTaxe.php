@@ -14,9 +14,9 @@ class AccountTaxe extends Model
 
     public $public_data_rows = [['name','varchar'],['type_tax_use','enum'],['tax_scope','varchar'],['amount_type','varchar'],['is_active','boolean'],['company_id','int'],['sequnce','int'],['amount','double'],['description','text']] ;
 
-    public $belongs_relation = [["foreign" => 'company_id', "references" => 'id', "on" => 'companies']] ;
+    public $belongs_relation = [["foreign" => 'company_id', "references" => 'id', "on" => 'companies', "model_on" => Company::class]] ;
 
-    public $many_relation = [["foreign" => 'default_account_tax_id', "references" => 'id', "on" => 'tax_account_payables']] ;
+    public $many_relation = [["foreign" => 'default_account_tax_id', "references" => 'id', "on" => 'tax_account_payables', "model_on" => TaxAccountPayable::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

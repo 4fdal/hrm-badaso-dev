@@ -14,7 +14,7 @@ class LunchVendorsLocationOrder extends Model
 
     public $public_data_rows = [['lunch_vendor_id','int'],['lunch_locations_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'lunch_locations_id', "references" => 'id', "on" => 'lunch_locations'],["foreign" => 'lunch_vendor_id', "references" => 'id', "on" => 'lunch_vendors']] ;
+    public $belongs_relation = [["foreign" => 'lunch_locations_id', "references" => 'id', "on" => 'lunch_locations', "model_on" => LunchLocation::class],["foreign" => 'lunch_vendor_id', "references" => 'id', "on" => 'lunch_vendors', "model_on" => LunchVendor::class]] ;
 
     public $many_relation = [] ;
 

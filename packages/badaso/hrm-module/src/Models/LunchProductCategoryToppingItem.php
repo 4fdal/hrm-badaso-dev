@@ -14,7 +14,7 @@ class LunchProductCategoryToppingItem extends Model
 
     public $public_data_rows = [['lunch_product_category_topping_id','int'],['name','varchar'],['price','double']] ;
 
-    public $belongs_relation = [["foreign" => 'lunch_product_category_topping_id', "references" => 'id', "on" => 'lunch_product_category_toppings']] ;
+    public $belongs_relation = [["foreign" => 'lunch_product_category_topping_id', "references" => 'id', "on" => 'lunch_product_category_toppings', "model_on" => LunchProductCategoryTopping::class]] ;
 
     public $many_relation = [] ;
 

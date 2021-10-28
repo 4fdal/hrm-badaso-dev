@@ -15,14 +15,15 @@ class CreateFleetOdometersTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'fleet_odometers', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-            $table->string("date")->nullable(); 
-            $table->double("value")->nullable(); 
-            $table->unsignedBigInteger('fleet_vehicle_id')->nullable(); 
+            $table->string("name")->nullable();
+            $table->string("date")->nullable();
+            $table->double("value")->nullable();
+            $table->unsignedBigInteger('fleet_vehicle_id')->nullable();
 
             $table->foreign('fleet_vehicle_id')->references('id')->on(config('badaso.database.prefix').'fleet_vehicles')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

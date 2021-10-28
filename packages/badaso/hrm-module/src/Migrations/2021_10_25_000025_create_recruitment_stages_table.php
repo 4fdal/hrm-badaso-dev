@@ -13,12 +13,13 @@ class CreateRecruitmentStagesTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'recruitment_stages', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'recruitment_stages', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-            $table->integer("sequnce")->nullable(); 
+            $table->string("name")->nullable();
+            $table->integer("sequnce")->nullable();
 
 
+            $table->timestamps();
         });
     }
 
@@ -29,6 +30,6 @@ class CreateRecruitmentStagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'recruitment_stages');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'recruitment_stages');
     }
 }

@@ -14,7 +14,7 @@ class GlobalTimeOff extends Model
 
     public $public_data_rows = [['worke_id','int'],['reason','varchar'],['start_date','datetime'],['end_date','datetime']] ;
 
-    public $belongs_relation = [["foreign" => 'worke_id', "references" => 'id', "on" => 'workes']] ;
+    public $belongs_relation = [["foreign" => 'worke_id', "references" => 'id', "on" => 'workes', "model_on" => Worke::class]] ;
 
     public $many_relation = [] ;
 

@@ -14,7 +14,7 @@ class TaxGroup extends Model
 
     public $public_data_rows = [['current_tax_account_payable_id','int'],['advanced_tax_account_payable_id','int'],['sequnce','int'],['receiver_current_tax_account_payable_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'current_tax_account_payable_id', "references" => 'id', "on" => 'tax_account_payables'],["foreign" => 'advanced_tax_account_payable_id', "references" => 'id', "on" => 'tax_account_payables'],["foreign" => 'receiver_current_tax_account_payable_id', "references" => 'id', "on" => 'tax_account_payables']] ;
+    public $belongs_relation = [["foreign" => 'current_tax_account_payable_id', "references" => 'id', "on" => 'tax_account_payables', "model_on" => TaxAccountPayable::class],["foreign" => 'advanced_tax_account_payable_id', "references" => 'id', "on" => 'tax_account_payables', "model_on" => TaxAccountPayable::class],["foreign" => 'receiver_current_tax_account_payable_id', "references" => 'id', "on" => 'tax_account_payables', "model_on" => TaxAccountPayable::class]] ;
 
     public $many_relation = [] ;
 

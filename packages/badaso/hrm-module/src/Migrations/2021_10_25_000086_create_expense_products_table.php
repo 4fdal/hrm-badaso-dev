@@ -15,16 +15,17 @@ class CreateExpenseProductsTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'expense_products', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-            $table->double("cost")->nullable(); 
-            $table->string("internal_reference")->nullable(); 
-            $table->integer("company_id")->nullable(); 
-            $table->string("invoice_policy")->nullable(); // ordered => Ordered Quantity, delivered => Delivered Quantity 
-            $table->string("re_invoice_exoense")->nullable(); // no, cost, sales_price 
-            $table->string("image_path")->nullable(); 
+            $table->string("name")->nullable();
+            $table->double("cost")->nullable();
+            $table->string("internal_reference")->nullable();
+            $table->integer("company_id")->nullable();
+            $table->string("invoice_policy")->nullable(); // ordered => Ordered Quantity, delivered => Delivered Quantity
+            $table->string("re_invoice_exoense")->nullable(); // no, cost, sales_price
+            $table->string("image_path")->nullable();
 
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

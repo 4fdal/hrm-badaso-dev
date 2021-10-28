@@ -14,9 +14,9 @@ class AccountGroup extends Model
 
     public $public_data_rows = [['parent_path','varchar'],['name','varchar'],['code_prefix_start','varchar'],['code_prefix_end','varchar'],['company_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'company_id', "references" => 'id', "on" => 'companies']] ;
+    public $belongs_relation = [["foreign" => 'company_id', "references" => 'id', "on" => 'companies', "model_on" => Company::class]] ;
 
-    public $many_relation = [["foreign" => 'account_group_id', "references" => 'id', "on" => 'accounts']] ;
+    public $many_relation = [["foreign" => 'account_group_id', "references" => 'id', "on" => 'accounts', "model_on" => Account::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

@@ -16,7 +16,7 @@ class Currency extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'currency_id', "references" => 'id', "on" => 'countries'],["foreign" => 'currency_id', "references" => 'id', "on" => 'companies'],["foreign" => 'currency_id', "references" => 'id', "on" => 'lunch_cashmoves'],["foreign" => 'currency_id', "references" => 'id', "on" => 'lunch_orders'],["foreign" => 'currency_id', "references" => 'id', "on" => 'accounts'],["foreign" => 'currency_id', "references" => 'id', "on" => 'partner_banks'],["foreign" => 'currency_id', "references" => 'id', "on" => 'account_journals']] ;
+    public $many_relation = [["foreign" => 'currency_id', "references" => 'id', "on" => 'countries', "model_on" => Country::class],["foreign" => 'currency_id', "references" => 'id', "on" => 'companies', "model_on" => Company::class],["foreign" => 'currency_id', "references" => 'id', "on" => 'lunch_cashmoves', "model_on" => LunchCashmove::class],["foreign" => 'currency_id', "references" => 'id', "on" => 'lunch_orders', "model_on" => LunchOrder::class],["foreign" => 'currency_id', "references" => 'id', "on" => 'accounts', "model_on" => Account::class],["foreign" => 'currency_id', "references" => 'id', "on" => 'partner_banks', "model_on" => PartnerBank::class],["foreign" => 'currency_id', "references" => 'id', "on" => 'account_journals', "model_on" => AccountJournal::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

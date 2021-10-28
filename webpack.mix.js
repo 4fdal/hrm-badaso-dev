@@ -16,6 +16,8 @@ mix.js('resources/js/app.js', 'public/js')
         //
     ]);
 
+mix.disableNotifications();
+
 // Badaso
 mix.js("packages/badaso/core/src/resources/js/app.js", "public/js/badaso.js")
     .sass("packages/badaso/core/src/resources/js/assets/scss/style.scss", "public/css/badaso.css")

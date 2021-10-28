@@ -14,7 +14,7 @@ class CalendarReminder extends Model
 
     public $public_data_rows = [['calendar_event_id','int'],['calendar_alaram_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_events'],["foreign" => 'calendar_alaram_id', "references" => 'id', "on" => 'calendar_alarams']] ;
+    public $belongs_relation = [["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_events', "model_on" => CalendarEvent::class],["foreign" => 'calendar_alaram_id', "references" => 'id', "on" => 'calendar_alarams', "model_on" => CalendarAlaram::class]] ;
 
     public $many_relation = [] ;
 

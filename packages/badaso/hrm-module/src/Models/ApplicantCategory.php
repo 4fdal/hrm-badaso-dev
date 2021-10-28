@@ -16,7 +16,7 @@ class ApplicantCategory extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'applicant_category_id', "references" => 'id', "on" => 'applicant_tags']] ;
+    public $many_relation = [["foreign" => 'applicant_category_id', "references" => 'id', "on" => 'applicant_tags', "model_on" => ApplicantTag::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

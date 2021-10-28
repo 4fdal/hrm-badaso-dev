@@ -16,7 +16,7 @@ class CalendarEventCategory extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'calendar_event_category_id', "references" => 'id', "on" => 'calendar_event_tags']] ;
+    public $many_relation = [["foreign" => 'calendar_event_category_id', "references" => 'id', "on" => 'calendar_event_tags', "model_on" => CalendarEventTag::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

@@ -16,7 +16,7 @@ class Degree extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'certificate_level_id', "references" => 'id', "on" => 'employees'],["foreign" => 'degree_id', "references" => 'id', "on" => 'applicants']] ;
+    public $many_relation = [["foreign" => 'certificate_level_id', "references" => 'id', "on" => 'employees', "model_on" => Employee::class],["foreign" => 'degree_id', "references" => 'id', "on" => 'applicants', "model_on" => Applicant::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

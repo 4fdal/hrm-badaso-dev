@@ -16,7 +16,7 @@ class AccountingTaxe extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'accounting_tax_id', "references" => 'id', "on" => 'accounting_distribution_invoices'],["foreign" => 'accounting_tax_id', "references" => 'id', "on" => 'accounting_distribution_credit_notes'],["foreign" => 'accounting_tax_id', "references" => 'id', "on" => 'expense_vendor_accounting_tax'],["foreign" => 'accounting_tax_id', "references" => 'id', "on" => 'expense_customer_accounting_tax']] ;
+    public $many_relation = [["foreign" => 'accounting_tax_id', "references" => 'id', "on" => 'accounting_distribution_invoices', "model_on" => AccountingDistributionInvoice::class],["foreign" => 'accounting_tax_id', "references" => 'id', "on" => 'accounting_distribution_credit_notes', "model_on" => AccountingDistributionCreditNote::class],["foreign" => 'accounting_tax_id', "references" => 'id', "on" => 'expense_vendor_accounting_tax', "model_on" => ExpenseVendorAccountingTa::class],["foreign" => 'accounting_tax_id', "references" => 'id', "on" => 'expense_customer_accounting_tax', "model_on" => ExpenseCustomerAccountingTa::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

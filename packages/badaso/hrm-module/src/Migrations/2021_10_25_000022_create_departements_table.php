@@ -13,21 +13,22 @@ class CreateDepartementsTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'departements', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'departements', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-            $table->string("complete_name")->nullable(); 
-            $table->boolean("is_active")->nullable(); 
-            $table->unsignedBigInteger('company_id')->nullable(); 
-            $table->unsignedBigInteger('parent_id')->nullable(); 
-            $table->unsignedBigInteger('manager_id')->nullable(); 
-            $table->string("note")->nullable(); 
-            $table->string("color")->nullable(); 
+            $table->string("name")->nullable();
+            $table->string("complete_name")->nullable();
+            $table->boolean("is_active")->nullable();
+            $table->unsignedBigInteger('company_id')->nullable();
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->unsignedBigInteger('manager_id')->nullable();
+            $table->string("note")->nullable();
+            $table->string("color")->nullable();
 
-            $table->foreign('company_id')->references('id')->on(config('badaso.database.prefix').'companies')->onDelete('cascade');
-            $table->foreign('parent_id')->references('id')->on(config('badaso.database.prefix').'departements')->onDelete('cascade');
-            $table->foreign('manager_id')->references('id')->on(config('badaso.database.prefix').'employees')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on(config('badaso.database.prefix') . 'companies')->onDelete('cascade');
+            $table->foreign('parent_id')->references('id')->on(config('badaso.database.prefix') . 'departements')->onDelete('cascade');
+            $table->foreign('manager_id')->references('id')->on(config('badaso.database.prefix') . 'employees')->onDelete('cascade');
 
+            $table->timestamps();
         });
     }
 
@@ -38,6 +39,6 @@ class CreateDepartementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'departements');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'departements');
     }
 }

@@ -13,13 +13,14 @@ class CreateSkillsTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'skills', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'skills', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('skill_type_id')->nullable(); 
-            $table->string("name")->nullable(); 
+            $table->unsignedBigInteger('skill_type_id')->nullable();
+            $table->string("name")->nullable();
 
-            $table->foreign('skill_type_id')->references('id')->on(config('badaso.database.prefix').'skill_types')->onDelete('cascade');
+            $table->foreign('skill_type_id')->references('id')->on(config('badaso.database.prefix') . 'skill_types')->onDelete('cascade');
 
+            $table->timestamps();
         });
     }
 
@@ -30,6 +31,6 @@ class CreateSkillsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'skills');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'skills');
     }
 }

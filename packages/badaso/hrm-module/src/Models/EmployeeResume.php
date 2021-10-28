@@ -14,7 +14,7 @@ class EmployeeResume extends Model
 
     public $public_data_rows = [['employee_id','int'],['resume_line_type_id','int'],['display_type','enum'],['start','date'],['end','date'],['description','text']] ;
 
-    public $belongs_relation = [["foreign" => 'employee_id', "references" => 'id', "on" => 'employees'],["foreign" => 'resume_line_type_id', "references" => 'id', "on" => 'resume_line_types']] ;
+    public $belongs_relation = [["foreign" => 'employee_id', "references" => 'id', "on" => 'employees', "model_on" => Employee::class],["foreign" => 'resume_line_type_id', "references" => 'id', "on" => 'resume_line_types', "model_on" => ResumeLineType::class]] ;
 
     public $many_relation = [] ;
 

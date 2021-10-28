@@ -13,12 +13,13 @@ class CreateEmployeeCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'employee_categories', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'employee_categories', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-            $table->string("color")->nullable(); 
+            $table->string("name")->nullable();
+            $table->string("color")->nullable();
 
 
+            $table->timestamps();
         });
     }
 
@@ -29,6 +30,6 @@ class CreateEmployeeCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'employee_categories');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'employee_categories');
     }
 }

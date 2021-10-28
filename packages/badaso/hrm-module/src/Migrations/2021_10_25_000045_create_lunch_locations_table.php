@@ -15,13 +15,14 @@ class CreateLunchLocationsTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'lunch_locations', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-            $table->string("address")->nullable(); 
-            $table->unsignedBigInteger('company_id')->nullable(); 
+            $table->string("name")->nullable();
+            $table->string("address")->nullable();
+            $table->unsignedBigInteger('company_id')->nullable();
 
             $table->foreign('company_id')->references('id')->on(config('badaso.database.prefix').'companies')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

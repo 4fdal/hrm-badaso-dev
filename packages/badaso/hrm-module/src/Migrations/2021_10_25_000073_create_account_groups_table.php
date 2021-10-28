@@ -15,15 +15,16 @@ class CreateAccountGroupsTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'account_groups', function (Blueprint $table) {
             $table->id();
-            $table->string("parent_path")->nullable(); 
-            $table->string("name")->nullable(); 
-            $table->string("code_prefix_start")->nullable(); 
-            $table->string("code_prefix_end")->nullable(); 
-            $table->unsignedBigInteger('company_id')->nullable(); 
+            $table->string("parent_path")->nullable();
+            $table->string("name")->nullable();
+            $table->string("code_prefix_start")->nullable();
+            $table->string("code_prefix_end")->nullable();
+            $table->unsignedBigInteger('company_id')->nullable();
 
             $table->foreign('company_id')->references('id')->on(config('badaso.database.prefix').'companies')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

@@ -14,7 +14,7 @@ class FleetContractService extends Model
 
     public $public_data_rows = [['fleet_contract_id','int'],['fleet_service_type_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'fleet_contract_id', "references" => 'id', "on" => 'fleet_contracts'],["foreign" => 'fleet_service_type_id', "references" => 'id', "on" => 'fleet_service_types']] ;
+    public $belongs_relation = [["foreign" => 'fleet_contract_id', "references" => 'id', "on" => 'fleet_contracts', "model_on" => FleetContract::class],["foreign" => 'fleet_service_type_id', "references" => 'id', "on" => 'fleet_service_types', "model_on" => FleetServiceType::class]] ;
 
     public $many_relation = [] ;
 

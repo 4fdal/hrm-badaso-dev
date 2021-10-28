@@ -14,7 +14,7 @@ class CalendarEventTag extends Model
 
     public $public_data_rows = [['calendar_event_id','int'],['calendar_event_category_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_events'],["foreign" => 'calendar_event_category_id', "references" => 'id', "on" => 'calendar_event_categories']] ;
+    public $belongs_relation = [["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_events', "model_on" => CalendarEvent::class],["foreign" => 'calendar_event_category_id', "references" => 'id', "on" => 'calendar_event_categories', "model_on" => CalendarEventCategory::class]] ;
 
     public $many_relation = [] ;
 

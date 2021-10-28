@@ -15,13 +15,14 @@ class CreateExpenseVendorAccountingTaxTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'expense_vendor_accounting_tax', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('expense_product_id')->nullable(); 
-            $table->unsignedBigInteger('accounting_tax_id')->nullable(); 
+            $table->unsignedBigInteger('expense_product_id')->nullable();
+            $table->unsignedBigInteger('accounting_tax_id')->nullable();
 
             $table->foreign('expense_product_id')->references('id')->on(config('badaso.database.prefix').'expense_products')->onDelete('cascade');
             $table->foreign('accounting_tax_id')->references('id')->on(config('badaso.database.prefix').'accounting_taxes')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

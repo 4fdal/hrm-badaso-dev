@@ -14,9 +14,9 @@ class FleetModel extends Model
 
     public $public_data_rows = [['name','varchar'],['fleet_model_brand_id','int'],['manager_user_id','int'],['is_active','boolean'],['vehicle_type','enum']] ;
 
-    public $belongs_relation = [["foreign" => 'fleet_model_brand_id', "references" => 'id', "on" => 'fleet_model_brands'],["foreign" => 'manager_user_id', "references" => 'id', "on" => 'badaso_users']] ;
+    public $belongs_relation = [["foreign" => 'fleet_model_brand_id', "references" => 'id', "on" => 'fleet_model_brands', "model_on" => FleetModelBrand::class],["foreign" => 'manager_user_id', "references" => 'id', "on" => 'badaso_users', "model_on" => BadasoUser::class]] ;
 
-    public $many_relation = [["foreign" => 'fleet_model_id', "references" => 'id', "on" => 'fleet_vendors'],["foreign" => 'fleet_model_id', "references" => 'id', "on" => 'fleet_vehicles']] ;
+    public $many_relation = [["foreign" => 'fleet_model_id', "references" => 'id', "on" => 'fleet_vendors', "model_on" => FleetVendor::class],["foreign" => 'fleet_model_id', "references" => 'id', "on" => 'fleet_vehicles', "model_on" => FleetVehicle::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

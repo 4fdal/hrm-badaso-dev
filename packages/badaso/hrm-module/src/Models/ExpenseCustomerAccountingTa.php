@@ -14,7 +14,7 @@ class ExpenseCustomerAccountingTa extends Model
 
     public $public_data_rows = [['expense_product_id','int'],['accounting_tax_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'expense_product_id', "references" => 'id', "on" => 'expense_products'],["foreign" => 'accounting_tax_id', "references" => 'id', "on" => 'accounting_taxes']] ;
+    public $belongs_relation = [["foreign" => 'expense_product_id', "references" => 'id', "on" => 'expense_products', "model_on" => ExpenseProduct::class],["foreign" => 'accounting_tax_id', "references" => 'id', "on" => 'accounting_taxes', "model_on" => AccountingTaxe::class]] ;
 
     public $many_relation = [] ;
 

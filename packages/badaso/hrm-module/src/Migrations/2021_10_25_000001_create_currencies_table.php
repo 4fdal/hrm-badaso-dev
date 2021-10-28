@@ -13,18 +13,17 @@ class CreateCurrenciesTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'currencies', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'currencies', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-            $table->string("sysmbol")->nullable(); 
-            $table->double("rounding")->nullable(); 
-            $table->integer("decimal_place")->nullable(); 
-            $table->boolean("is_active")->nullable(); 
-            $table->string("position")->nullable(); // after, before 
-            $table->string("currency_unit_label")->nullable(); 
-            $table->string("currency_subunit_label")->nullable(); 
-
-
+            $table->string("name")->nullable();
+            $table->string("sysmbol")->nullable();
+            $table->double("rounding")->nullable();
+            $table->integer("decimal_place")->nullable();
+            $table->boolean("is_active")->nullable();
+            $table->string("position")->nullable(); // after, before
+            $table->string("currency_unit_label")->nullable();
+            $table->string("currency_subunit_label")->nullable();
+            $table->timestamps();
         });
     }
 
@@ -35,6 +34,6 @@ class CreateCurrenciesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'currencies');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'currencies');
     }
 }

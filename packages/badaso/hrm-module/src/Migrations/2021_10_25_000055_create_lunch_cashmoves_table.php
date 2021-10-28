@@ -24,7 +24,8 @@ class CreateLunchCashmovesTable extends Migration
             $table->foreign('currency_id')->references('id')->on(config('badaso.database.prefix').'currencies')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on(config('badaso.database.prefix').'users')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

@@ -36,7 +36,8 @@ class CreateTimeOffsTable extends Migration
             $table->foreign('departement_id')->references('id')->on(config('badaso.database.prefix').'departements')->onDelete('cascade');
             $table->foreign('metting_calendar_event_id')->references('id')->on(config('badaso.database.prefix').'calendar_events')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

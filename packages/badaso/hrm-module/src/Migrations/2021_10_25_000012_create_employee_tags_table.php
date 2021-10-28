@@ -13,14 +13,15 @@ class CreateEmployeeTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'employee_tags', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'employee_tags', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employee_id')->nullable(); 
-            $table->unsignedBigInteger('employee_categorie_id')->nullable(); 
+            $table->unsignedBigInteger('employee_id')->nullable();
+            $table->unsignedBigInteger('employee_categorie_id')->nullable();
 
-            $table->foreign('employee_id')->references('id')->on(config('badaso.database.prefix').'employees')->onDelete('cascade');
-            $table->foreign('employee_categorie_id')->references('id')->on(config('badaso.database.prefix').'employee_categories')->onDelete('cascade');
+            $table->foreign('employee_id')->references('id')->on(config('badaso.database.prefix') . 'employees')->onDelete('cascade');
+            $table->foreign('employee_categorie_id')->references('id')->on(config('badaso.database.prefix') . 'employee_categories')->onDelete('cascade');
 
+            $table->timestamps();
         });
     }
 
@@ -31,6 +32,6 @@ class CreateEmployeeTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'employee_tags');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'employee_tags');
     }
 }

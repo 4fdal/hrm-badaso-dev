@@ -14,9 +14,9 @@ class TimeOffType extends Model
 
     public $public_data_rows = [['is_create_calendar','boolean'],['is_active','boolean'],['color','varchar'],['company_id','int'],['name','varchar'],['payroll_code','varchar'],['take_time_off_types','enum'],['responsible_user_id','int'],['allocation_types','enum'],['allocation_validation_types','enum'],['validity_start','date'],['validity_stop','date'],['time_off_validation_types','enum']] ;
 
-    public $belongs_relation = [["foreign" => 'company_id', "references" => 'id', "on" => 'companies'],["foreign" => 'responsible_user_id', "references" => 'id', "on" => 'badaso_users']] ;
+    public $belongs_relation = [["foreign" => 'company_id', "references" => 'id', "on" => 'companies', "model_on" => Company::class],["foreign" => 'responsible_user_id', "references" => 'id', "on" => 'badaso_users', "model_on" => BadasoUser::class]] ;
 
-    public $many_relation = [["foreign" => 'time_off_type_id', "references" => 'id', "on" => 'time_off_allocations'],["foreign" => 'time_off_type_id', "references" => 'id', "on" => 'time_offs']] ;
+    public $many_relation = [["foreign" => 'time_off_type_id', "references" => 'id', "on" => 'time_off_allocations', "model_on" => TimeOffAllocation::class],["foreign" => 'time_off_type_id', "references" => 'id', "on" => 'time_offs', "model_on" => TimeOff::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

@@ -14,7 +14,7 @@ class FleetVendor extends Model
 
     public $public_data_rows = [['fleet_model_id','int'],['partner_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'fleet_model_id', "references" => 'id', "on" => 'fleet_models'],["foreign" => 'partner_id', "references" => 'id', "on" => 'partners']] ;
+    public $belongs_relation = [["foreign" => 'fleet_model_id', "references" => 'id', "on" => 'fleet_models', "model_on" => FleetModel::class],["foreign" => 'partner_id', "references" => 'id', "on" => 'partners', "model_on" => Partner::class]] ;
 
     public $many_relation = [] ;
 

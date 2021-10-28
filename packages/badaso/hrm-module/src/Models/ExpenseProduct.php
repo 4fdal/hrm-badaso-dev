@@ -16,7 +16,7 @@ class ExpenseProduct extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'expense_product_id', "references" => 'id', "on" => 'expense_vendor_accounting_tax'],["foreign" => 'expense_product_id', "references" => 'id', "on" => 'expense_customer_accounting_tax'],["foreign" => 'expense_product_id', "references" => 'id', "on" => 'expense_reports']] ;
+    public $many_relation = [["foreign" => 'expense_product_id', "references" => 'id', "on" => 'expense_vendor_accounting_tax', "model_on" => ExpenseVendorAccountingTa::class],["foreign" => 'expense_product_id', "references" => 'id', "on" => 'expense_customer_accounting_tax', "model_on" => ExpenseCustomerAccountingTa::class],["foreign" => 'expense_product_id', "references" => 'id', "on" => 'expense_reports', "model_on" => ExpenseReport::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

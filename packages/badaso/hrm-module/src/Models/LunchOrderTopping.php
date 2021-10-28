@@ -14,7 +14,7 @@ class LunchOrderTopping extends Model
 
     public $public_data_rows = [['lunch_order_id','int'],['lunch_topping_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'lunch_order_id', "references" => 'id', "on" => 'lunch_orders'],["foreign" => 'lunch_topping_id', "references" => 'id', "on" => 'lunch_toppings']] ;
+    public $belongs_relation = [["foreign" => 'lunch_order_id', "references" => 'id', "on" => 'lunch_orders', "model_on" => LunchOrder::class],["foreign" => 'lunch_topping_id', "references" => 'id', "on" => 'lunch_toppings', "model_on" => LunchTopping::class]] ;
 
     public $many_relation = [] ;
 

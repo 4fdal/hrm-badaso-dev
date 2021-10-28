@@ -14,9 +14,9 @@ class Recruitment extends Model
 
     public $public_data_rows = [['job_id','int'],['is_favorite','double'],['no_of_application','int'],['no_of_to_recruit','int'],['no_of_new_application','int'],['color','varchar']] ;
 
-    public $belongs_relation = [["foreign" => 'job_id', "references" => 'id', "on" => 'jobs']] ;
+    public $belongs_relation = [["foreign" => 'job_id', "references" => 'id', "on" => 'jobs', "model_on" => Job::class]] ;
 
-    public $many_relation = [["foreign" => 'recruitment_id', "references" => 'id', "on" => 'recruitment_sources']] ;
+    public $many_relation = [["foreign" => 'recruitment_id', "references" => 'id', "on" => 'recruitment_sources', "model_on" => RecruitmentSource::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

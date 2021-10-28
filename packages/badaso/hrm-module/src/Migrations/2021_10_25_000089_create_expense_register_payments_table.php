@@ -17,7 +17,8 @@ class CreateExpenseRegisterPaymentsTable extends Migration
             $table->id();
 
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

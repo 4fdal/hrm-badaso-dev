@@ -13,15 +13,16 @@ class CreateGlobalTimeOffsTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'global_time_offs', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'global_time_offs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('worke_id')->nullable(); 
-            $table->string("reason")->nullable(); 
-            $table->string("start_date")->nullable(); 
-            $table->string("end_date")->nullable(); 
+            $table->unsignedBigInteger('worke_id')->nullable();
+            $table->string("reason")->nullable();
+            $table->string("start_date")->nullable();
+            $table->string("end_date")->nullable();
 
-            $table->foreign('worke_id')->references('id')->on(config('badaso.database.prefix').'workes')->onDelete('cascade');
+            $table->foreign('worke_id')->references('id')->on(config('badaso.database.prefix') . 'workes')->onDelete('cascade');
 
+            $table->timestamps();
         });
     }
 
@@ -32,6 +33,6 @@ class CreateGlobalTimeOffsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'global_time_offs');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'global_time_offs');
     }
 }

@@ -14,9 +14,9 @@ class LunchProduct extends Model
 
     public $public_data_rows = [['name','varchar'],['lunch_product_category_id','int'],['description','text'],['price','double'],['lunch_vendor_id','int'],['is_active','boolean'],['company_id','int'],['new_until','date']] ;
 
-    public $belongs_relation = [["foreign" => 'lunch_product_category_id', "references" => 'id', "on" => 'lunch_product_categories'],["foreign" => 'lunch_vendor_id', "references" => 'id', "on" => 'lunch_vendors']] ;
+    public $belongs_relation = [["foreign" => 'lunch_product_category_id', "references" => 'id', "on" => 'lunch_product_categories', "model_on" => LunchProductCategory::class],["foreign" => 'lunch_vendor_id', "references" => 'id', "on" => 'lunch_vendors', "model_on" => LunchVendor::class]] ;
 
-    public $many_relation = [["foreign" => 'lunch_product_id', "references" => 'id', "on" => 'lunch_product_favorites'],["foreign" => 'lunch_product_id', "references" => 'id', "on" => 'lunch_orders'],["foreign" => 'lunch_vendor_id', "references" => 'id', "on" => 'lunch_orders']] ;
+    public $many_relation = [["foreign" => 'lunch_product_id', "references" => 'id', "on" => 'lunch_product_favorites', "model_on" => LunchProductFavorite::class],["foreign" => 'lunch_product_id', "references" => 'id', "on" => 'lunch_orders', "model_on" => LunchOrder::class],["foreign" => 'lunch_vendor_id', "references" => 'id', "on" => 'lunch_orders', "model_on" => LunchOrder::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

@@ -16,7 +16,7 @@ class FleetContract extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'fleet_contract_id', "references" => 'id', "on" => 'fleet_contract_services']] ;
+    public $many_relation = [["foreign" => 'fleet_contract_id', "references" => 'id', "on" => 'fleet_contract_services', "model_on" => FleetContractService::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

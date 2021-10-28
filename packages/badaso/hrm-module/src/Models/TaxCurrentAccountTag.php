@@ -14,7 +14,7 @@ class TaxCurrentAccountTag extends Model
 
     public $public_data_rows = [['tax_account_payables','int'],['account_tag_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'tax_account_payables', "references" => 'id', "on" => 'tax_account_payables'],["foreign" => 'account_tag_id', "references" => 'id', "on" => 'account_tags']] ;
+    public $belongs_relation = [["foreign" => 'tax_account_payables', "references" => 'id', "on" => 'tax_account_payables', "model_on" => TaxAccountPayable::class],["foreign" => 'account_tag_id', "references" => 'id', "on" => 'account_tags', "model_on" => AccountTag::class]] ;
 
     public $many_relation = [] ;
 

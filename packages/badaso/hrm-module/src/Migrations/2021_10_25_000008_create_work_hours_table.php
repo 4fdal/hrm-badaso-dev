@@ -13,19 +13,20 @@ class CreateWorkHoursTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'work_hours', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'work_hours', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('work_id')->nullable(); 
-            $table->string("name")->nullable(); 
-            $table->string("day_of_week")->nullable(); 
-            $table->string("day_period")->nullable(); 
-            $table->time("work_from")->nullable(); 
-            $table->time("work_to")->nullable(); 
-            $table->string("start_date")->nullable(); 
-            $table->string("end_date")->nullable(); 
+            $table->unsignedBigInteger('work_id')->nullable();
+            $table->string("name")->nullable();
+            $table->string("day_of_week")->nullable();
+            $table->string("day_period")->nullable();
+            $table->time("work_from")->nullable();
+            $table->time("work_to")->nullable();
+            $table->string("start_date")->nullable();
+            $table->string("end_date")->nullable();
 
-            $table->foreign('work_id')->references('id')->on(config('badaso.database.prefix').'workes')->onDelete('cascade');
+            $table->foreign('work_id')->references('id')->on(config('badaso.database.prefix') . 'workes')->onDelete('cascade');
 
+            $table->timestamps();
         });
     }
 
@@ -36,6 +37,6 @@ class CreateWorkHoursTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'work_hours');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'work_hours');
     }
 }

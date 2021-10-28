@@ -1353,6 +1353,11 @@ Artisan::command("run", function () {
         $new_fields = "";
         $new_fillable = "";
         $public_data_rows = "";
+
+        // for inputs generate
+        $validate_inputs = "";
+        $variable_input_equal_with_request = "";
+        $variable_inputs = "";
         for ($i = 2; $i < count($fields) - 1; $i++) {
             $explode_fields = explode(" ", $fields[$i]);
 
@@ -1401,6 +1406,8 @@ Artisan::command("run", function () {
                     default:
                         $change_data_type = "string(\"$field\")";
                 }
+
+                // relation
                 $public_data_rows .= ",['$field','$type']";
                 if (isset($relation[$table_name])) {
                     $is_relation = false;
@@ -1421,8 +1428,78 @@ Artisan::command("run", function () {
                     $new_fields .= "            \$table->{$change_data_type}->nullable(); $command\n";
                 }
                 $new_fillable .= ", \"$field\"";
+
+                // inputs
+                $input_type = "" ;
+                $input_example = "" ;
+                switch ($type) {
+                    case 'int':
+                        $validate_inputs .= "           '$field' => ['nullable', 'integer'],\n";
+                        $input_type = "integer";
+                        $input_example = 1 ;
+                        break;
+                    case 'date':
+                        $validate_inputs .= "           '$field' => ['nullable', 'date_format:Y-m-d'],\n";
+                        $input_type = "string";
+                        $input_example = date('Y-m-d');
+                        break;
+                    case 'year':
+                        $validate_inputs .= "           '$field' => ['nullable', 'date_format:Y'],\n";
+                        $input_type = "string";
+                        $input_example = date('Y');
+                        break;
+                    case 'time':
+                        $validate_inputs .= "           '$field' => ['nullable', 'date_format:H:i:s'],\n";
+                        $input_type = "string";
+                        $input_example = date('H:i:s');
+                        break;
+                    case 'datetime':
+                        $validate_inputs .= "           '$field' => ['nullable', 'date_format:Y-m-d H:i:s'],\n";
+                        $input_type = "string";
+                        $input_example = date('Y-m-d H:i:s');
+                        break;
+                    case 'enum':
+                        $validate_inputs .= "           '$field' => ['nullable', 'string'],\n";
+                        $input_type = "string";
+                        $input_example = "lorem type";
+                        break;
+                    case 'text':
+                        $validate_inputs .= "           '$field' => ['nullable', 'string'],\n";
+                        $input_type = "string";
+                        $input_example = "Lorem ibsum siamet";
+                        break;
+                    case 'varchar':
+                        $validate_inputs .= "           '$field' => ['nullable', 'string'],\n";
+                        $input_type = "string";
+                        $input_example = "Lorem ibsum siamet";
+                        break;
+                    case 'double' :
+                        $validate_inputs .= "           '$field' => ['nullable', 'double'],\n";
+                        $input_type = 'double';
+                        $input_example = 0.0;
+                        break ;
+                    default:
+                        $validate_inputs .= "           '$field' => ['nullable', '$type'],\n";
+                        $input_type = $type;
+                }
+
+                $variable_input_equal_with_request .= "        \$this->$field = \$request->$field ;\n" ;
+                $variable_inputs .= <<<TXT
+                    /**
+                     * @OA\Property(
+                     *     title="$field",
+                     *     description="$field",
+                     *     type="$input_type",
+                     *     example="$input_example"
+                     * )
+                     *
+                     * @var $input_type
+                     */
+                    public \$$field;\n
+                TXT;
             }
         }
+
 
         $public_data_rows = substr($public_data_rows, 1) ;
         $public_data_rows = "public \$public_data_rows = [$public_data_rows] ;" ;
@@ -1482,7 +1559,7 @@ Artisan::command("run", function () {
                 TXT;
 
                 $public_belongs_relation .= <<<TXT
-                ,["foreign" => '$field_ref', "references" => '$field_to', "on" => '$table_to']
+                ,["foreign" => '$field_ref', "references" => '$field_to', "on" => '$table_to', "model_on" => $model_to::class]
                 TXT;
             }
         }
@@ -1512,7 +1589,7 @@ Artisan::command("run", function () {
                     TXT;
 
                     $public_many_relation .= <<<TXT
-                    ,["foreign" => '$field_ref', "references" => '$field_to', "on" => '$table_ref']
+                    ,["foreign" => '$field_ref', "references" => '$field_to', "on" => '$table_ref', "model_on" => $model_to::class]
                     TXT;
                 }
             }
@@ -1568,6 +1645,55 @@ Artisan::command("run", function () {
             '{table_fillable}' => $new_fillable
         ]);
 
-        File::put(app_path("Models/{$model_name}.php"), $my_model_class);
+        // File::put(app_path("Models/{$model_name}.php"), $my_model_class);
+
+
+        // generate input schema
+
+        $tableToInputName = function ($table_name) use ($toCamelCase) {
+            $model_name = str_replace(['ies'], ["ys"], $table_name);
+            $model_name = substr($model_name, 0, strlen($model_name) - 1);
+            $model_name = $toCamelCase($model_name."_store");
+
+            return $model_name;
+        };
+
+        // $validate_inputs;
+        // $variable_input_equal_with_request;
+        // $variable_inputs;
+        $class_input_name = $tableToInputName($table_name) ;
+        $validate_inputs = substr($validate_inputs, 1);
+        $input_schema_format = <<<TXT
+        <?php
+        namespace Uasoft\Badaso\Module\HRM\Schema\Inputs;
+
+        use Illuminate\Http\Request;
+
+        /**
+         * @OA\Schema(
+         *     title="$class_input_name",
+         *     description="",
+         *     @OA\Xml(
+         *         name="$class_input_name"
+         *     )
+         * )
+         */
+
+        class $class_input_name {
+        $variable_inputs
+
+            public function __construct(Request \$request)
+            {
+                \$request->validate([
+         $validate_inputs
+                ]);
+
+        $variable_input_equal_with_request
+            }
+        }
+
+        TXT;
+
+        File::put(app_path("Inputs/{$class_input_name}.php"), $input_schema_format);
     }
 });

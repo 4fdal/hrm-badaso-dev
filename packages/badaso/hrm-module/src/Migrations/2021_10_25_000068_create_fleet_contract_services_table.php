@@ -15,13 +15,14 @@ class CreateFleetContractServicesTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'fleet_contract_services', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('fleet_contract_id')->nullable(); 
-            $table->unsignedBigInteger('fleet_service_type_id')->nullable(); 
+            $table->unsignedBigInteger('fleet_contract_id')->nullable();
+            $table->unsignedBigInteger('fleet_service_type_id')->nullable();
 
             $table->foreign('fleet_contract_id')->references('id')->on(config('badaso.database.prefix').'fleet_contracts')->onDelete('cascade');
             $table->foreign('fleet_service_type_id')->references('id')->on(config('badaso.database.prefix').'fleet_service_types')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

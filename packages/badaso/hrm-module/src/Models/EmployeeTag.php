@@ -14,7 +14,7 @@ class EmployeeTag extends Model
 
     public $public_data_rows = [['employee_id','int'],['employee_categorie_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'employee_id', "references" => 'id', "on" => 'employees'],["foreign" => 'employee_categorie_id', "references" => 'id', "on" => 'employee_categories']] ;
+    public $belongs_relation = [["foreign" => 'employee_id', "references" => 'id', "on" => 'employees', "model_on" => Employee::class],["foreign" => 'employee_categorie_id', "references" => 'id', "on" => 'employee_categories', "model_on" => EmployeeCategory::class]] ;
 
     public $many_relation = [] ;
 

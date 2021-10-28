@@ -14,7 +14,7 @@ class LunchAlertLocation extends Model
 
     public $public_data_rows = [['lunch_alert_id','int'],['lunch_location_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'lunch_alert_id', "references" => 'id', "on" => 'lunch_alerts'],["foreign" => 'lunch_location_id', "references" => 'id', "on" => 'lunch_locations']] ;
+    public $belongs_relation = [["foreign" => 'lunch_alert_id', "references" => 'id', "on" => 'lunch_alerts', "model_on" => LunchAlert::class],["foreign" => 'lunch_location_id', "references" => 'id', "on" => 'lunch_locations', "model_on" => LunchLocation::class]] ;
 
     public $many_relation = [] ;
 

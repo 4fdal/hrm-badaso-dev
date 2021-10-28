@@ -16,7 +16,7 @@ class MetsosSource extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'metsos_source_id', "references" => 'id', "on" => 'applicants']] ;
+    public $many_relation = [["foreign" => 'metsos_source_id', "references" => 'id', "on" => 'applicants', "model_on" => Applicant::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

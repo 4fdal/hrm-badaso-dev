@@ -14,7 +14,7 @@ class CalendarAttendee extends Model
 
     public $public_data_rows = [['common_name','varchar'],['calendar_event_id','int'],['partner_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_events'],["foreign" => 'partner_id', "references" => 'id', "on" => 'partners']] ;
+    public $belongs_relation = [["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_events', "model_on" => CalendarEvent::class],["foreign" => 'partner_id', "references" => 'id', "on" => 'partners', "model_on" => Partner::class]] ;
 
     public $many_relation = [] ;
 

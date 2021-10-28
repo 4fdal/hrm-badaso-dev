@@ -14,7 +14,7 @@ class WorkHour extends Model
 
     public $public_data_rows = [['work_id','int'],['name','varchar'],['day_of_week','varchar'],['day_period','varchar'],['work_from','time'],['work_to','time'],['start_date','datetime'],['end_date','datetime']] ;
 
-    public $belongs_relation = [["foreign" => 'work_id', "references" => 'id', "on" => 'workes']] ;
+    public $belongs_relation = [["foreign" => 'work_id', "references" => 'id', "on" => 'workes', "model_on" => Worke::class]] ;
 
     public $many_relation = [] ;
 

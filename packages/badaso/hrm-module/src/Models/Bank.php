@@ -14,9 +14,9 @@ class Bank extends Model
 
     public $public_data_rows = [['name','varchar'],['street1','varchar'],['street2','varchar'],['zip','varchar'],['state_id','int'],['company_id','int'],['email','varchar'],['phone','varchar'],['is_active','boolean'],['bic','varchar']] ;
 
-    public $belongs_relation = [["foreign" => 'state_id', "references" => 'id', "on" => 'states'],["foreign" => 'company_id', "references" => 'id', "on" => 'companies']] ;
+    public $belongs_relation = [["foreign" => 'state_id', "references" => 'id', "on" => 'states', "model_on" => State::class],["foreign" => 'company_id', "references" => 'id', "on" => 'companies', "model_on" => Company::class]] ;
 
-    public $many_relation = [["foreign" => 'bank_id', "references" => 'id', "on" => 'partner_banks']] ;
+    public $many_relation = [["foreign" => 'bank_id', "references" => 'id', "on" => 'partner_banks', "model_on" => PartnerBank::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

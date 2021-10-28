@@ -13,18 +13,19 @@ class CreateEmployeeResumesTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'employee_resumes', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'employee_resumes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employee_id')->nullable(); 
-            $table->unsignedBigInteger('resume_line_type_id')->nullable(); 
-            $table->string("display_type")->nullable(); // classic 
-            $table->date("start")->nullable(); 
-            $table->date("end")->nullable(); 
-            $table->string("description")->nullable(); 
+            $table->unsignedBigInteger('employee_id')->nullable();
+            $table->unsignedBigInteger('resume_line_type_id')->nullable();
+            $table->string("display_type")->nullable(); // classic
+            $table->date("start")->nullable();
+            $table->date("end")->nullable();
+            $table->string("description")->nullable();
 
-            $table->foreign('employee_id')->references('id')->on(config('badaso.database.prefix').'employees')->onDelete('cascade');
-            $table->foreign('resume_line_type_id')->references('id')->on(config('badaso.database.prefix').'resume_line_types')->onDelete('cascade');
+            $table->foreign('employee_id')->references('id')->on(config('badaso.database.prefix') . 'employees')->onDelete('cascade');
+            $table->foreign('resume_line_type_id')->references('id')->on(config('badaso.database.prefix') . 'resume_line_types')->onDelete('cascade');
 
+            $table->timestamps();
         });
     }
 
@@ -35,6 +36,6 @@ class CreateEmployeeResumesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'employee_resumes');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'employee_resumes');
     }
 }

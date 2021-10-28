@@ -21,7 +21,8 @@ class CreateLunchProductFavoritesTable extends Migration
             $table->foreign('lunch_product_id')->references('id')->on(config('badaso.database.prefix').'lunch_products')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on(config('badaso.database.prefix').'users')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

@@ -13,13 +13,14 @@ class CreateRecruitmentSourcesTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'recruitment_sources', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'recruitment_sources', function (Blueprint $table) {
             $table->id();
-            $table->string("source")->nullable(); 
-            $table->unsignedBigInteger('recruitment_id')->nullable(); 
+            $table->string("source")->nullable();
+            $table->unsignedBigInteger('recruitment_id')->nullable();
 
-            $table->foreign('recruitment_id')->references('id')->on(config('badaso.database.prefix').'recruitments')->onDelete('cascade');
+            $table->foreign('recruitment_id')->references('id')->on(config('badaso.database.prefix') . 'recruitments')->onDelete('cascade');
 
+            $table->timestamps();
         });
     }
 
@@ -30,6 +31,6 @@ class CreateRecruitmentSourcesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'recruitment_sources');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'recruitment_sources');
     }
 }

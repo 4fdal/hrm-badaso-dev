@@ -21,7 +21,8 @@ class CreateApplicantFollowersTable extends Migration
             $table->foreign('applicant_id')->references('id')->on(config('badaso.database.prefix').'applicants')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on(config('badaso.database.prefix').'users')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

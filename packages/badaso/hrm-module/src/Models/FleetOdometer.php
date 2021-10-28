@@ -14,7 +14,7 @@ class FleetOdometer extends Model
 
     public $public_data_rows = [['name','varchar'],['date',''],['value','double'],['fleet_vehicle_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'fleet_vehicle_id', "references" => 'id', "on" => 'fleet_vehicles']] ;
+    public $belongs_relation = [["foreign" => 'fleet_vehicle_id', "references" => 'id', "on" => 'fleet_vehicles', "model_on" => FleetVehicle::class]] ;
 
     public $many_relation = [] ;
 

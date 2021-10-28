@@ -13,15 +13,16 @@ class CreateEmployeeAttendancesTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'employee_attendances', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'employee_attendances', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employee_id')->nullable(); 
-            $table->string("check_in")->nullable(); 
-            $table->string("check_out")->nullable(); 
-            $table->double("worked_hours")->nullable(); 
+            $table->unsignedBigInteger('employee_id')->nullable();
+            $table->string("check_in")->nullable();
+            $table->string("check_out")->nullable();
+            $table->double("worked_hours")->nullable();
 
-            $table->foreign('employee_id')->references('id')->on(config('badaso.database.prefix').'employees')->onDelete('cascade');
+            $table->foreign('employee_id')->references('id')->on(config('badaso.database.prefix') . 'employees')->onDelete('cascade');
 
+            $table->timestamps();
         });
     }
 
@@ -32,6 +33,6 @@ class CreateEmployeeAttendancesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'employee_attendances');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'employee_attendances');
     }
 }

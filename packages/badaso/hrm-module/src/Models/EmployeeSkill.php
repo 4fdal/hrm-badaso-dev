@@ -14,7 +14,7 @@ class EmployeeSkill extends Model
 
     public $public_data_rows = [['skill_type_id','int'],['skill_id','int'],['skill_level_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'skill_type_id', "references" => 'id', "on" => 'skill_types'],["foreign" => 'skill_id', "references" => 'id', "on" => 'skills'],["foreign" => 'skill_level_id', "references" => 'id', "on" => 'skill_levels']] ;
+    public $belongs_relation = [["foreign" => 'skill_type_id', "references" => 'id', "on" => 'skill_types', "model_on" => SkillType::class],["foreign" => 'skill_id', "references" => 'id', "on" => 'skills', "model_on" => Skill::class],["foreign" => 'skill_level_id', "references" => 'id', "on" => 'skill_levels', "model_on" => SkillLevel::class]] ;
 
     public $many_relation = [] ;
 

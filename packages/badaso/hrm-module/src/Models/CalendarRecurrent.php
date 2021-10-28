@@ -14,7 +14,7 @@ class CalendarRecurrent extends Model
 
     public $public_data_rows = [['calendar_event_id','int'],['name','varchar'],['event_tz','varchar'],['rrule','varchar'],['rrule_type','varchar'],['end_type','varchar'],['interval','int'],['count','int'],['mo','boolean'],['tu','boolean'],['we','boolean'],['th','boolean'],['fr','boolean'],['sa','boolean'],['su','boolean'],['month_by','varchar'],['day','int'],['byday','varchar'],['until','date']] ;
 
-    public $belongs_relation = [["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_events']] ;
+    public $belongs_relation = [["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_events', "model_on" => CalendarEvent::class]] ;
 
     public $many_relation = [] ;
 

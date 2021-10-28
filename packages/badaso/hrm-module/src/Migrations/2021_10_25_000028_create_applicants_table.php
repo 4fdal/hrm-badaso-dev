@@ -32,7 +32,7 @@ class CreateApplicantsTable extends Migration
             $table->double("proposed_salary")->nullable();
             $table->double("proposed_salary_extra")->nullable();
             $table->date("availability")->nullable();
-            $table->string("description")->nullable();
+            $table->text("description")->nullable();
             $table->boolean("is_active")->nullable();
             $table->date("date_closed")->nullable();
             $table->date("date_open")->nullable();
@@ -48,8 +48,10 @@ class CreateApplicantsTable extends Migration
             $table->foreign('company_id')->references('id')->on(config('badaso.database.prefix').'companies')->onDelete('cascade');
             $table->foreign('metsos_source_id')->references('id')->on(config('badaso.database.prefix').'metsos_sources')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on(config('badaso.database.prefix').'users')->onDelete('cascade');
+            $table->foreign('recruiter_id')->references('id')->on(config('badaso.database.prefix').'users')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

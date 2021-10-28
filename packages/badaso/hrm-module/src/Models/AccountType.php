@@ -14,9 +14,9 @@ class AccountType extends Model
 
     public $public_data_rows = [['name','varchar'],['company_id','int'],['include_initial_balence','boolean'],['type','enum'],['internal_group','enum'],['note','text']] ;
 
-    public $belongs_relation = [["foreign" => 'company_id', "references" => 'id', "on" => 'companies']] ;
+    public $belongs_relation = [["foreign" => 'company_id', "references" => 'id', "on" => 'companies', "model_on" => Company::class]] ;
 
-    public $many_relation = [["foreign" => 'account_type_id', "references" => 'id', "on" => 'accounts'],["foreign" => 'group_account_type_id', "references" => 'id', "on" => 'tax_account_payables']] ;
+    public $many_relation = [["foreign" => 'account_type_id', "references" => 'id', "on" => 'accounts', "model_on" => Account::class],["foreign" => 'group_account_type_id', "references" => 'id', "on" => 'tax_account_payables', "model_on" => TaxAccountPayable::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

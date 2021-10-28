@@ -15,13 +15,14 @@ class CreateLunchToppingsTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'lunch_toppings', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-            $table->integer("company_id")->nullable(); 
-            $table->double("price")->nullable(); 
-            $table->integer("lunch_product_category_topping_id")->nullable(); 
+            $table->string("name")->nullable();
+            $table->integer("company_id")->nullable();
+            $table->double("price")->nullable();
+            $table->integer("lunch_product_category_topping_id")->nullable();
 
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

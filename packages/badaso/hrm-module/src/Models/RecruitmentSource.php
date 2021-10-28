@@ -14,7 +14,7 @@ class RecruitmentSource extends Model
 
     public $public_data_rows = [['source','varchar'],['recruitment_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'recruitment_id', "references" => 'id', "on" => 'recruitments']] ;
+    public $belongs_relation = [["foreign" => 'recruitment_id', "references" => 'id', "on" => 'recruitments', "model_on" => Recruitment::class]] ;
 
     public $many_relation = [] ;
 

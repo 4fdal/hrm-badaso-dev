@@ -16,7 +16,7 @@ class LunchAlert extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'lunch_alert_id', "references" => 'id', "on" => 'lunch_alert_locations']] ;
+    public $many_relation = [["foreign" => 'lunch_alert_id', "references" => 'id', "on" => 'lunch_alert_locations', "model_on" => LunchAlertLocation::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

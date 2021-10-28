@@ -13,17 +13,18 @@ class CreateRecruitmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'recruitments', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'recruitments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('job_id')->nullable(); 
-            $table->double("is_favorite")->nullable(); 
-            $table->integer("no_of_application")->nullable(); 
-            $table->integer("no_of_to_recruit")->nullable(); 
-            $table->integer("no_of_new_application")->nullable(); 
-            $table->string("color")->nullable(); 
+            $table->unsignedBigInteger('job_id')->nullable();
+            $table->double("is_favorite")->nullable();
+            $table->integer("no_of_application")->nullable();
+            $table->integer("no_of_to_recruit")->nullable();
+            $table->integer("no_of_new_application")->nullable();
+            $table->string("color")->nullable();
 
-            $table->foreign('job_id')->references('id')->on(config('badaso.database.prefix').'jobs')->onDelete('cascade');
+            $table->foreign('job_id')->references('id')->on(config('badaso.database.prefix') . 'jobs')->onDelete('cascade');
 
+            $table->timestamps();
         });
     }
 
@@ -34,6 +35,6 @@ class CreateRecruitmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'recruitments');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'recruitments');
     }
 }

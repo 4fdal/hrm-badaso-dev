@@ -14,9 +14,9 @@ class TaxAccountPayable extends Model
 
     public $public_data_rows = [['code','varchar'],['group_account_type_id','int'],['is_deprecated','boolean'],['default_account_tax_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'group_account_type_id', "references" => 'id', "on" => 'account_types'],["foreign" => 'default_account_tax_id', "references" => 'id', "on" => 'account_taxes']] ;
+    public $belongs_relation = [["foreign" => 'group_account_type_id', "references" => 'id', "on" => 'account_types', "model_on" => AccountType::class],["foreign" => 'default_account_tax_id', "references" => 'id', "on" => 'account_taxes', "model_on" => AccountTaxe::class]] ;
 
-    public $many_relation = [["foreign" => 'tax_account_payables', "references" => 'id', "on" => 'tax_current_account_tags'],["foreign" => 'tax_account_payables', "references" => 'id', "on" => 'tax_current_account_journals'],["foreign" => 'current_tax_account_payable_id', "references" => 'id', "on" => 'tax_groups'],["foreign" => 'advanced_tax_account_payable_id', "references" => 'id', "on" => 'tax_groups'],["foreign" => 'receiver_current_tax_account_payable_id', "references" => 'id', "on" => 'tax_groups']] ;
+    public $many_relation = [["foreign" => 'tax_account_payables', "references" => 'id', "on" => 'tax_current_account_tags', "model_on" => TaxCurrentAccountTag::class],["foreign" => 'tax_account_payables', "references" => 'id', "on" => 'tax_current_account_journals', "model_on" => TaxCurrentAccountJournal::class],["foreign" => 'current_tax_account_payable_id', "references" => 'id', "on" => 'tax_groups', "model_on" => TaxGroup::class],["foreign" => 'advanced_tax_account_payable_id', "references" => 'id', "on" => 'tax_groups', "model_on" => TaxGroup::class],["foreign" => 'receiver_current_tax_account_payable_id', "references" => 'id', "on" => 'tax_groups', "model_on" => TaxGroup::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

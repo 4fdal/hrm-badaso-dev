@@ -14,9 +14,9 @@ class State extends Model
 
     public $public_data_rows = [['name','varchar'],['country_id','int'],['code','varchar']] ;
 
-    public $belongs_relation = [["foreign" => 'country_id', "references" => 'id', "on" => 'countries']] ;
+    public $belongs_relation = [["foreign" => 'country_id', "references" => 'id', "on" => 'countries', "model_on" => Country::class]] ;
 
-    public $many_relation = [["foreign" => 'state_id', "references" => 'id', "on" => 'company_contacts'],["foreign" => 'state_id', "references" => 'id', "on" => 'banks']] ;
+    public $many_relation = [["foreign" => 'state_id', "references" => 'id', "on" => 'company_contacts', "model_on" => CompanyContact::class],["foreign" => 'state_id', "references" => 'id', "on" => 'banks', "model_on" => Bank::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

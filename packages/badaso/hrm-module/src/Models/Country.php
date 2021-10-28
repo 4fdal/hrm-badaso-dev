@@ -14,9 +14,9 @@ class Country extends Model
 
     public $public_data_rows = [['name','varchar'],['code','varchar'],['currency_id','int'],['phone_code','varchar'],['name_position','varchar'],['vat_label','varchar']] ;
 
-    public $belongs_relation = [["foreign" => 'currency_id', "references" => 'id', "on" => 'currencies']] ;
+    public $belongs_relation = [["foreign" => 'currency_id', "references" => 'id', "on" => 'currencies', "model_on" => Currency::class]] ;
 
-    public $many_relation = [["foreign" => 'country_id', "references" => 'id', "on" => 'states'],["foreign" => 'country_id', "references" => 'id', "on" => 'employees'],["foreign" => 'country_of_birth_id', "references" => 'id', "on" => 'employees'],["foreign" => 'country_id', "references" => 'id', "on" => 'company_contacts'],["foreign" => 'country_id', "references" => 'id', "on" => 'account_tags']] ;
+    public $many_relation = [["foreign" => 'country_id', "references" => 'id', "on" => 'states', "model_on" => State::class],["foreign" => 'country_id', "references" => 'id', "on" => 'employees', "model_on" => Employee::class],["foreign" => 'country_of_birth_id', "references" => 'id', "on" => 'employees', "model_on" => Employee::class],["foreign" => 'country_id', "references" => 'id', "on" => 'company_contacts', "model_on" => CompanyContact::class],["foreign" => 'country_id', "references" => 'id', "on" => 'account_tags', "model_on" => AccountTag::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

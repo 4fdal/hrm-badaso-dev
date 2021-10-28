@@ -16,7 +16,7 @@ class FleetServiceType extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'fleet_service_type_id', "references" => 'id', "on" => 'fleet_contract_services'],["foreign" => 'fleet_service_type_id', "references" => 'id', "on" => 'fleet_services'],["foreign" => 'vendor_parent_id', "references" => 'id', "on" => 'fleet_services']] ;
+    public $many_relation = [["foreign" => 'fleet_service_type_id', "references" => 'id', "on" => 'fleet_contract_services', "model_on" => FleetContractService::class],["foreign" => 'fleet_service_type_id', "references" => 'id', "on" => 'fleet_services', "model_on" => FleetService::class],["foreign" => 'vendor_parent_id', "references" => 'id', "on" => 'fleet_services', "model_on" => FleetService::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

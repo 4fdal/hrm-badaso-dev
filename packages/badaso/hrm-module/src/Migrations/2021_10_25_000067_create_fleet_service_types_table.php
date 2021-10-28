@@ -15,11 +15,12 @@ class CreateFleetServiceTypesTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'fleet_service_types', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-            $table->string("category")->nullable(); 
+            $table->string("name")->nullable();
+            $table->string("category")->nullable();
 
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

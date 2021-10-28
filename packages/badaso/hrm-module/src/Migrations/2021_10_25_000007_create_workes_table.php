@@ -13,14 +13,15 @@ class CreateWorkesTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'workes', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'workes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('company_id')->nullable(); 
-            $table->time("average_hours_per_day")->nullable(); 
-            $table->string("timezone")->nullable(); 
+            $table->unsignedBigInteger('company_id')->nullable();
+            $table->time("average_hours_per_day")->nullable();
+            $table->string("timezone")->nullable();
 
-            $table->foreign('company_id')->references('id')->on(config('badaso.database.prefix').'companies')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on(config('badaso.database.prefix') . 'companies')->onDelete('cascade');
 
+            $table->timestamps();
         });
     }
 
@@ -31,6 +32,6 @@ class CreateWorkesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'workes');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'workes');
     }
 }

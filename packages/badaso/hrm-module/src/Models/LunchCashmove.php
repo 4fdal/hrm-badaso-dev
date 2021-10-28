@@ -14,7 +14,7 @@ class LunchCashmove extends Model
 
     public $public_data_rows = [['currency_id','int'],['user_id','int'],['date','date'],['amount','double'],['description','text']] ;
 
-    public $belongs_relation = [["foreign" => 'currency_id', "references" => 'id', "on" => 'currencies'],["foreign" => 'user_id', "references" => 'id', "on" => 'badaso_users']] ;
+    public $belongs_relation = [["foreign" => 'currency_id', "references" => 'id', "on" => 'currencies', "model_on" => Currency::class],["foreign" => 'user_id', "references" => 'id', "on" => 'badaso_users', "model_on" => BadasoUser::class]] ;
 
     public $many_relation = [] ;
 

@@ -14,7 +14,7 @@ class LunchProductFavorite extends Model
 
     public $public_data_rows = [['lunch_product_id','int'],['user_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'lunch_product_id', "references" => 'id', "on" => 'lunch_products'],["foreign" => 'user_id', "references" => 'id', "on" => 'badaso_users']] ;
+    public $belongs_relation = [["foreign" => 'lunch_product_id', "references" => 'id', "on" => 'lunch_products', "model_on" => LunchProduct::class],["foreign" => 'user_id', "references" => 'id', "on" => 'badaso_users', "model_on" => BadasoUser::class]] ;
 
     public $many_relation = [] ;
 

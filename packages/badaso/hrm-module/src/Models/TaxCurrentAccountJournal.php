@@ -14,7 +14,7 @@ class TaxCurrentAccountJournal extends Model
 
     public $public_data_rows = [['tax_account_payables','int'],['account_journal_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'tax_account_payables', "references" => 'id', "on" => 'tax_account_payables'],["foreign" => 'account_journal_id', "references" => 'id', "on" => 'account_journals']] ;
+    public $belongs_relation = [["foreign" => 'tax_account_payables', "references" => 'id', "on" => 'tax_account_payables', "model_on" => TaxAccountPayable::class],["foreign" => 'account_journal_id', "references" => 'id', "on" => 'account_journals', "model_on" => AccountJournal::class]] ;
 
     public $many_relation = [] ;
 

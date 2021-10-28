@@ -16,7 +16,7 @@ class CalendarAlaram extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'calendar_alaram_id', "references" => 'id', "on" => 'calendar_reminders']] ;
+    public $many_relation = [["foreign" => 'calendar_alaram_id', "references" => 'id', "on" => 'calendar_reminders', "model_on" => CalendarReminder::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

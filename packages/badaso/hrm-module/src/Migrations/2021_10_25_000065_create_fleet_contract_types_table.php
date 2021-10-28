@@ -15,11 +15,12 @@ class CreateFleetContractTypesTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'fleet_contract_types', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-            $table->string("category")->nullable(); // contract, service 
+            $table->string("name")->nullable();
+            $table->string("category")->nullable(); // contract, service
 
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

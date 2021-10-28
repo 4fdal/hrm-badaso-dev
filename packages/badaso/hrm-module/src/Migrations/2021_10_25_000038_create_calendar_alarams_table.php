@@ -15,13 +15,14 @@ class CreateCalendarAlaramsTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'calendar_alarams', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-            $table->string("alaram_type")->nullable(); // notification, email 
-            $table->integer("duration")->nullable(); 
-            $table->string("interval")->nullable(); 
+            $table->string("name")->nullable();
+            $table->string("alaram_type")->nullable(); // notification, email
+            $table->integer("duration")->nullable();
+            $table->string("interval")->nullable();
 
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

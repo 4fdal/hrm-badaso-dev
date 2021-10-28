@@ -13,12 +13,13 @@ class CreateResumeLineTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'resume_line_types', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'resume_line_types', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-            $table->integer("sequnce")->nullable(); 
+            $table->string("name")->nullable();
+            $table->integer("sequnce")->nullable();
 
 
+            $table->timestamps();
         });
     }
 
@@ -29,6 +30,6 @@ class CreateResumeLineTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'resume_line_types');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'resume_line_types');
     }
 }

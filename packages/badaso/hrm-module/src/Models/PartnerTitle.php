@@ -16,7 +16,7 @@ class PartnerTitle extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'partner_title_id', "references" => 'id', "on" => 'company_contacts']] ;
+    public $many_relation = [["foreign" => 'partner_title_id', "references" => 'id', "on" => 'company_contacts', "model_on" => CompanyContact::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

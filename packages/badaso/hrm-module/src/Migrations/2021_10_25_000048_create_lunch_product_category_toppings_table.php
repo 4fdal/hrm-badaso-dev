@@ -19,7 +19,8 @@ class CreateLunchProductCategoryToppingsTable extends Migration
             $table->string("name")->nullable();
 
             $table->foreign('lunch_product_category_id', 'lpct_ref_lunch_product_category_id')->references('id')->on(config('badaso.database.prefix') . 'lunch_product_category_toppings')->onDelete('cascade');
-        });
+        $table->timestamps();
+});
     }
 
     /**

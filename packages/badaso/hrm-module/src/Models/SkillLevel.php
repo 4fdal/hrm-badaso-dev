@@ -14,9 +14,9 @@ class SkillLevel extends Model
 
     public $public_data_rows = [['skill_type_id','int'],['name','varchar'],['level_progress','double']] ;
 
-    public $belongs_relation = [["foreign" => 'skill_type_id', "references" => 'id', "on" => 'skill_types']] ;
+    public $belongs_relation = [["foreign" => 'skill_type_id', "references" => 'id', "on" => 'skill_types', "model_on" => SkillType::class]] ;
 
-    public $many_relation = [["foreign" => 'skill_level_id', "references" => 'id', "on" => 'employee_skills']] ;
+    public $many_relation = [["foreign" => 'skill_level_id', "references" => 'id', "on" => 'employee_skills', "model_on" => EmployeeSkill::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

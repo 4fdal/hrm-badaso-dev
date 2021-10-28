@@ -16,7 +16,7 @@ class Industry extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'industry_id', "references" => 'id', "on" => 'partners']] ;
+    public $many_relation = [["foreign" => 'industry_id', "references" => 'id', "on" => 'partners', "model_on" => Partner::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

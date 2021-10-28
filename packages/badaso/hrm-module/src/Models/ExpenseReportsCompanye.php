@@ -16,7 +16,7 @@ class ExpenseReportsCompanye extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'expense_reports_company_id', "references" => 'id', "on" => 'expense_report_items']] ;
+    public $many_relation = [["foreign" => 'expense_reports_company_id', "references" => 'id', "on" => 'expense_report_items', "model_on" => ExpenseReportItem::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

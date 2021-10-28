@@ -30,7 +30,8 @@ class CreatePartnerBanksTable extends Migration
             $table->foreign('currency_id')->references('id')->on(config('badaso.database.prefix').'currencies')->onDelete('cascade');
             $table->foreign('company_id')->references('id')->on(config('badaso.database.prefix').'companies')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

@@ -14,9 +14,9 @@ class Worke extends Model
 
     public $public_data_rows = [['company_id','int'],['average_hours_per_day','time'],['timezone','varchar']] ;
 
-    public $belongs_relation = [["foreign" => 'company_id', "references" => 'id', "on" => 'companies']] ;
+    public $belongs_relation = [["foreign" => 'company_id', "references" => 'id', "on" => 'companies', "model_on" => Company::class]] ;
 
-    public $many_relation = [["foreign" => 'work_id', "references" => 'id', "on" => 'work_hours'],["foreign" => 'worke_id', "references" => 'id', "on" => 'global_time_offs'],["foreign" => 'work_id', "references" => 'id', "on" => 'employees']] ;
+    public $many_relation = [["foreign" => 'work_id', "references" => 'id', "on" => 'work_hours', "model_on" => WorkHour::class],["foreign" => 'worke_id', "references" => 'id', "on" => 'global_time_offs', "model_on" => GlobalTimeOff::class],["foreign" => 'work_id', "references" => 'id', "on" => 'employees', "model_on" => Employee::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

@@ -14,9 +14,9 @@ class PartnerBank extends Model
 
     public $public_data_rows = [['is_active','boolean'],['acc_number','varchar'],['sanitize_acc_number','varchar'],['acc_holder_name','varchar'],['partner_id','int'],['bank_id','int'],['sequnce','int'],['currency_id','int'],['company_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'partner_id', "references" => 'id', "on" => 'partners'],["foreign" => 'bank_id', "references" => 'id', "on" => 'banks'],["foreign" => 'currency_id', "references" => 'id', "on" => 'currencies'],["foreign" => 'company_id', "references" => 'id', "on" => 'companies']] ;
+    public $belongs_relation = [["foreign" => 'partner_id', "references" => 'id', "on" => 'partners', "model_on" => Partner::class],["foreign" => 'bank_id', "references" => 'id', "on" => 'banks', "model_on" => Bank::class],["foreign" => 'currency_id', "references" => 'id', "on" => 'currencies', "model_on" => Currency::class],["foreign" => 'company_id', "references" => 'id', "on" => 'companies', "model_on" => Company::class]] ;
 
-    public $many_relation = [["foreign" => 'partner_bank_id', "references" => 'id', "on" => 'account_journals']] ;
+    public $many_relation = [["foreign" => 'partner_bank_id', "references" => 'id', "on" => 'account_journals', "model_on" => AccountJournal::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

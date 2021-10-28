@@ -24,7 +24,8 @@ class CreateAccountTypesTable extends Migration
 
             $table->foreign('company_id')->references('id')->on(config('badaso.database.prefix').'companies')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

@@ -16,7 +16,7 @@ class FleetModelBrand extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'fleet_model_brand_id', "references" => 'id', "on" => 'fleet_models'],["foreign" => 'fleet_model_brand_id', "references" => 'id', "on" => 'fleet_vehicles']] ;
+    public $many_relation = [["foreign" => 'fleet_model_brand_id', "references" => 'id', "on" => 'fleet_models', "model_on" => FleetModel::class],["foreign" => 'fleet_model_brand_id', "references" => 'id', "on" => 'fleet_vehicles', "model_on" => FleetVehicle::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

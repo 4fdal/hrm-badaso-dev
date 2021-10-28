@@ -14,9 +14,9 @@ class AccountTag extends Model
 
     public $public_data_rows = [['name','varchar'],['applicability','enum'],['is_active','boolean'],['country_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'country_id', "references" => 'id', "on" => 'countries']] ;
+    public $belongs_relation = [["foreign" => 'country_id', "references" => 'id', "on" => 'countries', "model_on" => Country::class]] ;
 
-    public $many_relation = [["foreign" => 'account_tag_id', "references" => 'id', "on" => 'tax_current_account_tags']] ;
+    public $many_relation = [["foreign" => 'account_tag_id', "references" => 'id', "on" => 'tax_current_account_tags', "model_on" => TaxCurrentAccountTag::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

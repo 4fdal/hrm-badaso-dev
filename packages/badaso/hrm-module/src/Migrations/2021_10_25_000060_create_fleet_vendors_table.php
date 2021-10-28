@@ -15,13 +15,14 @@ class CreateFleetVendorsTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'fleet_vendors', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('fleet_model_id')->nullable(); 
-            $table->unsignedBigInteger('partner_id')->nullable(); 
+            $table->unsignedBigInteger('fleet_model_id')->nullable();
+            $table->unsignedBigInteger('partner_id')->nullable();
 
             $table->foreign('fleet_model_id')->references('id')->on(config('badaso.database.prefix').'fleet_models')->onDelete('cascade');
             $table->foreign('partner_id')->references('id')->on(config('badaso.database.prefix').'partners')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

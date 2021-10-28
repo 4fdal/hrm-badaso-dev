@@ -15,10 +15,11 @@ class CreateFleetModelBrandsTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'fleet_model_brands', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
+            $table->string("name")->nullable();
 
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

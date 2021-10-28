@@ -14,9 +14,9 @@ class LunchLocation extends Model
 
     public $public_data_rows = [['name','varchar'],['address','varchar'],['company_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'company_id', "references" => 'id', "on" => 'companies']] ;
+    public $belongs_relation = [["foreign" => 'company_id', "references" => 'id', "on" => 'companies', "model_on" => Company::class]] ;
 
-    public $many_relation = [["foreign" => 'lunch_locations_id', "references" => 'id', "on" => 'lunch_vendors_location_orders'],["foreign" => 'lunch_location_id', "references" => 'id', "on" => 'lunch_alert_locations']] ;
+    public $many_relation = [["foreign" => 'lunch_locations_id', "references" => 'id', "on" => 'lunch_vendors_location_orders', "model_on" => LunchVendorsLocationOrder::class],["foreign" => 'lunch_location_id', "references" => 'id', "on" => 'lunch_alert_locations', "model_on" => LunchAlertLocation::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

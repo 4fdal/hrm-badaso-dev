@@ -13,13 +13,14 @@ class CreateIndustriesTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'industries', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'industries', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-            $table->string("full_name")->nullable(); 
-            $table->boolean("is_active")->nullable(); 
+            $table->string("name")->nullable();
+            $table->string("full_name")->nullable();
+            $table->boolean("is_active")->nullable();
 
 
+            $table->timestamps();
         });
     }
 
@@ -30,6 +31,6 @@ class CreateIndustriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'industries');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'industries');
     }
 }

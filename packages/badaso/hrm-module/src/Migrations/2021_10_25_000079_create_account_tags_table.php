@@ -15,14 +15,15 @@ class CreateAccountTagsTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'account_tags', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-            $table->string("applicability")->nullable(); // accounts, taxes 
-            $table->boolean("is_active")->nullable(); 
-            $table->unsignedBigInteger('country_id')->nullable(); 
+            $table->string("name")->nullable();
+            $table->string("applicability")->nullable(); // accounts, taxes
+            $table->boolean("is_active")->nullable();
+            $table->unsignedBigInteger('country_id')->nullable();
 
             $table->foreign('country_id')->references('id')->on(config('badaso.database.prefix').'countries')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

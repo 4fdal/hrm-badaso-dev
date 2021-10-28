@@ -14,7 +14,7 @@ class AccountingDistributionCreditNote extends Model
 
     public $public_data_rows = [['accounting_tax_id','int'],['percent','double'],['base_on','enum'],['account_id','int'],['tax_grids','varchar'],['is_close_entry','boolean']] ;
 
-    public $belongs_relation = [["foreign" => 'accounting_tax_id', "references" => 'id', "on" => 'accounting_taxes']] ;
+    public $belongs_relation = [["foreign" => 'accounting_tax_id', "references" => 'id', "on" => 'accounting_taxes', "model_on" => AccountingTaxe::class]] ;
 
     public $many_relation = [] ;
 

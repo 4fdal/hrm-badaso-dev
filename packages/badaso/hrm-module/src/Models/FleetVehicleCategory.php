@@ -14,9 +14,9 @@ class FleetVehicleCategory extends Model
 
     public $public_data_rows = [['name','varchar'],['color','varchar'],['user_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'user_id', "references" => 'id', "on" => 'badaso_users']] ;
+    public $belongs_relation = [["foreign" => 'user_id', "references" => 'id', "on" => 'badaso_users', "model_on" => BadasoUser::class]] ;
 
-    public $many_relation = [["foreign" => 'fleet_vehicle_categorie_id', "references" => 'id', "on" => 'fleet_vehicle_tags']] ;
+    public $many_relation = [["foreign" => 'fleet_vehicle_categorie_id', "references" => 'id', "on" => 'fleet_vehicle_tags', "model_on" => FleetVehicleTag::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

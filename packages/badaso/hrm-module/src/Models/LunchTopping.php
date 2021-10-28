@@ -16,7 +16,7 @@ class LunchTopping extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'lunch_topping_id', "references" => 'id', "on" => 'lunch_order_toppings']] ;
+    public $many_relation = [["foreign" => 'lunch_topping_id', "references" => 'id', "on" => 'lunch_order_toppings', "model_on" => LunchOrderTopping::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

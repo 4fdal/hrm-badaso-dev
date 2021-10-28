@@ -14,7 +14,7 @@ class EmployeeAttendance extends Model
 
     public $public_data_rows = [['employee_id','int'],['check_in','datetime'],['check_out','datetime'],['worked_hours','double']] ;
 
-    public $belongs_relation = [["foreign" => 'employee_id', "references" => 'id', "on" => 'employees']] ;
+    public $belongs_relation = [["foreign" => 'employee_id', "references" => 'id', "on" => 'employees', "model_on" => Employee::class]] ;
 
     public $many_relation = [] ;
 

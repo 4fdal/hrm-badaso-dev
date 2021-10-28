@@ -35,6 +35,7 @@ return [
                 */
                 'annotations' => [
                     base_path('app'),
+                    'C:\Workspace\Badaso\badaso-v2\packages\badaso\hrm-module\src',
                 ],
             ],
         ],

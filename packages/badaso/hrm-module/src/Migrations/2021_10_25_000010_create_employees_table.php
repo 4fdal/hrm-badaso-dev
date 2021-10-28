@@ -13,7 +13,7 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'employees', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'employees', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string("name")->nullable();
@@ -57,14 +57,15 @@ class CreateEmployeesTable extends Migration
             $table->string("pin_code")->nullable();
             $table->string("id_badge")->nullable();
 
-            $table->foreign('user_id')->references('id')->on(config('badaso.database.prefix').'users')->onDelete('cascade');
-            $table->foreign('approve_time_off_user_id')->references('id')->on(config('badaso.database.prefix').'users')->onDelete('cascade');
-            $table->foreign('approve_expenses_user_id')->references('id')->on(config('badaso.database.prefix').'users')->onDelete('cascade');
-            $table->foreign('work_id')->references('id')->on(config('badaso.database.prefix').'workes')->onDelete('cascade');
-            $table->foreign('certificate_level_id')->references('id')->on(config('badaso.database.prefix').'degrees')->onDelete('cascade');
-            $table->foreign('country_id')->references('id')->on(config('badaso.database.prefix').'countries')->onDelete('cascade');
-            $table->foreign('country_of_birth_id')->references('id')->on(config('badaso.database.prefix').'countries')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on(config('badaso.database.prefix') . 'users')->onDelete('cascade');
+            $table->foreign('approve_time_off_user_id')->references('id')->on(config('badaso.database.prefix') . 'users')->onDelete('cascade');
+            $table->foreign('approve_expenses_user_id')->references('id')->on(config('badaso.database.prefix') . 'users')->onDelete('cascade');
+            $table->foreign('work_id')->references('id')->on(config('badaso.database.prefix') . 'workes')->onDelete('cascade');
+            $table->foreign('certificate_level_id')->references('id')->on(config('badaso.database.prefix') . 'degrees')->onDelete('cascade');
+            $table->foreign('country_id')->references('id')->on(config('badaso.database.prefix') . 'countries')->onDelete('cascade');
+            $table->foreign('country_of_birth_id')->references('id')->on(config('badaso.database.prefix') . 'countries')->onDelete('cascade');
 
+            $table->timestamps();
         });
     }
 
@@ -75,6 +76,6 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'employees');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'employees');
     }
 }

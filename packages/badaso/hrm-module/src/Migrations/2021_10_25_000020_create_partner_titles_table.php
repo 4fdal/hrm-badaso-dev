@@ -13,12 +13,13 @@ class CreatePartnerTitlesTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'partner_titles', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'partner_titles', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-            $table->string("shortcut")->nullable(); 
+            $table->string("name")->nullable();
+            $table->string("shortcut")->nullable();
 
 
+            $table->timestamps();
         });
     }
 
@@ -29,6 +30,6 @@ class CreatePartnerTitlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'partner_titles');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'partner_titles');
     }
 }

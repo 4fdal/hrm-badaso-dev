@@ -13,8 +13,19 @@ Route::group(
     ],
     function () {
         Route::group(['prefix' => 'module/hrm/v1', 'middleware' => []], function () {
-            // Route::get('/', 'ExampleController@exampleFunction')->middleware(BadasoCheckPermissions::class . ':browse_content');
-            Route::post('/job', 'JobController@store');
+            Route::prefix('/recruitment')->group(function () {
+                Route::post('/job/add', 'RecruitmentJobController@add');
+                Route::post('/job/applicant', 'RecruitmentJobController@applicant');
+            });
+            Route::prefix('/degree')->group(function () {
+                Route::post('/add', 'DegreeController@add');
+            });
+            Route::prefix('/metsos-source')->group(function () {
+                Route::post('/add', 'MetsosSourceController@add');
+            });
+            Route::prefix('/applicant-category')->group(function () {
+                Route::post('/add', 'ApplicantCategoryController@add');
+            });
         });
     }
 );

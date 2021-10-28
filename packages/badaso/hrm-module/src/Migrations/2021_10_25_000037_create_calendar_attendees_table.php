@@ -15,14 +15,15 @@ class CreateCalendarAttendeesTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'calendar_attendees', function (Blueprint $table) {
             $table->id();
-            $table->string("common_name")->nullable(); 
-            $table->unsignedBigInteger('calendar_event_id')->nullable(); 
-            $table->unsignedBigInteger('partner_id')->nullable(); 
+            $table->string("common_name")->nullable();
+            $table->unsignedBigInteger('calendar_event_id')->nullable();
+            $table->unsignedBigInteger('partner_id')->nullable();
 
             $table->foreign('calendar_event_id')->references('id')->on(config('badaso.database.prefix').'calendar_events')->onDelete('cascade');
             $table->foreign('partner_id')->references('id')->on(config('badaso.database.prefix').'partners')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

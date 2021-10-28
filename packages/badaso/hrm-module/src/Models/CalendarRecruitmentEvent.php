@@ -14,7 +14,7 @@ class CalendarRecruitmentEvent extends Model
 
     public $public_data_rows = [['done_status','boolean'],['calendar_event_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_events']] ;
+    public $belongs_relation = [["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_events', "model_on" => CalendarEvent::class]] ;
 
     public $many_relation = [] ;
 

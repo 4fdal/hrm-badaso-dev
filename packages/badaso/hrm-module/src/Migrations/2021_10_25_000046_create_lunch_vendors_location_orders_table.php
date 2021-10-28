@@ -21,7 +21,8 @@ class CreateLunchVendorsLocationOrdersTable extends Migration
             $table->foreign('lunch_locations_id')->references('id')->on(config('badaso.database.prefix').'lunch_locations')->onDelete('cascade');
             $table->foreign('lunch_vendor_id')->references('id')->on(config('badaso.database.prefix').'lunch_vendors')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

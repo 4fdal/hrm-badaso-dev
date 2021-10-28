@@ -14,7 +14,7 @@ class TimeOff extends Model
 
     public $public_data_rows = [['private_name','varchar'],['status','enum'],['user_id','int'],['manager_employee_id','int'],['time_off_type_id','int'],['employee_id','int'],['departement_id','int'],['notes','text'],['date_from','datetime'],['date_to','datetime'],['number_of_day','double'],['duration_display','varchar'],['metting_calendar_event_id','varchar']] ;
 
-    public $belongs_relation = [["foreign" => 'user_id', "references" => 'id', "on" => 'badaso_users'],["foreign" => 'manager_employee_id', "references" => 'id', "on" => 'employees'],["foreign" => 'time_off_type_id', "references" => 'id', "on" => 'time_off_types'],["foreign" => 'employee_id', "references" => 'id', "on" => 'employees'],["foreign" => 'departement_id', "references" => 'id', "on" => 'departements'],["foreign" => 'metting_calendar_event_id', "references" => 'id', "on" => 'calendar_events']] ;
+    public $belongs_relation = [["foreign" => 'user_id', "references" => 'id', "on" => 'badaso_users', "model_on" => BadasoUser::class],["foreign" => 'manager_employee_id', "references" => 'id', "on" => 'employees', "model_on" => Employee::class],["foreign" => 'time_off_type_id', "references" => 'id', "on" => 'time_off_types', "model_on" => TimeOffType::class],["foreign" => 'employee_id', "references" => 'id', "on" => 'employees', "model_on" => Employee::class],["foreign" => 'departement_id', "references" => 'id', "on" => 'departements', "model_on" => Departement::class],["foreign" => 'metting_calendar_event_id', "references" => 'id', "on" => 'calendar_events', "model_on" => CalendarEvent::class]] ;
 
     public $many_relation = [] ;
 

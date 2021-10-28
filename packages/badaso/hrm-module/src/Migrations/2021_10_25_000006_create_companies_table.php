@@ -29,6 +29,7 @@ class CreateCompaniesTable extends Migration
             $table->foreign('currency_id')->references('id')->on(config('badaso.database.prefix') . 'currencies')->onDelete('cascade');
             $table->foreign('parent_id')->references('id')->on(config('badaso.database.prefix') . 'companies')->onDelete('cascade');
             $table->foreign('partner_id')->references('id')->on(config('badaso.database.prefix') . 'partners')->onDelete('cascade');
+            $table->timestamps();
         });
 
         Schema::table(config('badaso.database.prefix') . 'partners', function (Blueprint $table) {

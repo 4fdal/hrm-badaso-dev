@@ -15,12 +15,13 @@ class CreateCalendarRecruitmentEventsTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'calendar_recruitment_events', function (Blueprint $table) {
             $table->id();
-            $table->boolean("done_status")->nullable(); 
-            $table->unsignedBigInteger('calendar_event_id')->nullable(); 
+            $table->boolean("done_status")->nullable();
+            $table->unsignedBigInteger('calendar_event_id')->nullable();
 
             $table->foreign('calendar_event_id')->references('id')->on(config('badaso.database.prefix').'calendar_events')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

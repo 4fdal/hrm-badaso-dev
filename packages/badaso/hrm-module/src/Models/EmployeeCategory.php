@@ -16,7 +16,7 @@ class EmployeeCategory extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'employee_categorie_id', "references" => 'id', "on" => 'employee_tags'],["foreign" => 'for_employee_categorie_id', "references" => 'id', "on" => 'time_off_allocations']] ;
+    public $many_relation = [["foreign" => 'employee_categorie_id', "references" => 'id', "on" => 'employee_tags', "model_on" => EmployeeTag::class],["foreign" => 'for_employee_categorie_id', "references" => 'id', "on" => 'time_off_allocations', "model_on" => TimeOffAllocation::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

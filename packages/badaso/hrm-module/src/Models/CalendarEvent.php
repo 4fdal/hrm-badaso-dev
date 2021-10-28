@@ -14,9 +14,9 @@ class CalendarEvent extends Model
 
     public $public_data_rows = [['name','varchar'],['start','date'],['stop','date'],['is_all_day','boolean'],['duration','double'],['description','text'],['privacy','varchar'],['localtion','varchar'],['user_id','int'],['is_active','boolean'],['is_recurrent','boolean'],['show_as','enum']] ;
 
-    public $belongs_relation = [["foreign" => 'user_id', "references" => 'id', "on" => 'badaso_users']] ;
+    public $belongs_relation = [["foreign" => 'user_id', "references" => 'id', "on" => 'badaso_users', "model_on" => BadasoUser::class]] ;
 
-    public $many_relation = [["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_event_tags'],["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_recurrents'],["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_attendees'],["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_reminders'],["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_recruitment_events'],["foreign" => 'metting_calendar_event_id', "references" => 'id', "on" => 'time_offs']] ;
+    public $many_relation = [["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_event_tags', "model_on" => CalendarEventTag::class],["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_recurrents', "model_on" => CalendarRecurrent::class],["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_attendees', "model_on" => CalendarAttendee::class],["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_reminders', "model_on" => CalendarReminder::class],["foreign" => 'calendar_event_id', "references" => 'id', "on" => 'calendar_recruitment_events', "model_on" => CalendarRecruitmentEvent::class],["foreign" => 'metting_calendar_event_id', "references" => 'id', "on" => 'time_offs', "model_on" => TimeOff::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

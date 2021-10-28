@@ -15,8 +15,8 @@ class CreateDegreesTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'degrees', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-
+            $table->string("name")->nullable();
+            $table->timestamps();
 
         });
     }

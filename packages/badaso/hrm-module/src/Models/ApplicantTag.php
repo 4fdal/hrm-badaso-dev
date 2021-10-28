@@ -14,7 +14,7 @@ class ApplicantTag extends Model
 
     public $public_data_rows = [['applicant_id','int'],['applicant_category_id','int']] ;
 
-    public $belongs_relation = [["foreign" => 'applicant_id', "references" => 'id', "on" => 'applicants'],["foreign" => 'applicant_category_id', "references" => 'id', "on" => 'applicant_categories']] ;
+    public $belongs_relation = [["foreign" => 'applicant_id', "references" => 'id', "on" => 'applicants', "model_on" => Applicant::class],["foreign" => 'applicant_category_id', "references" => 'id', "on" => 'applicant_categories', "model_on" => ApplicantCategory::class]] ;
 
     public $many_relation = [] ;
 

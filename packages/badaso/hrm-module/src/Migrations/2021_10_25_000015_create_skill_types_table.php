@@ -13,11 +13,12 @@ class CreateSkillTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'skill_types', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'skill_types', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
+            $table->string("name")->nullable();
 
 
+            $table->timestamps();
         });
     }
 
@@ -28,6 +29,6 @@ class CreateSkillTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'skill_types');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'skill_types');
     }
 }

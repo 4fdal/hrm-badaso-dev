@@ -16,7 +16,7 @@ class SkillType extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'skill_type_id', "references" => 'id', "on" => 'skill_levels'],["foreign" => 'skill_type_id', "references" => 'id', "on" => 'skills'],["foreign" => 'skill_type_id', "references" => 'id', "on" => 'employee_skills']] ;
+    public $many_relation = [["foreign" => 'skill_type_id', "references" => 'id', "on" => 'skill_levels', "model_on" => SkillLevel::class],["foreign" => 'skill_type_id', "references" => 'id', "on" => 'skills', "model_on" => Skill::class],["foreign" => 'skill_type_id', "references" => 'id', "on" => 'employee_skills', "model_on" => EmployeeSkill::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

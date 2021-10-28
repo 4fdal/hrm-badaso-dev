@@ -16,7 +16,7 @@ class ResumeLineType extends Model
 
     public $belongs_relation = [] ;
 
-    public $many_relation = [["foreign" => 'resume_line_type_id', "references" => 'id', "on" => 'employee_resumes']] ;
+    public $many_relation = [["foreign" => 'resume_line_type_id', "references" => 'id', "on" => 'employee_resumes', "model_on" => EmployeeResume::class]] ;
 
     /**
      * Constructor for setting the table name dynamically.

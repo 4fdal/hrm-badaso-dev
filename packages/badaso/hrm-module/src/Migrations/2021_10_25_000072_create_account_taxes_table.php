@@ -15,19 +15,20 @@ class CreateAccountTaxesTable extends Migration
     {
         Schema::create(config('badaso.database.prefix').'account_taxes', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(); 
-            $table->string("type_tax_use")->nullable(); // sale, purchase 
-            $table->string("tax_scope")->nullable(); 
-            $table->string("amount_type")->nullable(); 
-            $table->boolean("is_active")->nullable(); 
-            $table->unsignedBigInteger('company_id')->nullable(); 
-            $table->integer("sequnce")->nullable(); 
-            $table->double("amount")->nullable(); 
-            $table->string("description")->nullable(); 
+            $table->string("name")->nullable();
+            $table->string("type_tax_use")->nullable(); // sale, purchase
+            $table->string("tax_scope")->nullable();
+            $table->string("amount_type")->nullable();
+            $table->boolean("is_active")->nullable();
+            $table->unsignedBigInteger('company_id')->nullable();
+            $table->integer("sequnce")->nullable();
+            $table->double("amount")->nullable();
+            $table->string("description")->nullable();
 
             $table->foreign('company_id')->references('id')->on(config('badaso.database.prefix').'companies')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**

@@ -21,7 +21,8 @@ class CreateFleetVehicleCategoriesTable extends Migration
 
             $table->foreign('user_id')->references('id')->on(config('badaso.database.prefix').'users')->onDelete('cascade');
 
-        });
+        $table->timestamps();
+});
     }
 
     /**
