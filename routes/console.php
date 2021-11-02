@@ -1348,6 +1348,9 @@ Artisan::command("run", function () {
     [$field_names] = $m1;
     [$_, $table_names] = $m2;
 
+    // route list
+    $route_list_crud_generate = "";
+
     foreach ($table_names as $index => $table_name) {
         $fields = explode("\n", $field_names[$index]);
         $new_fields = "";
@@ -1430,13 +1433,13 @@ Artisan::command("run", function () {
                 $new_fillable .= ", \"$field\"";
 
                 // inputs
-                $input_type = "" ;
-                $input_example = "" ;
+                $input_type = "";
+                $input_example = "";
                 switch ($type) {
                     case 'int':
                         $validate_inputs .= "           '$field' => ['nullable', 'integer'],\n";
                         $input_type = "integer";
-                        $input_example = 1 ;
+                        $input_example = 1;
                         break;
                     case 'date':
                         $validate_inputs .= "           '$field' => ['nullable', 'date_format:Y-m-d'],\n";
@@ -1473,17 +1476,17 @@ Artisan::command("run", function () {
                         $input_type = "string";
                         $input_example = "Lorem ibsum siamet";
                         break;
-                    case 'double' :
+                    case 'double':
                         $validate_inputs .= "           '$field' => ['nullable', 'double'],\n";
                         $input_type = 'double';
                         $input_example = 0.0;
-                        break ;
+                        break;
                     default:
                         $validate_inputs .= "           '$field' => ['nullable', '$type'],\n";
                         $input_type = $type;
                 }
 
-                $variable_input_equal_with_request .= "        \$this->$field = \$request->$field ;\n" ;
+                $variable_input_equal_with_request .= "        \$this->$field = \$request->$field ;\n";
                 $variable_inputs .= <<<TXT
                     /**
                      * @OA\Property(
@@ -1501,8 +1504,8 @@ Artisan::command("run", function () {
         }
 
 
-        $public_data_rows = substr($public_data_rows, 1) ;
-        $public_data_rows = "public \$public_data_rows = [$public_data_rows] ;" ;
+        $public_data_rows = substr($public_data_rows, 1);
+        $public_data_rows = "public \$public_data_rows = [$public_data_rows] ;";
 
         $table_relation = "";
         if (isset($relation[$table_name])) {
@@ -1541,7 +1544,7 @@ Artisan::command("run", function () {
             return $model_name;
         };
 
-        $public_belongs_relation = "" ;
+        $public_belongs_relation = "";
         $model_relation = "";
         if (isset($relation[$table_name])) {
             foreach ($relation[$table_name] as $key => $value) {
@@ -1564,21 +1567,21 @@ Artisan::command("run", function () {
             }
         }
 
-        if($public_belongs_relation != "" ){
-            $public_belongs_relation = substr($public_belongs_relation, 1) ;
+        if ($public_belongs_relation != "") {
+            $public_belongs_relation = substr($public_belongs_relation, 1);
             $public_belongs_relation = "public \$belongs_relation = [{$public_belongs_relation}] ;";
         } else {
             $public_belongs_relation = "public \$belongs_relation = [] ;";
         }
 
-        $public_many_relation = "" ;
+        $public_many_relation = "";
         $model_many_relation = "";
         foreach ($relation as $key_table_name => $table_relations) {
             foreach ($table_relations as $key => [$table_ref, $field_ref, $table_to, $field_to]) {
                 if ($table_to == $table_name) {
 
                     $model_to = $tableToModelName($table_ref);
-                    $fuc_name = str_replace('_id', "", $field_ref."_".$table_ref);
+                    $fuc_name = str_replace('_id', "", $field_ref . "_" . $table_ref);
                     $fuc_name = $toCamelCase($fuc_name);
 
                     $first = strtolower(substr($fuc_name, 0, 1));
@@ -1653,7 +1656,7 @@ Artisan::command("run", function () {
         $tableToInputName = function ($table_name) use ($toCamelCase) {
             $model_name = str_replace(['ies'], ["ys"], $table_name);
             $model_name = substr($model_name, 0, strlen($model_name) - 1);
-            $model_name = $toCamelCase($model_name."_store");
+            $model_name = $toCamelCase($model_name . "_input");
 
             return $model_name;
         };
@@ -1661,7 +1664,7 @@ Artisan::command("run", function () {
         // $validate_inputs;
         // $variable_input_equal_with_request;
         // $variable_inputs;
-        $class_input_name = $tableToInputName($table_name) ;
+        $class_input_name = $tableToInputName($table_name);
         $validate_inputs = substr($validate_inputs, 1);
         $input_schema_format = <<<TXT
         <?php
@@ -1694,6 +1697,398 @@ Artisan::command("run", function () {
 
         TXT;
 
-        File::put(app_path("Inputs/{$class_input_name}.php"), $input_schema_format);
+        // File::put(app_path("Inputs/{$class_input_name}.php"), $input_schema_format);
+
+        $strToClassName = function ($str, $prefix = "", $remove = "_") use ($toCamelCase) {
+            $model_name = $str;
+            if (strstr($str, "ies") || strstr($str, "ys")) {
+                $model_name = str_replace(['ies'], ["ys"], $str);
+                $model_name = substr($model_name, 0, strlen($model_name) - 1);
+            }
+            $model_name = str_replace($remove, '', ucwords($model_name . $prefix, $remove));
+
+            return $model_name;
+        };
+
+        $strToPrefixName = function ($str) {
+            $prefix_name = $str;
+            if (substr($str, strlen($str) - 1) == "s") {
+                $prefix_name = str_replace(['ies'], ["ys"], $str);
+                $prefix_name = substr($prefix_name, 0, strlen($prefix_name) - 1);
+            }
+            $prefix_name = str_replace("_", "-", $prefix_name);
+
+            return $prefix_name;
+        };
+
+        $prefix_name = $strToPrefixName($table_name);
+        $controller_name = $strToClassName($prefix_name, "-controller", "-");
+
+        $route_list_crud_generate .= <<<TXT
+                    Route::prefix('/$prefix_name')->group(function () {
+                        Route::post('/', '$controller_name@add');
+                        Route::get('/', '$controller_name@browse');
+                        Route::get('/{id}', '$controller_name@read');
+                        Route::put('/{id}', '$controller_name@update');
+                        Route::delete('/{id}', '$controller_name@delete');
+                    });\n\n
+        TXT;
+
+        $input_to_store_field = "";
+        $input_to_update_field = "";
+
+        // relation
+        $relation_belogsto = "";
+        for ($i = 2; $i < count($fields) - 1; $i++) {
+            $explode_fields = explode(" ", $fields[$i]);
+
+            $field = "";
+            $type = "";
+
+            if (isset($explode_fields[0]) && isset($explode_fields[1])) {
+                [$field, $type] = $explode_fields;
+                if ($field == 'id') {
+                    continue;
+                }
+            } else {
+                continue;
+            }
+
+            if ($field != "//") {
+                $input_to_store_field .= "              '$field' => \${$table_name}_input->$field,\n";
+                $input_to_update_field .= "              '$field' => \${$table_name}_input->$field == null ? \${$table_name}->$field : \${$table_name}_input->$field,\n";
+
+                if (isset($relation[$table_name])) {
+                    foreach ($relation[$table_name] as $key_relation_table => $val_relation_table) {
+                        [$table_from, $field_from, $table_to_ref, $field_to_ref] = $val_relation_table;
+                        if ($field_from == $field) {
+                            $attribute_from = str_replace('_id', '', $field_from);
+                            $relation_belogsto .= "         \$$table_name->$attribute_from = \$$table_name->$attribute_from ;\n";
+                        }
+                    }
+                }
+            }
+        }
+
+        // hash many relation
+        $relation_hasmany = "";
+        foreach ($relation as $key_relation => $val_relation) {
+            foreach ($val_relation as $key => $val_relation_table) {
+                [$table_from, $field_from, $table_ref_to, $field_ref_to] = $val_relation_table;
+                if ($table_ref_to == $table_name) {
+                    $model_to = $tableToModelName($table_from);
+                    $fuc_name = str_replace('_id', "", $field_from . "_" . $table_from);
+                    $fuc_name = $toCamelCase($fuc_name);
+
+                    $first = strtolower(substr($fuc_name, 0, 1));
+                    $fuc_name = $first . substr($fuc_name, 1);
+
+                    $attribute_name = str_replace('_id', "", $field_from . "_" . $table_from);
+
+                    $relation_hasmany .= "           \$$table_name->$attribute_name = \$$table_name->$fuc_name ;\n ";
+                }
+            }
+        }
+
+        $tag = str_replace("_", " ", $table_name);
+        $tag = ucwords($tag);
+
+        $controller_format = <<<TXT
+        <?php
+
+        namespace Uasoft\Badaso\Module\HRM\Controllers;
+
+        use App\Http\Controllers\Controller;
+        use Exception;
+        use Illuminate\Http\Request;
+        use Uasoft\Badaso\Helpers\ApiResponse;
+        use Uasoft\Badaso\Module\HRM\Models\\$model_name;
+        use Uasoft\Badaso\Module\HRM\Schema\Inputs\\$class_input_name;
+
+        class $controller_name extends Controller
+        {
+            /**
+             * @OA\Post(
+             *      path="/module/hrm/v1/$prefix_name",
+             *      operationId="Add$model_name",
+             *      tags={"$tag"},
+             *      summary="Add new $table_name",
+             *      description="Add a new $table_name",
+             *      @OA\RequestBody(
+             *          required=true,
+             *          @OA\JsonContent(ref="#/components/schemas/$class_input_name")
+             *      ),
+             *      @OA\Response(
+             *          response=201,
+             *          description="Successful operation",
+             *       ),
+             *      @OA\Response(
+             *          response=400,
+             *          description="Bad Request"
+             *      ),
+             *      @OA\Response(
+             *          response=401,
+             *          description="Unauthenticated",
+             *      ),
+             *      @OA\Response(
+             *          response=403,
+             *          description="Forbidden"
+             *      ),
+             *      security={{"bearerAuth" : {}}}
+             * )
+             */
+            public function add(Request \$request)
+            {
+                try {
+                    \${$table_name}_input = new $class_input_name(\$request);
+
+                    \${$table_name} = $model_name::create([
+            $input_to_store_field
+                    ]);
+
+                    if(\$request->get("show_belogsto_relation", "false") == "true") {
+                        // belogs to relation
+            $relation_belogsto
+                    }
+
+                    if(\$request->get("show_hasmany_relation", "false") == "true") {
+                        // has many relation
+            $relation_hasmany
+                    }
+
+                    return ApiResponse::success(compact('$table_name'));
+                } catch (Exception \$e) {
+                    return ApiResponse::failed(\$e);
+                }
+            }
+
+            /**
+             * @OA\Get(
+             *      path="/module/hrm/v1/$prefix_name",
+             *      operationId="Browse$model_name",
+             *      tags={"$tag"},
+             *      summary="Browse $table_name",
+             *      description="Browse $table_name",
+             *      @OA\Response(
+             *          response=201,
+             *          description="Successful operation",
+             *       ),
+             *      @OA\Response(
+             *          response=400,
+             *          description="Bad Request"
+             *      ),
+             *      @OA\Response(
+             *          response=401,
+             *          description="Unauthenticated",
+             *      ),
+             *      @OA\Response(
+             *          response=403,
+             *          description="Forbidden"
+             *      ),
+             *      security={{"bearerAuth" : {}}}
+             * )
+             */
+            public function browse(Request \$request)
+            {
+                try {
+
+                    \${$table_name} = new $model_name();
+
+                    \${$table_name}->map(function(\$$table_name) use (\$request){
+
+                    if(\$request->get("show_belogsto_relation", "false") == "true") {
+                        // belogs to relation
+            $relation_belogsto
+                    }
+
+                    if(\$request->get("show_hasmany_relation", "false") == "true") {
+                        // has many relation
+            $relation_hasmany
+                    }
+
+                        return \$$table_name ;
+                    });
+                    \${$table_name} = \${$table_name}->toArray();
+
+                    return ApiResponse::success(compact('$table_name'));
+                } catch (Exception \$e) {
+                    return ApiResponse::failed(\$e);
+                }
+            }
+
+            /**
+             * @OA\Get(
+             *      path="/module/hrm/v1/$prefix_name/{id}",
+             *      operationId="Read$model_name",
+             *      tags={"$tag"},
+             *      summary="Read $table_name",
+             *      description="Read $table_name",
+             *      @OA\Parameter(
+             *          name="id",
+             *          in="path",
+             *          required=true,
+             *          @OA\Schema(
+             *              type="integer"
+             *          )
+             *      ),
+             *      @OA\Response(
+             *          response=201,
+             *          description="Successful operation",
+             *       ),
+             *      @OA\Response(
+             *          response=400,
+             *          description="Bad Request"
+             *      ),
+             *      @OA\Response(
+             *          response=401,
+             *          description="Unauthenticated",
+             *      ),
+             *      @OA\Response(
+             *          response=403,
+             *          description="Forbidden"
+             *      ),
+             *      security={{"bearerAuth" : {}}}
+             * )
+             */
+            public function read(Request \$request, \$id)
+            {
+                try {
+
+                    \${$table_name} = $model_name::find(\$id);
+
+                    if(\$request->get("show_belogsto_relation", "false") == "true") {
+                        // belogs to relation
+            $relation_belogsto
+                    }
+
+                    if(\$request->get("show_hasmany_relation", "false") == "true") {
+                        // has many relation
+            $relation_hasmany
+                    }
+
+                    return ApiResponse::success(compact('$table_name'));
+                } catch (Exception \$e) {
+                    return ApiResponse::failed(\$e);
+                }
+            }
+
+            /**
+             * @OA\Put(
+             *      path="/module/hrm/v1/$prefix_name/{id}",
+             *      operationId="Update$model_name",
+             *      tags={"$tag"},
+             *      summary="Update $table_name",
+             *      description="Update $table_name",
+             *      @OA\Parameter(
+             *          name="id",
+             *          in="path",
+             *          required=true,
+             *          @OA\Schema(
+             *              type="integer"
+             *          )
+             *      ),
+             *      @OA\RequestBody(
+             *          required=true,
+             *          @OA\JsonContent(ref="#/components/schemas/$class_input_name")
+             *      ),
+             *      @OA\Response(
+             *          response=201,
+             *          description="Successful operation",
+             *       ),
+             *      @OA\Response(
+             *          response=400,
+             *          description="Bad Request"
+             *      ),
+             *      @OA\Response(
+             *          response=401,
+             *          description="Unauthenticated",
+             *      ),
+             *      @OA\Response(
+             *          response=403,
+             *          description="Forbidden"
+             *      ),
+             *      security={{"bearerAuth" : {}}}
+             * )
+             */
+            public function update(Request \$request, \$id)
+            {
+                try {
+                    \${$table_name}_input = new $class_input_name(\$request);
+                    \${$table_name} = $model_name::find(\$id);
+
+                    \${$table_name}->update([
+            $input_to_update_field
+                    ]);
+
+                    if(\$request->get("show_belogsto_relation", "false") == "true") {
+                        // belogs to relation
+            $relation_belogsto
+                    }
+
+                    if(\$request->get("show_hasmany_relation", "false") == "true") {
+                        // has many relation
+            $relation_hasmany
+                    }
+
+                    return ApiResponse::success(compact('$table_name'));
+                } catch (Exception \$e) {
+                    return ApiResponse::failed(\$e);
+                }
+            }
+
+
+            /**
+             * @OA\Delete(
+             *      path="/module/hrm/v1/$prefix_name/{id}",
+             *      operationId="Delete$model_name",
+             *      tags={"$tag"},
+             *      summary="Delete $table_name",
+             *      description="Delete $table_name",
+             *      @OA\Parameter(
+             *          name="id",
+             *          in="path",
+             *          required=true,
+             *          @OA\Schema(
+             *              type="integer"
+             *          )
+             *      ),
+             *      @OA\Response(
+             *          response=201,
+             *          description="Successful operation",
+             *       ),
+             *      @OA\Response(
+             *          response=400,
+             *          description="Bad Request"
+             *      ),
+             *      @OA\Response(
+             *          response=401,
+             *          description="Unauthenticated",
+             *      ),
+             *      @OA\Response(
+             *          response=403,
+             *          description="Forbidden"
+             *      ),
+             *      security={{"bearerAuth" : {}}}
+             * )
+             */
+            public function delete(\$id)
+            {
+                try {
+                    \${$table_name} = $model_name::find(\$id);
+
+                    \${$table_name}->delete();
+
+                    return ApiResponse::success();
+                } catch (Exception \$e) {
+                    return ApiResponse::failed(\$e);
+                }
+            }
+        }
+
+        TXT;
+
+        File::put(base_path("packages/badaso/hrm-module/src/Controllers/$controller_name.php"), $controller_format);
     }
+
+    // File::put(app_path("/router.php"), $route_list_crud_generate);
 });
