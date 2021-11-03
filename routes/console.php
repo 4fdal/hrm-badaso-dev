@@ -1814,6 +1814,24 @@ Artisan::command("run", function () {
              *      tags={"$tag"},
              *      summary="Add new $table_name",
              *      description="Add a new $table_name",
+             *      @OA\Parameter(
+             *          name="show_belogsto_relation",
+             *          in="query",
+             *          example=false,
+             *          required=false,
+             *          @OA\Schema(
+             *              type="boolean"
+             *          )
+             *      ),
+             *      @OA\Parameter(
+             *          name="show_hasmany_relation",
+             *          in="query",
+             *          example=false,
+             *          required=false,
+             *          @OA\Schema(
+             *              type="boolean"
+             *          )
+             *      ),
              *      @OA\RequestBody(
              *          required=true,
              *          @OA\JsonContent(ref="#/components/schemas/$class_input_name")
@@ -1869,6 +1887,67 @@ Artisan::command("run", function () {
              *      tags={"$tag"},
              *      summary="Browse $table_name",
              *      description="Browse $table_name",
+             *      @OA\Parameter(
+             *          name="filter_fields",
+             *          in="query",
+             *          example="*",
+             *          required=false,
+             *          @OA\Schema(
+             *              type="string"
+             *          )
+             *      ),
+             *      @OA\Parameter(
+             *          name="filter_fields_search",
+             *          in="query",
+             *          example="*",
+             *          required=false,
+             *          @OA\Schema(
+             *              type="string"
+             *          )
+             *      ),
+             *      @OA\Parameter(
+             *          name="max_page",
+             *          in="query",
+             *          required=false,
+             *          @OA\Schema(
+             *              type="integer"
+             *          )
+             *      ),
+             *      @OA\Parameter(
+             *          name="search",
+             *          in="query",
+             *          required=false,
+             *          @OA\Schema(
+             *              type="string"
+             *          )
+             *      ),
+             *      @OA\Parameter(
+             *          name="show_pagination",
+             *          in="query",
+             *          example=true,
+             *          required=false,
+             *          @OA\Schema(
+             *              type="boolean"
+             *          )
+             *      ),
+             *      @OA\Parameter(
+             *          name="show_belogsto_relation",
+             *          in="query",
+             *          example=false,
+             *          required=false,
+             *          @OA\Schema(
+             *              type="boolean"
+             *          )
+             *      ),
+             *      @OA\Parameter(
+             *          name="show_hasmany_relation",
+             *          in="query",
+             *          example=false,
+             *          required=false,
+             *          @OA\Schema(
+             *              type="boolean"
+             *          )
+             *      ),
              *      @OA\Response(
              *          response=201,
              *          description="Successful operation",
@@ -1893,6 +1972,42 @@ Artisan::command("run", function () {
                 try {
 
                     \${$table_name} = new $model_name();
+                    \${$table_name}_fillable = \${$table_name}->getFillable();
+
+                    \$filter_fields = \$request->get('filter_fields', '*');
+                    \$filter_fields = explode(',', \$filter_fields);
+                    if (array_search('*', \$filter_fields) == false) {
+                        \$new_filter_fields = [];
+                        foreach (\$filter_fields as \$index => \$field) {
+                            if (!in_array(\$field, \$filter_fields)) {
+                                \$new_filter_fields[] = \$field;
+                            }
+                        }
+                        \${$table_name} = \${$table_name}->select(\$filter_fields);
+                    }
+
+                    \$filter_fields_search = \$request->get('filter_fields_search', '*');
+                    \$filter_fields_search = explode(',', \$filter_fields_search);
+                    if (isset(\$request->search)) {
+                        if (array_search('*', \$filter_fields_search) == false) {
+                            foreach (\${$table_name}_fillable as \$index => \$field) {
+                                \${$table_name} = \${$table_name}->orWhere(\$field, "like", "%\$request->search%");
+                            }
+                        } else {
+                            foreach (\$filter_fields_search as \$index => \$field) {
+                                if (in_array(\$field, \${$table_name}_fillable)) {
+                                    \${$table_name} = \${$table_name}->orWhere(\$field, "like", "%\$request->search%");
+                                }
+                            }
+                        }
+                    }
+
+                    if (\$request->get('show_pagination', 'true') == 'true') {
+                        \$max_page = \$request->get('max_page', 15);
+                        \${$table_name} = \${$table_name}->paginate(\$max_page);
+                    } else {
+                        \${$table_name} = \${$table_name}->get();
+                    }
 
                     \${$table_name}->map(function(\$$table_name) use (\$request){
 
@@ -1929,6 +2044,24 @@ Artisan::command("run", function () {
              *          required=true,
              *          @OA\Schema(
              *              type="integer"
+             *          )
+             *      ),
+             *      @OA\Parameter(
+             *          name="show_belogsto_relation",
+             *          in="query",
+             *          example=false,
+             *          required=false,
+             *          @OA\Schema(
+             *              type="boolean"
+             *          )
+             *      ),
+             *      @OA\Parameter(
+             *          name="show_hasmany_relation",
+             *          in="query",
+             *          example=false,
+             *          required=false,
+             *          @OA\Schema(
+             *              type="boolean"
              *          )
              *      ),
              *      @OA\Response(
@@ -1985,6 +2118,24 @@ Artisan::command("run", function () {
              *          required=true,
              *          @OA\Schema(
              *              type="integer"
+             *          )
+             *      ),
+             *      @OA\Parameter(
+             *          name="show_belogsto_relation",
+             *          in="query",
+             *          required=false,
+             *          example=false,
+             *          @OA\Schema(
+             *              type="boolean"
+             *          )
+             *      ),
+             *      @OA\Parameter(
+             *          name="show_hasmany_relation",
+             *          in="query",
+             *          required=false,
+             *          example=false,
+             *          @OA\Schema(
+             *              type="boolean"
              *          )
              *      ),
              *      @OA\RequestBody(
@@ -2087,7 +2238,10 @@ Artisan::command("run", function () {
 
         TXT;
 
-        File::put(base_path("packages/badaso/hrm-module/src/Controllers/$controller_name.php"), $controller_format);
+        // File::put(base_path("packages/badaso/hrm-module/src/Controllers/$controller_name.php"), $controller_format);
+
+
+        dd($relation) ;
     }
 
     // File::put(app_path("/router.php"), $route_list_crud_generate);
