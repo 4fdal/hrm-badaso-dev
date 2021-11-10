@@ -30135,6 +30135,12 @@
                         "type": "integer",
                         "example": "1"
                     },
+                    "recruitment_id": {
+                        "title": "recruitment_id",
+                        "description": "recruitment_id",
+                        "type": "integer",
+                        "example": "1"
+                    },
                     "departement_id": {
                         "title": "departement_id",
                         "description": "departement_id",
@@ -30168,25 +30174,25 @@
                     "expected_salary": {
                         "title": "expected_salary",
                         "description": "expected_salary",
-                        "type": "double",
+                        "type": "numeric",
                         "example": "0"
                     },
                     "expected_salary_extra": {
                         "title": "expected_salary_extra",
                         "description": "expected_salary_extra",
-                        "type": "double",
+                        "type": "numeric",
                         "example": "0"
                     },
                     "proposed_salary": {
                         "title": "proposed_salary",
                         "description": "proposed_salary",
-                        "type": "double",
+                        "type": "numeric",
                         "example": "0"
                     },
                     "proposed_salary_extra": {
                         "title": "proposed_salary_extra",
                         "description": "proposed_salary_extra",
-                        "type": "double",
+                        "type": "numeric",
                         "example": "0"
                     },
                     "availability": {
@@ -30240,7 +30246,7 @@
                     "probability": {
                         "title": "probability",
                         "description": "probability",
-                        "type": "double",
+                        "type": "numeric",
                         "example": "0"
                     },
                     "user_id": {
@@ -33352,6 +33358,12 @@
                         "type": "integer",
                         "example": "1"
                     },
+                    "recruiter_id": {
+                        "title": "recruiter_id",
+                        "description": "recruiter_id from user id",
+                        "type": "integer",
+                        "example": "1"
+                    },
                     "is_favorite": {
                         "title": "is_favorite",
                         "description": "is_favorite",
@@ -33375,6 +33387,12 @@
                         "description": "no_of_new_application",
                         "type": "integer",
                         "example": "1"
+                    },
+                    "is_recruitment_done": {
+                        "title": "is_recruitment_done",
+                        "description": "is_recruitment_done",
+                        "type": "boolean",
+                        "example": false
                     },
                     "color": {
                         "title": "color",

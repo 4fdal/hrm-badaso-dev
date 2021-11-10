@@ -10,9 +10,9 @@ class Recruitment extends Model
     use HasFactory;
 
     protected $table = null ;
-    protected $fillable = [ "job_id", "is_favorite", "no_of_application", "no_of_to_recruit", "no_of_new_application", "color"] ;
+    protected $fillable = [ "job_id", "is_favorite", "no_of_application", "no_of_to_recruit", "no_of_new_application", "is_recruitment_done", "color"] ;
 
-    public $public_data_rows = [['job_id','int'],['is_favorite','double'],['no_of_application','int'],['no_of_to_recruit','int'],['no_of_new_application','int'],['color','varchar']] ;
+    public $public_data_rows = [['job_id','int'],['is_favorite','double'],['no_of_application','int'],['no_of_to_recruit','int'],['no_of_new_application','int'], ["is_recruitment_done", 'boolean'],['color','varchar']] ;
 
     public $belongs_relation = [["foreign" => 'job_id', "references" => 'id', "on" => 'jobs', "model_on" => Job::class]] ;
 

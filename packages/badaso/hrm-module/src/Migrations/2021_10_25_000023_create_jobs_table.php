@@ -26,13 +26,14 @@ class CreateJobsTable extends Migration
             $table->string("state")->nullable();
             $table->unsignedBigInteger("address_id")->nullable();
             $table->unsignedBigInteger('manager_id')->nullable();
+            $table->unsignedBigInteger('recruiter_id')->nullable();
+            $table->timestamps();
 
             $table->foreign('departement_id')->references('id')->on(config('badaso.database.prefix') . 'departements')->onDelete('cascade');
             $table->foreign('company_id')->references('id')->on(config('badaso.database.prefix') . 'companies')->onDelete('cascade');
             $table->foreign('manager_id')->references('id')->on(config('badaso.database.prefix') . 'employees')->onDelete('cascade');
             $table->foreign('address_id')->references('id')->on(config('badaso.database.prefix') . 'partners')->onDelete('cascade');
-
-            $table->timestamps();
+            $table->foreign('recruiter_id')->references('id')->on(config('badaso.database.prefix') . 'users')->onDelete('cascade');
         });
     }
 

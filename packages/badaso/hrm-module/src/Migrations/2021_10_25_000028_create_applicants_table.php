@@ -13,7 +13,7 @@ class CreateApplicantsTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('badaso.database.prefix').'applicants', function (Blueprint $table) {
+        Schema::create(config('badaso.database.prefix') . 'applicants', function (Blueprint $table) {
             $table->id();
             $table->string("title")->nullable();
             $table->string("name")->nullable();
@@ -24,7 +24,7 @@ class CreateApplicantsTable extends Migration
             $table->unsignedBigInteger('job_id')->nullable();
             $table->unsignedBigInteger('departement_id')->nullable();
             $table->unsignedBigInteger('company_id')->nullable();
-            $table->integer("recruiter_id")->nullable();
+            $table->unsignedBigInteger("recruiter_id")->nullable();
             $table->integer("appreciation")->nullable();
             $table->unsignedBigInteger('metsos_source_id')->nullable();
             $table->double("expected_salary")->nullable();
@@ -40,18 +40,19 @@ class CreateApplicantsTable extends Migration
             $table->integer("recruitment_stage_id")->nullable();
             $table->integer("last_recruitment_stage_id")->nullable();
             $table->double("probability")->nullable();
+            $table->unsignedBigInteger('applicant_refuse_type_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->timestamps();
 
-            $table->foreign('degree_id')->references('id')->on(config('badaso.database.prefix').'degrees')->onDelete('cascade');
-            $table->foreign('job_id')->references('id')->on(config('badaso.database.prefix').'jobs')->onDelete('cascade');
-            $table->foreign('departement_id')->references('id')->on(config('badaso.database.prefix').'departements')->onDelete('cascade');
-            $table->foreign('company_id')->references('id')->on(config('badaso.database.prefix').'companies')->onDelete('cascade');
-            $table->foreign('metsos_source_id')->references('id')->on(config('badaso.database.prefix').'metsos_sources')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on(config('badaso.database.prefix').'users')->onDelete('cascade');
-            $table->foreign('recruiter_id')->references('id')->on(config('badaso.database.prefix').'users')->onDelete('cascade');
-
-        $table->timestamps();
-});
+            $table->foreign('degree_id')->references('id')->on(config('badaso.database.prefix') . 'degrees')->onDelete('cascade');
+            $table->foreign('job_id')->references('id')->on(config('badaso.database.prefix') . 'jobs')->onDelete('cascade');
+            $table->foreign('departement_id')->references('id')->on(config('badaso.database.prefix') . 'departements')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on(config('badaso.database.prefix') . 'companies')->onDelete('cascade');
+            // $table->foreign('metsos_source_id')->references('id')->on(config('badaso.database.prefix') . 'metsos_sources')->onDelete('cascade');
+            $table->foreign('applicant_refuse_type_id')->references('id')->on(config('badaso.database.prefix') . 'applicant_refuse_types')->onDelete('cascade') ;
+            $table->foreign('user_id')->references('id')->on(config('badaso.database.prefix') . 'users')->onDelete('cascade');
+            $table->foreign('recruiter_id')->references('id')->on(config('badaso.database.prefix') . 'users')->onDelete('cascade');
+        });
     }
 
     /**
@@ -61,6 +62,6 @@ class CreateApplicantsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('badaso.database.prefix').'applicants');
+        Schema::dropIfExists(config('badaso.database.prefix') . 'applicants');
     }
 }

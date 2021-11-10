@@ -18,8 +18,9 @@ class CreateRecruitmentsTable extends Migration
             $table->unsignedBigInteger('job_id')->nullable();
             $table->double("is_favorite")->nullable();
             $table->integer("no_of_application")->nullable();
-            $table->integer("no_of_to_recruit")->nullable();
+            $table->integer("no_of_to_recruit")->default(1)->nullable();
             $table->integer("no_of_new_application")->nullable();
+            $table->boolean('is_recruitment_done')->default(false) ;
             $table->string("color")->nullable();
 
             $table->foreign('job_id')->references('id')->on(config('badaso.database.prefix') . 'jobs')->onDelete('cascade');
