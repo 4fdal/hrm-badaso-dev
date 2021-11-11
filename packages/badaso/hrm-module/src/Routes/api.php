@@ -243,6 +243,8 @@ Route::group(
                 Route::get('/{id}', 'ApplicantController@read');
                 Route::put('/{id}', 'ApplicantController@update');
                 Route::delete('/{id}', 'ApplicantController@delete');
+
+                Route::post('/create-employee', 'ApplicantController@createEmployee') ;
             });
 
             Route::prefix('/applicant-category')->group(function () {
@@ -755,6 +757,14 @@ Route::group(
                 Route::get('/{id}', 'ExpenseReportItemController@read');
                 Route::put('/{id}', 'ExpenseReportItemController@update');
                 Route::delete('/{id}', 'ExpenseReportItemController@delete');
+            });
+
+            Route::prefix('/applicant-refuse-type')->group(function () {
+                Route::post('/', 'ApplicantRefuseTypeController@add');
+                Route::get('/', 'ApplicantRefuseTypeController@browse');
+                Route::get('/{id}', 'ApplicantRefuseTypeController@read');
+                Route::put('/{id}', 'ApplicantRefuseTypeController@update');
+                Route::delete('/{id}', 'ApplicantRefuseTypeController@delete');
             });
         });
     }

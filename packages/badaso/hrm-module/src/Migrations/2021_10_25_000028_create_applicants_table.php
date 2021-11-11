@@ -42,6 +42,7 @@ class CreateApplicantsTable extends Migration
             $table->double("probability")->nullable();
             $table->unsignedBigInteger('applicant_refuse_type_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('recruitment_id')->nullable();
             $table->timestamps();
 
             $table->foreign('degree_id')->references('id')->on(config('badaso.database.prefix') . 'degrees')->onDelete('cascade');
@@ -52,6 +53,7 @@ class CreateApplicantsTable extends Migration
             $table->foreign('applicant_refuse_type_id')->references('id')->on(config('badaso.database.prefix') . 'applicant_refuse_types')->onDelete('cascade') ;
             $table->foreign('user_id')->references('id')->on(config('badaso.database.prefix') . 'users')->onDelete('cascade');
             $table->foreign('recruiter_id')->references('id')->on(config('badaso.database.prefix') . 'users')->onDelete('cascade');
+            $table->foreign('recruitment_id')->references('id')->on(config('badaso.database.prefix') . 'recruitments')->onDelete('cascade');
         });
     }
 
