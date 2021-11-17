@@ -71,7 +71,6 @@ class RecruitmentController extends Controller
                 'no_of_to_recruit' => $recruitments_input->no_of_to_recruit,
                 'no_of_new_application' => $recruitments_input->no_of_new_application,
                 'color' => $recruitments_input->color,
-                'recruiter_id' => $recruitments_input->recruiter_id,
                 'is_recruitment_done' => $recruitments_input->is_recruitment_done,
             ]);
 

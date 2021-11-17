@@ -65,32 +65,31 @@ class CurrencyController extends Controller
             $currencies_input = new CurrencyInput($request);
 
             $currencies = Currency::create([
-                  'name' => $currencies_input->name,
-              'sysmbol' => $currencies_input->sysmbol,
-              'rounding' => $currencies_input->rounding,
-              'decimal_place' => $currencies_input->decimal_place,
-              'is_active' => $currencies_input->is_active,
-              'position' => $currencies_input->position,
-              'currency_unit_label' => $currencies_input->currency_unit_label,
-              'currency_subunit_label' => $currencies_input->currency_subunit_label,
+                'name' => $currencies_input->name,
+                'sysmbol' => $currencies_input->sysmbol,
+                'rounding' => $currencies_input->rounding,
+                'decimal_place' => $currencies_input->decimal_place,
+                'is_active' => $currencies_input->is_active,
+                'position' => $currencies_input->position,
+                'currency_unit_label' => $currencies_input->currency_unit_label,
+                'currency_subunit_label' => $currencies_input->currency_subunit_label,
 
             ]);
 
-            if($request->get("show_belogsto_relation", "false") == "true") {
+            if ($request->get("show_belogsto_relation", "false") == "true") {
                 // belogs to relation
-    
+
             }
 
-            if($request->get("show_hasmany_relation", "false") == "true") {
+            if ($request->get("show_hasmany_relation", "false") == "true") {
                 // has many relation
-               $currencies->currency_countries = $currencies->currencyCountries ;
-            $currencies->currency_companies = $currencies->currencyCompanies ;
-            $currencies->currency_lunch_cashmoves = $currencies->currencyLunchCashmoves ;
-            $currencies->currency_lunch_orders = $currencies->currencyLunchOrders ;
-            $currencies->currency_accounts = $currencies->currencyAccounts ;
-            $currencies->currency_partner_banks = $currencies->currencyPartnerBanks ;
-            $currencies->currency_account_journals = $currencies->currencyAccountJournals ;
- 
+                $currencies->currency_countries = $currencies->currencyCountries;
+                $currencies->currency_companies = $currencies->currencyCompanies;
+                $currencies->currency_lunch_cashmoves = $currencies->currencyLunchCashmoves;
+                $currencies->currency_lunch_orders = $currencies->currencyLunchOrders;
+                $currencies->currency_accounts = $currencies->currencyAccounts;
+                $currencies->currency_partner_banks = $currencies->currencyPartnerBanks;
+                $currencies->currency_account_journals = $currencies->currencyAccountJournals;
             }
 
             return ApiResponse::success(compact('currencies'));
@@ -228,26 +227,25 @@ class CurrencyController extends Controller
                 $currencies = $currencies->get();
             }
 
-            $currencies->map(function($currencies) use ($request){
+            $currencies->map(function ($currencies) use ($request) {
 
-            if($request->get("show_belogsto_relation", "false") == "true") {
-                // belogs to relation
-    
-            }
+                if ($request->get("show_belogsto_relation", "false") == "true") {
+                    // belogs to relation
 
-            if($request->get("show_hasmany_relation", "false") == "true") {
-                // has many relation
-               $currencies->currency_countries = $currencies->currencyCountries ;
-            $currencies->currency_companies = $currencies->currencyCompanies ;
-            $currencies->currency_lunch_cashmoves = $currencies->currencyLunchCashmoves ;
-            $currencies->currency_lunch_orders = $currencies->currencyLunchOrders ;
-            $currencies->currency_accounts = $currencies->currencyAccounts ;
-            $currencies->currency_partner_banks = $currencies->currencyPartnerBanks ;
-            $currencies->currency_account_journals = $currencies->currencyAccountJournals ;
- 
-            }
+                }
 
-                return $currencies ;
+                if ($request->get("show_hasmany_relation", "false") == "true") {
+                    // has many relation
+                    $currencies->currency_countries = $currencies->currencyCountries;
+                    $currencies->currency_companies = $currencies->currencyCompanies;
+                    $currencies->currency_lunch_cashmoves = $currencies->currencyLunchCashmoves;
+                    $currencies->currency_lunch_orders = $currencies->currencyLunchOrders;
+                    $currencies->currency_accounts = $currencies->currencyAccounts;
+                    $currencies->currency_partner_banks = $currencies->currencyPartnerBanks;
+                    $currencies->currency_account_journals = $currencies->currencyAccountJournals;
+                }
+
+                return $currencies;
             });
             $currencies = $currencies->toArray();
 
@@ -315,21 +313,20 @@ class CurrencyController extends Controller
 
             $currencies = Currency::find($id);
 
-            if($request->get("show_belogsto_relation", "false") == "true") {
+            if ($request->get("show_belogsto_relation", "false") == "true") {
                 // belogs to relation
-    
+
             }
 
-            if($request->get("show_hasmany_relation", "false") == "true") {
+            if ($request->get("show_hasmany_relation", "false") == "true") {
                 // has many relation
-               $currencies->currency_countries = $currencies->currencyCountries ;
-            $currencies->currency_companies = $currencies->currencyCompanies ;
-            $currencies->currency_lunch_cashmoves = $currencies->currencyLunchCashmoves ;
-            $currencies->currency_lunch_orders = $currencies->currencyLunchOrders ;
-            $currencies->currency_accounts = $currencies->currencyAccounts ;
-            $currencies->currency_partner_banks = $currencies->currencyPartnerBanks ;
-            $currencies->currency_account_journals = $currencies->currencyAccountJournals ;
- 
+                $currencies->currency_countries = $currencies->currencyCountries;
+                $currencies->currency_companies = $currencies->currencyCompanies;
+                $currencies->currency_lunch_cashmoves = $currencies->currencyLunchCashmoves;
+                $currencies->currency_lunch_orders = $currencies->currencyLunchOrders;
+                $currencies->currency_accounts = $currencies->currencyAccounts;
+                $currencies->currency_partner_banks = $currencies->currencyPartnerBanks;
+                $currencies->currency_account_journals = $currencies->currencyAccountJournals;
             }
 
             return ApiResponse::success(compact('currencies'));
@@ -401,32 +398,31 @@ class CurrencyController extends Controller
             $currencies = Currency::find($id);
 
             $currencies->update([
-                  'name' => $currencies_input->name == null ? $currencies->name : $currencies_input->name,
-              'sysmbol' => $currencies_input->sysmbol == null ? $currencies->sysmbol : $currencies_input->sysmbol,
-              'rounding' => $currencies_input->rounding == null ? $currencies->rounding : $currencies_input->rounding,
-              'decimal_place' => $currencies_input->decimal_place == null ? $currencies->decimal_place : $currencies_input->decimal_place,
-              'is_active' => $currencies_input->is_active == null ? $currencies->is_active : $currencies_input->is_active,
-              'position' => $currencies_input->position == null ? $currencies->position : $currencies_input->position,
-              'currency_unit_label' => $currencies_input->currency_unit_label == null ? $currencies->currency_unit_label : $currencies_input->currency_unit_label,
-              'currency_subunit_label' => $currencies_input->currency_subunit_label == null ? $currencies->currency_subunit_label : $currencies_input->currency_subunit_label,
+                'name' => $currencies_input->name == null ? $currencies->name : $currencies_input->name,
+                'sysmbol' => $currencies_input->sysmbol == null ? $currencies->sysmbol : $currencies_input->sysmbol,
+                'rounding' => $currencies_input->rounding == null ? $currencies->rounding : $currencies_input->rounding,
+                'decimal_place' => $currencies_input->decimal_place == null ? $currencies->decimal_place : $currencies_input->decimal_place,
+                'is_active' => $currencies_input->is_active == null ? $currencies->is_active : $currencies_input->is_active,
+                'position' => $currencies_input->position == null ? $currencies->position : $currencies_input->position,
+                'currency_unit_label' => $currencies_input->currency_unit_label == null ? $currencies->currency_unit_label : $currencies_input->currency_unit_label,
+                'currency_subunit_label' => $currencies_input->currency_subunit_label == null ? $currencies->currency_subunit_label : $currencies_input->currency_subunit_label,
 
             ]);
 
-            if($request->get("show_belogsto_relation", "false") == "true") {
+            if ($request->get("show_belogsto_relation", "false") == "true") {
                 // belogs to relation
-    
+
             }
 
-            if($request->get("show_hasmany_relation", "false") == "true") {
+            if ($request->get("show_hasmany_relation", "false") == "true") {
                 // has many relation
-               $currencies->currency_countries = $currencies->currencyCountries ;
-            $currencies->currency_companies = $currencies->currencyCompanies ;
-            $currencies->currency_lunch_cashmoves = $currencies->currencyLunchCashmoves ;
-            $currencies->currency_lunch_orders = $currencies->currencyLunchOrders ;
-            $currencies->currency_accounts = $currencies->currencyAccounts ;
-            $currencies->currency_partner_banks = $currencies->currencyPartnerBanks ;
-            $currencies->currency_account_journals = $currencies->currencyAccountJournals ;
- 
+                $currencies->currency_countries = $currencies->currencyCountries;
+                $currencies->currency_companies = $currencies->currencyCompanies;
+                $currencies->currency_lunch_cashmoves = $currencies->currencyLunchCashmoves;
+                $currencies->currency_lunch_orders = $currencies->currencyLunchOrders;
+                $currencies->currency_accounts = $currencies->currencyAccounts;
+                $currencies->currency_partner_banks = $currencies->currencyPartnerBanks;
+                $currencies->currency_account_journals = $currencies->currencyAccountJournals;
             }
 
             return ApiResponse::success(compact('currencies'));

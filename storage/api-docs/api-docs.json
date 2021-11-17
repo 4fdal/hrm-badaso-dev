@@ -4496,6 +4496,45 @@
                 ]
             }
         },
+        "/module/hrm/v1/applicant/create-employee": {
+            "post": {
+                "tags": [
+                    "Applicants"
+                ],
+                "summary": "Add new employee",
+                "description": "Add a new employee",
+                "operationId": "ApplicantAddNewEmployee",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ApplicantCreateEmployeeInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/module/hrm/v1/applicant-follower": {
             "get": {
                 "tags": [
@@ -30373,6 +30412,28 @@
                 "type": "object",
                 "xml": {
                     "name": "ApplicantCommentInput"
+                }
+            },
+            "ApplicantCreateEmployeeInput": {
+                "title": "ApplicantCreateEmployeeInput",
+                "description": "",
+                "properties": {
+                    "recruitment_id": {
+                        "title": "recruitment_id",
+                        "description": "recruitement_id",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "applicant_id": {
+                        "title": "applicant_id",
+                        "description": "applicant_id",
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "ApplicantCreateEmployeeInput"
                 }
             },
             "ApplicantFollowerInput": {

@@ -3,13 +3,14 @@
 namespace Uasoft\Badaso\Module\HRM\Controllers;
 
 use App\Http\Controllers\Controller;
-use ApplicantCreateEmployeeInput;
 use Exception;
 use Illuminate\Http\Request;
 use Uasoft\Badaso\Helpers\ApiResponse;
 use Uasoft\Badaso\Module\HRM\Models\Applicant;
 use Uasoft\Badaso\Module\HRM\Models\Employee;
+use Uasoft\Badaso\Module\HRM\Models\Job;
 use Uasoft\Badaso\Module\HRM\Models\Recruitment;
+use Uasoft\Badaso\Module\HRM\Schema\Inputs\ApplicantCreateEmployeeInput;
 use Uasoft\Badaso\Module\HRM\Schema\Inputs\ApplicantInput;
 
 class ApplicantController extends Controller
@@ -105,6 +106,7 @@ class ApplicantController extends Controller
                 $applicants->company = $applicants->company;
                 $applicants->metsos_source = $applicants->metsos_source;
                 $applicants->user = $applicants->user;
+                $applicants->recruitment_id = $applicants->recruitment_id;
             }
 
             if ($request->get("show_hasmany_relation", "false") == "true") {
@@ -113,6 +115,7 @@ class ApplicantController extends Controller
                 $applicants->applicant_applicant_followers = $applicants->applicantApplicantFollowers;
                 $applicants->applicant_applicant_comments = $applicants->applicantApplicantComments;
                 $applicants->applicatn_refuse_type = $applicants->applicantRefuseType;
+                $applicants->recruitment = $applicants->recruitment;
             }
 
             return ApiResponse::success(compact('applicants'));
@@ -354,7 +357,6 @@ class ApplicantController extends Controller
                 $applicants->applicant_applicant_followers = $applicants->applicantApplicantFollowers;
                 $applicants->applicant_applicant_comments = $applicants->applicantApplicantComments;
                 $applicants->applicatn_refuse_type = $applicants->applicantRefuseType;
-
             }
 
             return ApiResponse::success(compact('applicants'));
@@ -452,7 +454,7 @@ class ApplicantController extends Controller
                 'last_recruitment_stage_id' => $applicants_input->last_recruitment_stage_id == null ? $applicants->last_recruitment_stage_id : $applicants_input->last_recruitment_stage_id,
                 'probability' => $applicants_input->probability == null ? $applicants->probability : $applicants_input->probability,
                 'user_id' => $applicants_input->user_id == null ? $applicants->user_id : $applicants_input->user_id,
-                'applicant_refuse_type_id' => $applicants_input->applicant_refuse_type_id == null ? $applicants->applicant_refuse_type_id : $applicants_input->applicant_refuse_type_id ,
+                'applicant_refuse_type_id' => $applicants_input->applicant_refuse_type_id == null ? $applicants->applicant_refuse_type_id : $applicants_input->applicant_refuse_type_id,
             ]);
 
             if ($request->get("show_belogsto_relation", "false") == "true") {
@@ -528,57 +530,134 @@ class ApplicantController extends Controller
     }
 
     /**
-     *
+     * @OA\Post(
+     *      path="/module/hrm/v1/applicant/create-employee",
+     *      operationId="ApplicantAddNewEmployee",
+     *      tags={"Applicants"},
+     *      summary="Add new employee",
+     *      description="Add a new employee",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/ApplicantCreateEmployeeInput")
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      ),
+     *      security={{"bearerAuth" : {}}}
+     * )
      */
-    public function createEmployee(Request $request){
+    public function createEmployee(Request $request)
+    {
         try {
 
             $applicant_create_employee_input = new ApplicantCreateEmployeeInput($request);
 
             $recruitment_id = $applicant_create_employee_input->recruitment_id;
-            $recruitment = Recruitment::find($recruitment_id);
-            if(isset($recruitment)){
-                $job_id = $recruitment->job_id;
-                $job = Job::find($job_id);
+            $applicant_id = $applicant_create_employee_input->applicant_id;
 
-                // increment no employee in job
-                if(isset($job)){
-                    if($job->no_employee == null){
-                        $job->no_employee = 1;
-                    } else {
-                        $job->no_employee = $job->no_employee + 1;
-                    }
-                    $job->save();
+            $applicant = Applicant::where('id', $applicant_id)->where('recruitment_id', $recruitment_id)->first();
+
+            $employee = null ;
+            if (isset($applicant)) {
+                $data_create_employee = [
+                    'user_id' => $applicant->user_id,
+                    'name' => $applicant->name,
+                    'job_postion_name' => $applicant->title,
+                    // 'work_mobile' => $applicant,
+                    // 'work_phone' => $applicant,
+                    // 'work_email' => $applicant,
+                    'departement_id' => $applicant->departement_id,
+                    'company_id' => $applicant->company_id,
+                    // 'coach_id' => $applicant,
+                    'is_active' => true,
+                    // 'work_address_id' => $applicant,
+                    // 'work_location' => $applicant,
+                    // 'approve_time_off_user_id' => $applicant,
+                    // 'approve_expenses_user_id' => $applicant,
+                    // 'work_id' => $applicant,
+                    // 'tz' => $applicant,
+                    // 'address_id' => $applicant,
+                    'email' => $applicant->email,
+                    'phone' => $applicant->phone,
+                    // 'home_work_distance' => $applicant,
+                    // 'marital_status' => $applicant,
+                    // 'emergency_contanct' => $applicant,
+                    // 'emergency_phone' => $applicant,
+                    // 'certificate_level_id' => $applicant,
+                    // 'field_of_study' => $applicant,
+                    // 'school' => $applicant,
+                    // 'country_id' => $applicant,
+                    // 'identification_no' => $applicant,
+                    // 'pasport_no' => $applicant,
+                    // 'gender' => $applicant,
+                    // 'data_of_birth' => $applicant,
+                    // 'place_of_birth' => $applicant,
+                    // 'country_of_birth_id' => $applicant,
+                    // 'no_of_children' => $applicant,
+                    // 'visa_no' => $applicant,
+                    // 'work_permit_no' => $applicant,
+                    // 'visa_expire_data' => $applicant,
+                    'job_id' => $applicant->job_id,
+                    // 'mobility_card' => $applicant,
+                    // 'pin_code' => $applicant,
+                    // 'id_badge' => $applicant,
+                ];
+
+                // create employee
+                $employee = Employee::create($data_create_employee);
+
+                $recruitment = Recruitment::find($recruitment_id);
+                if (isset($recruitment)) {
+                    $job_id = $recruitment->job_id;
+                    $job = Job::find($job_id);
+
+                    // increment no employee in job
+                    if (isset($job)) {
+                        if ($job->no_of_employee == null) {
+                            $job->no_of_employee = 1;
+                        } else {
+                            $job->no_of_employee = $job->no_of_employee + 1;
+                        }
+                        $job->save();
 
 
-                    // if no_of_to_recruit equal with no_of_hired_employee
-                    if($recruitment->no_of_to_recruit != null && $job->no_of_hired_employee != null){
+                        // if no_of_to_recruit equal with no_of_hired_employee
+                        if ($recruitment->no_of_to_recruit != null && $job->no_of_hired_employee != null) {
 
-                        // increment no_of_to_recruit because of new employee
-                        $recruitment->no_of_to_recruit += 1;
+                            // increment no_of_to_recruit because of new employee
+                            $recruitment->no_of_to_recruit += 1;
 
-                        // triger status done recruitment is true
-                        if($recruitment->no_of_to_recruit == $job->no_of_hired_employe) {
-                            $recruitment->is_recruitment_done = true;
+                            // triger status done recruitment is true
+                            if ($recruitment->no_of_to_recruit == $job->no_of_hired_employe) {
+                                $recruitment->is_recruitment_done = true;
+                            }
                         }
                     }
 
+                    // save recruitement
+                    $recruitment->save();
                 }
 
-                // save recruitement
-                $recruitment->save();
+                // close applicant
+                $date_closed = date('Y-m-d');
+                $applicant->date_closed = $date_closed;
+                $applicant->save();
             }
 
-            $applicant_id = $applicant_create_employee_input->applicant_id;
-
-            $data_create_employee = [
-                'name' =>
-            ];
-
-            $employee = new Employee();
-            $employeeFields = $employee->getFillable();
-
-            return ApiResponse::success(compact('applicants'));
+            return ApiResponse::success(compact('applicant', 'employee'));
         } catch (Exception $e) {
             return ApiResponse::failed($e);
         }

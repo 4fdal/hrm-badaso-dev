@@ -3,6 +3,7 @@
 namespace Uasoft\Badaso\Module\HRM\Observer;
 
 use Uasoft\Badaso\Module\HRM\Models\Applicant;
+use Uasoft\Badaso\Module\HRM\Models\Job;
 use Uasoft\Badaso\Module\HRM\Models\Recruitment;
 
 class ApplicantObserver

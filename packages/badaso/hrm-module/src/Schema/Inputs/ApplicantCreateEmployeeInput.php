@@ -1,4 +1,5 @@
 <?php
+namespace Uasoft\Badaso\Module\HRM\Schema\Inputs;
 
 use Illuminate\Http\Request;
 

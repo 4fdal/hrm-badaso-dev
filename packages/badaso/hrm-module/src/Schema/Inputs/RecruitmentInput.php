@@ -30,18 +30,6 @@ class RecruitmentInput
 
     /**
      * @OA\Property(
-     *     title="recruiter_id",
-     *     description="recruiter_id from user id",
-     *     type="integer",
-     *     example="1"
-     * )
-     *
-     * @var integer
-     */
-    public $recruiter_id;
-
-    /**
-     * @OA\Property(
      *     title="is_favorite",
      *     description="is_favorite",
      *     type="double",
@@ -117,7 +105,6 @@ class RecruitmentInput
             'no_of_to_recruit' => ['nullable', 'integer'],
             'no_of_new_application' => ['nullable', 'integer'],
             'color' => ['nullable', 'string'],
-            'recruiter_id' => ['nullable', "exists:" . config('badaso.database.prefix') . "users,id"],
             'is_recruitment_done' => ['nullable', 'boolean']
         ]);
 
@@ -127,7 +114,6 @@ class RecruitmentInput
         $this->no_of_to_recruit = $request->no_of_to_recruit;
         $this->no_of_new_application = $request->no_of_new_application;
         $this->color = $request->color;
-        $this->recruiter_id = $request->recruiter_id;
         $this->is_recruitment_done = $request->is_recruitment_done ;
     }
 }
